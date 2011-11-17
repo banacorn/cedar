@@ -1,0 +1,2 @@
+stylus -o ../../public/stylesheets -c ./style.styl
+coffee -j ../scripts/main.js -c ./*.coffee

@@ -1,0 +1,17 @@
+$ ->
+    socket = io.connect()
+    socket.on 'hello', ->
+        console.log 'hello'
+    
+    editor.init()
+
+
+editor = (->
+
+        
+
+    (
+        init: ->
+            $('.line').click
+    )
+)()
