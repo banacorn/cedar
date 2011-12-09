@@ -1,0 +1,109 @@
+@import "src/reset"
+
+@font-face
+   font-family 'Ubuntu Mono'
+   font-style normal
+   src url(ubuntu_mono.woff)
+
+
+base = rgb(60, 60, 60)
+grau = rgb(200, 200, 200)
+blau = rgb(60, 120, 180)
+
+kleine = 600px
+mittel = 800px
+grosse = 1200px
+
+breite(add = 0)
+    .kleine &
+        width kleine + add
+    .mittel &
+        width mittel + add
+    .grosse &
+        width grosse + add
+    
+
+
+
+
+
+
+
+
+
+
+html
+    height 100%
+    
+body
+    font-family Helvetica, Verdana, 'LiHei Pro', '微軟正黑體', '新細明體', Arial, sans-serif
+    color base
+    background grau + 60%
+    height 100%
+    
+//// container ////
+
+#container
+    height 1000px
+    margin 0 auto
+    
+    breite(200px)
+    
+
+    header
+        height 60px
+        
+    #main
+        overflow hidden
+        box-shadow grau 0px 0px 20px
+        background white
+        
+    footer
+        clear both
+    
+        
+        
+        
+//// aside ////
+
+#main aside
+    float left
+    width 200px
+    height 1000px
+    background base
+    box-shadow grau 0px 0px 20px
+    
+    .fixed &
+        position fixed
+        top 0
+    
+//// nav ////
+
+#main nav
+    float left
+    height 40px
+    background blau
+    .fixed &
+        position fixed
+        top 0
+        margin-left 200px
+    
+    
+    breite()
+ 
+//// content ////
+   
+   
+#content
+    float left
+    height 1000px
+    
+    breite()
+        
+    > section
+        float left
+        height 1000px
+        
+        breite()
+        
+        

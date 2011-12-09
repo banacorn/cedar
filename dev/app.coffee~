@@ -1,5 +1,0 @@
-io  = require('./app').io
-
-
-io.sockets.on 'connection', (socket) ->
-    socket.emit 'hello'

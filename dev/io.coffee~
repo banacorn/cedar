@@ -1,3 +1,0 @@
-io  = require('./app').io
-
-console.log io

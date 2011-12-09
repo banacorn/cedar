@@ -1,0 +1,32 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+body{line-height:1}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+table{border-collapse:collapse;border-spacing:0}
+@font-face{font-family:'Ubuntu Mono';font-style:normal;src:url("ubuntu_mono.woff")}
+html{height:100%}
+body{font-family:Helvetica,Verdana,'LiHei Pro','微軟正黑體','新細明體',Arial,sans-serif;color:#3c3c3c;background:#e9e9e9;height:100%}
+#container{height:1000px;margin:0 auto;}
+.kleine #container{width:800px}
+.mittel #container{width:1000px}
+.grosse #container{width:1400px}
+#container header{height:60px}
+#container #main{overflow:hidden;box-shadow:#c8c8c8 0 0 20px;background:#fff}
+#container footer{clear:both}
+#main aside{float:left;width:200px;height:1000px;background:#3c3c3c;box-shadow:#c8c8c8 0 0 20px;}
+.fixed #main aside{position:fixed;top:0}
+#main nav{float:left;height:40px;background:#3c78b4;}
+.fixed #main nav{position:fixed;top:0;margin-left:200px}
+.kleine #main nav{width:600px}
+.mittel #main nav{width:800px}
+.grosse #main nav{width:1200px}
+#content{float:left;height:1000px;}
+.kleine #content{width:600px}
+.mittel #content{width:800px}
+.grosse #content{width:1200px}
+#content > section{float:left;height:1000px;}
+.kleine #content > section{width:600px}
+.mittel #content > section{width:800px}
+.grosse #content > section{width:1200px}
