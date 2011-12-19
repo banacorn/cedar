@@ -1,18 +1,15 @@
 class Container extends Backbone.View
     el: window
     
-    fix: 'free'
     events:
         'resize': 'resize'
-        'scroll': 'scroll'
         
     initialize: ->
         @resize()
-        @scroll()
         
     render: ->
         # remove all the size classes and update a new one
-        $('body').removeClass('kleine mittel grosse fixed free').addClass "#{ @size } #{ @fix }"
+        $('body').removeClass('kleine mittel grosse').addClass "#{ @size }"
         
     resize: ->
         # detect width    
@@ -34,25 +31,38 @@ class Container extends Backbone.View
             # render
             @render()
             
-    scroll: ->
-        # detect scroll    
-        scrollTop = $('body').scrollTop()
+class Breadcrumb
         
-        if scrollTop < 60 and @fix is 'fixed'
-            console.log 'ah'
-            @fix = 'free'
+    class View extends Backbone.View
+        el: '#breadcrumb ol'
             
-            @render()
+    constructor: ->
+        @view = new View
             
-        else if scrollTop > 60 and @fix isnt 'fixed'
-            console.log 'ah'
+    setPath: ->
         
-            @fix = 'fixed'
             
-            @render()
+            
+            
+class Router extends Backbone.Router
+    routes:
+        '!/projects/:id/*path': 'project'
+        '!/projects/:id': 'project'
+        '!/projects': 'project'
         
-        
+    initialize: ->
+    project: (id, path) ->
+        console.log "id #{id}"
+        console.log "path #{path}"
+            
+            
 $ ->
+    # http://106.187.39.21:8000/
     container = new Container
+    router = new Router
+    _.extend router,
+        breadcrumb: new Breadcrumb
+        
+    Backbone.history.start()
     
         

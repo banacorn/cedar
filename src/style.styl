@@ -1,0 +1,155 @@
+@import "src/reset"
+
+@font-face
+
+   font-family 'Ubuntu Mono'
+   font-style normal
+   src url(ubuntu_mono.woff)
+   
+   font-family 'Hammersmith One'
+   font-style normal
+   src url(HammersmithOne.woff)
+
+base = rgb(40, 40, 40)
+grau = rgb(200, 200, 200)
+blau = rgb(60, 120, 180)
+
+kleine = 600px
+mittel = 800px
+grosse = 1200px
+
+breite(add = 0)
+    .kleine &
+        width kleine + add
+    .mittel &
+        width mittel + add
+    .grosse &
+        width grosse + add
+        
+    
+
+html
+    height 100%
+    
+body
+    font-family Helvetica, Verdana, 'LiHei Pro', '微軟正黑體', '新細明體', Arial, sans-serif
+    color base 
+    background grau + 60%
+
+a
+a:active
+a:visited
+    color inherit
+    text-decoration inherit    
+
+//// container ////
+
+    
+#container-navigation
+    position fixed
+    width 100%
+    height 40px
+    background base
+                
+
+#container
+    breite(200px)
+    margin 0 auto
+    background grau + 60%
+    
+    
+        
+    footer
+        clear both
+    
+    
+//// navigation ////
+
+navigationHeight = 40px
+
+arrow()
+    background-image url('/images/arrow/arrow.png')
+    background-size auto 40px
+    background-position right
+    background-repeat no-repeat
+
+
+#navigation
+    overflow hidden
+    breite(200px)
+    margin 0 auto
+    height navigationHeight
+    color white
+    font-family 'Hammersmith One', Verdana, sans-serif;
+
+    h1
+        float left
+        width 198px
+        height navigationHeight
+        border-right 2px solid base - 40%
+        
+        line-height navigationHeight
+        font-size 150%
+        text-align center
+
+#breadcrumb
+    float left
+    breite(-202px)
+    height navigationHeight
+    border-left 2px solid base + 10%
+    line-height navigationHeight
+    cursor pointer
+    
+    li
+        display inline-block
+        position absolute
+        background base
+        arrow()
+        a
+            display block
+            padding 0 20px 0 10px
+            height navigationHeight
+        
+        
+    
+#misc
+    float left
+    width 200px
+    height navigationHeight
+
+    
+//// aside ////
+
+#aside
+    float left
+    width 199px
+    height 1000px
+    
+    
+//// main ////
+
+#main
+    float left
+    breite(-2px)
+    padding-top 40px
+    box-shadow 0 0 10px grau
+    border-left 1px solid grau + 40%
+    border-right 1px solid grau + 40%
+    
+    
+    
+    #content
+        padding-top 40px
+        background white
+        height 1000px
+    
+    
+    
+    
+//// template ////
+#template
+    display none
+
+    
+    
+        

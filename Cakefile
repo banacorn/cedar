@@ -1,26 +1,19 @@
-#### Module Dependencies ####
 fs              = require 'fs'
 {exec, spawn}   = require 'child_process'
 baker           = require 'baker'
 
-#### Baker ####
-
-# open all files in src/ with gedit
 baker.open 'gedit', [
-    'src'                       # server
-    '!src/public/src'       
-    'lib/public/index.html'     
+    'src/style.sass'
+    'src/main.coffee'
+    'index.html'    
 ]
 
 
-baker.watch '.coffee', ['src', '!src/public', '!src/routes'], (source) -> "coffee -o lib #{ source }"
-baker.watch '.coffee', ['src/routes'], (source) -> "coffee -o lib/routes #{ source }"
-baker.watch '.coffee', ['src/public'], (source) -> "coffee -o lib/public/scripts #{ source }"
-baker.watch '.styl', ['src/public/style.styl'], (source) -> "stylus -c -o lib/public/stylesheets #{ source }"
+baker.watch '.coffee', ['src'], (source) -> "coffee -o scripts #{ source }"
+baker.watch '.sass', ['src'], (source) -> "compass compile"
 
 option '-l', '--list', 'list all target liles'
 
-#### Tasks ####
         
 task 'open', 'open files', (options) ->
     if options.list
