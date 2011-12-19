@@ -9,7 +9,7 @@ class Container extends Backbone.View
         
     render: ->
         # remove all the size classes and update a new one
-        $('body').removeClass('kleine mittel grosse').addClass "#{ @size }"
+        $('body').removeClass('kleine grosse').addClass "#{ @size }"
         
     resize: ->
         # detect width    
@@ -21,10 +21,8 @@ class Container extends Backbone.View
             @width = width
         
             # set size
-            if width < 1000
+            if width < 1400
                 @size = 'kleine'
-            else if width > 1000 and width < 1400
-                @size = 'mittel'
             else if width > 1400
                 @size = 'grosse'
             
