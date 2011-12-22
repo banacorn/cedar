@@ -1,4 +1,6 @@
-@import 'compass/reset', 'compass/css3', 'compass/utilities'
+@import 'compass/reset'
+@import 'compass/css3'
+@import 'compass/utilities'
 
 @font-face
     font:
@@ -9,11 +11,14 @@
 
 
 $navigation-height: 40px
+$aside-width: 200px
     
 //
 //  Farben
 //
+
 $base: rgb(40, 40, 40)
+$grau: rgb(200, 200, 200)
 
 
 //
@@ -76,7 +81,7 @@ a
         line-height: $navigation-height
         font-size: 150%
         text-align: center
-        +text-shadow(rgb(100, 100, 100), 2px, 2px, 0px)
+        +text-shadow(rgb(100, 100, 100) 2px 2px 0px)
         
     nav
         +float-left
@@ -100,10 +105,22 @@ a
 
 #container
     padding-top: $navigation-height
-    +clearfix
     +breite()
     height: 1000px
     margin: 0 auto
+    //background: white
+    
+#aside
+    +float-left
+    width: $aside-width
+    height: 800px
+    
+#main
+    +float-left
+    +breite(-$aside-width)
+    height: 800px
     background: white
+    +single-box-shadow($grau 0 0 10px inset)
     
-    
+#footer
+    clear: both
