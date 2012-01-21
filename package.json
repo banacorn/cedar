@@ -1,7 +1,7 @@
 {
   "author": "Elliot Lai <ellliotlai@gmail.com>",
   "name": "breadcrumb",
-  "description": "file browser",
+  "description": "skuld frontend",
   "version": "0.0.0",
   "repository": {
     "type": "git",
@@ -9,8 +9,10 @@
   },
   "main": "lib/app.js",
   "engines": {
-    "node": "~0.6.2 || 0.6.2-pre"
+    "node": "> 0.4"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "baker": "*"
+  }
 }
