@@ -9,9 +9,7 @@ baker.open 'gedit', [
 ]
 
 
-
-baker.watch '.coffee', ['src/view'], (source) -> "coffee -o scripts/view #{ source }"
-baker.watch '.coffee', ['src', '!src/view'], (source) -> "coffee -o scripts #{ source }"
+baker.watch '.coffee', ['src'], (source) -> "coffee -o scripts #{ source }"
 baker.watch '.sass', ['src'], (source) -> "compass compile"
 
 option '-l', '--list', 'list all target liles'
