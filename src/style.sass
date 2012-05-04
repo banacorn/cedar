@@ -2,6 +2,8 @@
 @import 'compass/css3'
 @import 'compass/utilities'
 
+@import "font-awesome"
+
 @font-face
     font:
         family: 'Hammersmith One'
@@ -11,9 +13,70 @@
 
 
 //
-//  Farben
+//  Colours
 //
 
-$base: rgb(40, 40, 40)
+$himmel:    #334455
+$geld:      #FCC427
+
+@function grey($v)
+    @return rgb($v, $v, $v)
 
 
+//
+//  Main Structure
+//
+
+body
+    color: grey(40)
+    background: grey(240)
+    
+    
+//
+//  Topbar
+//
+
+#topbar-container
+    position: fixed
+    
+    width: 100%
+    height: 60px
+    
+    background: rgba(200, 200, 200, 0.7)
+    
+#topbar
+    width: 1000px
+    height: 60px
+    margin: 0 auto
+        
+        
+    h1
+        width: 120px
+        height: 60px
+        line-height: 60px
+        color: rgb(60, 120, 180)
+        font:
+            family: 'Hammersmith One'
+            size: 150%           
+            
+
+#breadcrumb
+
+    li
+        float: left
+        height: 80px
+        margin: 0 10px
+        
+        line-height: 80px
+        color: grey(120)
+        font:
+            size: 150%
+        
+        i
+            padding: 0 5px
+    
+#container
+    width: 1000px
+    height: 100px
+    margin: 0 auto
+    padding: 60px 0
