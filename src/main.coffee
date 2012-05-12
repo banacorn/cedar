@@ -1,21 +1,21 @@
 require.config
     paths:
         jquery: 'lib/jquery-1.7.1.min'
-        io: 'lib/socket.io.min.amd'
-        raphael: 'lib/raphael-min'
         underscore: 'lib/underscore-min.amd'
         backbone: 'lib/backbone-min.amd'
         hogan: 'lib/hogan-1.0.5.min.amd'
         
 require [
-    'jquery'    
-    'io'
+    'jquery'  
     'underscore'
     'backbone'
     'hogan'
-], ($, io, _, Backbone, hogan) ->
+    'router'
+    'views/project'
+], ($, _, Backbone, hogan, Router, Project) ->
     
     
+    ###
         
         
         
@@ -44,6 +44,7 @@ require [
         
         tagName : 'section'
         id      : 'project'
+        template: hogan
     
         initialize: ->
             @collection = new ProjectCollection
@@ -54,15 +55,9 @@ require [
         load: ->
             $('#main').html 
             
-        
+    ###  
         
     
-    class Router extends Backbone.Router
-        
-        routes:
-            '!/project':    'project'
-                    
-        project: -> @project()
         
         
     
@@ -76,7 +71,6 @@ require [
     
         initialize: ->
         
-            @project = new ProjectPage
     
         scroll: ->
             scrollTop =  @$el.scrollTop()
@@ -85,14 +79,12 @@ require [
             else
                 $('#breadcrumb-container').removeClass 'fixed'
                 
-        loadProject: ->
-            @project.render()
     
     
     $ ->
         
         PAGE = {}
-        PAGE.project = new ProjectPage
+        PAGE.project = new Project
         
         APP = new App
         ROUTER = new Router
@@ -102,6 +94,5 @@ require [
             PAGE.project.load()
         
         
-        
         Backbone.history.start()
-        ROUTER.navigate '!/project'
+        ROUTER.navigate 'project'
