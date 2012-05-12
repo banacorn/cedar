@@ -15,7 +15,93 @@ require [
     'hogan'
 ], ($, io, _, Backbone, hogan) ->
     
+    
+        
+        
+        
+    class Project extends Backbone.Model
+        
+    class ProjectCollection extends Backbone.Collection    
+        url: 'projects'
+        
+        parse: (data) ->
+            
+            for model in data
+                @add model
+        
+        
+        
+            console.log @models
+    
+    class ProjectView extends Backbone.View
+    
+    
+        render: ->
+            console.log 'render project'
+    
+    
+    class ProjectPage extends Backbone.View
+        
+        tagName : 'section'
+        id      : 'project'
+    
+        initialize: ->
+            @collection = new ProjectCollection
+    
+        render: ->
+            @collection.fetch()
+            
+        load: ->
+            $('#main').html 
+            
+        
+        
+    
+    class Router extends Backbone.Router
+        
+        routes:
+            '!/project':    'project'
+                    
+        project: -> @project()
+        
+        
+    
+    class App extends Backbone.View
+    
+        el: $ window
+        
+        
+        events:
+            'scroll': 'scroll'
+    
+        initialize: ->
+        
+            @project = new ProjectPage
+    
+        scroll: ->
+            scrollTop =  @$el.scrollTop()
+            if scrollTop > 60
+                $('#breadcrumb-container').addClass 'fixed'
+            else
+                $('#breadcrumb-container').removeClass 'fixed'
+                
+        loadProject: ->
+            @project.render()
+    
+    
     $ ->
-        # router = new Router '106.187.39.21:8000'
+        
+        PAGE = {}
+        PAGE.project = new ProjectPage
+        
+        APP = new App
+        ROUTER = new Router
         
         
+        ROUTER.project = ->
+            PAGE.project.load()
+        
+        
+        
+        Backbone.history.start()
+        ROUTER.navigate '!/project'

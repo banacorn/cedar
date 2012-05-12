@@ -33,50 +33,70 @@ body
     
     
 //
-//  Topbar
+//  Header
 //
 
-#topbar-container
-    position: fixed
-    
-    width: 100%
+#header-container
     height: 60px
+    background: $himmel
     
-    background: rgba(200, 200, 200, 0.7)
-    
-#topbar
+
+#header
     width: 1000px
     height: 60px
     margin: 0 auto
-        
-        
+    
     h1
-        width: 120px
         height: 60px
         line-height: 60px
-        color: rgb(60, 120, 180)
-        font:
-            family: 'Hammersmith One'
-            size: 150%           
-            
-
-#breadcrumb
-
-    li
-        float: left
-        height: 80px
-        margin: 0 10px
-        
-        line-height: 80px
-        color: grey(120)
+        color: white
         font:
             size: 150%
-        
-        i
-            padding: 0 5px
+            family: 'Hammersmith One'
+
+  
+//
+//  Breadcrumb
+//
+
+
+
+#breadcrumb-container
+    height: 40px
+    background: rgba(200, 200, 200, 0.8)
     
-#container
+    &.fixed
+        width: 100%
+        position: fixed
+        top: 0
+    
+#breadcrumb
     width: 1000px
-    height: 100px
+    height: 40px
     margin: 0 auto
-    padding: 60px 0
+    line-height: 40px
+    
+    color: $himmel
+    
+    li
+        float: left
+        padding: 0 10px
+        cursor: pointer
+        
+        
+        &:hover
+            background: grey(210)
+
+//
+//  Main    
+//
+
+
+    
+#main-container
+    height: 1000px
+    margin: 0 auto
+    
+#main
+
+    width: 1000px
