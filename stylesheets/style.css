@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* line 17, ../../../../../usr/local/lib/ruby/gems/1.9.1/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -888,21 +889,22 @@ li[class*=" icon-"].icon-large:before {
 body {
   color: #282828;
   background: #f0f0f0;
+  font-family: Helvetica, Verdana, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
 }
 
-/* line 39, ../src/sass/style.sass */
+/* line 40, ../src/sass/style.sass */
 #header-container {
   height: 60px;
   background: #334455;
 }
 
-/* line 44, ../src/sass/style.sass */
+/* line 45, ../src/sass/style.sass */
 #header {
   width: 1000px;
   height: 60px;
   margin: 0 auto;
 }
-/* line 49, ../src/sass/style.sass */
+/* line 50, ../src/sass/style.sass */
 #header h1 {
   height: 60px;
   line-height: 60px;
@@ -911,19 +913,19 @@ body {
   font-family: "Hammersmith One";
 }
 
-/* line 64, ../src/sass/style.sass */
+/* line 65, ../src/sass/style.sass */
 #breadcrumb-container {
   height: 40px;
   background: rgba(200, 200, 200, 0.8);
 }
-/* line 68, ../src/sass/style.sass */
+/* line 69, ../src/sass/style.sass */
 #breadcrumb-container.fixed {
   width: 100%;
   position: fixed;
   top: 0;
 }
 
-/* line 73, ../src/sass/style.sass */
+/* line 74, ../src/sass/style.sass */
 #breadcrumb {
   width: 1000px;
   height: 40px;
@@ -931,24 +933,64 @@ body {
   line-height: 40px;
   color: #334455;
 }
-/* line 81, ../src/sass/style.sass */
+/* line 82, ../src/sass/style.sass */
 #breadcrumb li {
   float: left;
   padding: 0 10px;
   cursor: pointer;
 }
-/* line 87, ../src/sass/style.sass */
+/* line 88, ../src/sass/style.sass */
 #breadcrumb li:hover {
-  background: #d2d2d2;
+  background: rgba(255, 255, 255, 0.2);
 }
 
-/* line 96, ../src/sass/style.sass */
+/* line 97, ../src/sass/style.sass */
 #main-container {
-  height: 1000px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+/* line 101, ../src/sass/style.sass */
+#main-container.fixed {
+  padding: 60px 0 20px 0;
+}
+
+/* line 104, ../src/sass/style.sass */
+#main {
+  width: 1000px;
   margin: 0 auto;
 }
 
-/* line 100, ../src/sass/style.sass */
-#main {
-  width: 1000px;
+/* line 113, ../src/sass/style.sass */
+.project {
+  margin: 40px 0;
+  padding: 20px;
+  border-radius: 5px;
+  background: #f5f5f5;
+  color: #787878;
+  cursor: pointer;
+}
+/* line 125, ../src/sass/style.sass */
+.project:hover {
+  background: white;
+}
+/* line 128, ../src/sass/style.sass */
+.project h3 {
+  height: 40px;
+  line-height: 40px;
+  color: #334455;
+  font-size: 200%;
+  font-family: "Hammersmith One";
+}
+/* line 138, ../src/sass/style.sass */
+.project h3 i {
+  height: 40px;
+  line-height: 40px;
+  padding-right: 20px;
+  color: #c8c8c8;
+}
+/* line 144, ../src/sass/style.sass */
+.project h3 span {
+  padding: 0 20px;
+  font-size: 50%;
+  color: #a0a0a0;
 }

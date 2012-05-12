@@ -73,9 +73,11 @@
         var scrollTop;
         scrollTop = this.$el.scrollTop();
         if (scrollTop > 60) {
-          return $('#breadcrumb-container').addClass('fixed');
+          $('#breadcrumb-container').addClass('fixed');
+          return $('#main-container').addClass('fixed');
         } else {
-          return $('#breadcrumb-container').removeClass('fixed');
+          $('#breadcrumb-container').removeClass('fixed');
+          return $('#main-container').removeClass('fixed');
         }
       };
 
@@ -89,10 +91,14 @@
       APP = new App;
       ROUTER = new Router;
       ROUTER.project = function() {
-        return PAGE.project.load();
+        console.log('!/projects');
+        return PAGE.project.render();
       };
       Backbone.history.start();
-      return ROUTER.navigate('project');
+      return ROUTER.navigate('!/project', {
+        trigger: true,
+        replace: true
+      });
     });
   });
 

@@ -76,8 +76,10 @@ require [
             scrollTop =  @$el.scrollTop()
             if scrollTop > 60
                 $('#breadcrumb-container').addClass 'fixed'
+                $('#main-container').addClass 'fixed'
             else
                 $('#breadcrumb-container').removeClass 'fixed'
+                $('#main-container').removeClass 'fixed'
                 
     
     
@@ -91,8 +93,11 @@ require [
         
         
         ROUTER.project = ->
-            PAGE.project.load()
-        
+            console.log '!/projects'
+            PAGE.project.render()
         
         Backbone.history.start()
-        ROUTER.navigate 'project'
+        ROUTER.navigate '!/project'
+            trigger: true
+            replace: true
+        

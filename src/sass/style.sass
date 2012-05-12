@@ -30,6 +30,7 @@ $geld:      #FCC427
 body
     color: grey(40)
     background: grey(240)
+    font-family: Helvetica, Verdana, 'LiHei Pro', '微軟正黑體', Arial, sans-serif
     
     
 //
@@ -85,7 +86,7 @@ body
         
         
         &:hover
-            background: grey(210)
+            background: rgba(255, 255, 255, 0.2)
 
 //
 //  Main    
@@ -94,9 +95,55 @@ body
 
     
 #main-container
-    height: 1000px
     margin: 0 auto
+    padding: 20px 0
+    
+    &.fixed
+        padding: 60px 0 20px 0
     
 #main
 
     width: 1000px
+    margin: 0 auto
+    
+//
+//  Project    
+//
+
+.project
+    margin: 40px 0
+    padding: 20px
+    
+    border-radius: 5px
+    
+    background: grey(245)
+    color: grey(120)
+    
+    cursor: pointer
+    
+    
+    &:hover
+        background: white
+    
+    h3
+        height: 40px
+        line-height: 40px
+        color: $himmel
+        font:
+            size: 200%
+            family: 'Hammersmith One'
+        
+        
+        
+        i
+            height: 40px
+            line-height: 40px
+            padding-right: 20px 
+            color: grey(200)
+        
+        span
+            padding: 0 20px
+            font:
+                size: 50%
+            color: grey(160)
+

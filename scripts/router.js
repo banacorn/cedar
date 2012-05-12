@@ -13,7 +13,7 @@
       }
 
       Router.prototype.routes = {
-        'project': 'project'
+        '!/project': 'project'
       };
 
       Router.prototype.project = function() {
