@@ -15,52 +15,6 @@ require [
 ], ($, _, Backbone, hogan, Router, Project) ->
     
     
-    ###
-        
-        
-        
-    class Project extends Backbone.Model
-        
-    class ProjectCollection extends Backbone.Collection    
-        url: 'projects'
-        
-        parse: (data) ->
-            
-            for model in data
-                @add model
-        
-        
-        
-            console.log @models
-    
-    class ProjectView extends Backbone.View
-    
-    
-        render: ->
-            console.log 'render project'
-    
-    
-    class ProjectPage extends Backbone.View
-        
-        tagName : 'section'
-        id      : 'project'
-        template: hogan
-    
-        initialize: ->
-            @collection = new ProjectCollection
-    
-        render: ->
-            @collection.fetch()
-            
-        load: ->
-            $('#main').html 
-            
-    ###  
-        
-    
-        
-        
-    
     class App extends Backbone.View
     
         el: $ window
