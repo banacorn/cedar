@@ -1,0 +1,8 @@
+{
+    "jam_version": "0.1.11",
+    "dependencies": {
+        "underscore": null,
+        "backbone": null,
+        "hogan": null
+    }
+}

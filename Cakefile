@@ -14,11 +14,10 @@ buildConfig =
     out: 'scripts/main.js'
     name: 'main'
     paths:
-        jquery: 'lib/jquery-1.7.1.min'
-        io: 'lib/socket.io.min.amd'
-        underscore: 'lib/underscore-min.amd'
-        backbone: 'lib/backbone-min.amd'
-        hogan: 'lib/hogan-1.0.5.min.amd'
+        jquery: 'jam/jquery/jquery'
+        underscore: 'jam/underscore/underscore'
+        backbone: 'jam/backbone/backbone'
+        hogan: 'jam/hogan/hogan'
 
 baker.watch '.coffee', ['src/collections'], (source) -> "coffee -o scripts/collections #{ source }"
 baker.watch '.coffee', ['src/views'], (source) -> "coffee -o scripts/views #{ source }"

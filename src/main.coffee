@@ -1,9 +1,9 @@
 require.config
     paths:
-        jquery: 'lib/jquery-1.7.1.min'
-        underscore: 'lib/underscore-min.amd'
-        backbone: 'lib/backbone-min.amd'
-        hogan: 'lib/hogan-1.0.5.min.amd'
+        jquery: 'jam/jquery/jquery'
+        underscore: 'jam/underscore/underscore'
+        backbone: 'jam/backbone/backbone'
+        hogan: 'jam/hogan/hogan'
         
 require [
     'jquery'  
