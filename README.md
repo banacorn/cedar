@@ -1,17 +1,24 @@
-Deploy
+Put this under your public folder as static assets
+
+Install
 ================
 
-Put this under your public folder as static assets
+    $ npm install
+
+
+Compile
+================
+
+    $ make compile
+    
+Watch
+================
+
+    $ make watch
 
 Build
 ================
 
 Build all scripts into one single file
 
-    $ cake build
-
-Requirements
-----------------
-
-    $ npm install
-
+    $ make build

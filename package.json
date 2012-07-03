@@ -13,7 +13,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "baker": "~ 0.1.0",
     "requirejs": "~ 1.0.8",
     "jamjs": "~ 0.1.11"
   }

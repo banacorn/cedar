@@ -2,7 +2,7 @@ var requirejs = require('requirejs');
 
 var config = {
     baseUrl: 'scripts',
-    out: 'scripts/release.js',
+    out: 'scripts/main.js',
     name: 'main',
     paths: {
         jquery: 'jam/jquery/jquery',
@@ -11,7 +11,6 @@ var config = {
         hogan: 'jam/hogan/hogan'
     }
 };
-
 
 requirejs.optimize(config);
 
