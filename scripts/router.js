@@ -14,11 +14,16 @@
       }
 
       Router.prototype.routes = {
-        '!/project': 'project'
+        '!/project': 'projectList',
+        '!/project/:pid': 'project'
       };
 
-      Router.prototype.project = function() {
-        return this.project();
+      Router.prototype.project = function(id) {
+        return this.project(id);
+      };
+
+      Router.prototype.projectList = function() {
+        return this.projectList();
       };
 
       return Router;

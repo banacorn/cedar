@@ -6,7 +6,16 @@ compile: node_modules/requirejs/bin/r.js
 	coffee --compile --output scripts/ src/
 	lessc -x src/less/style.less > stylesheets/style.css
 	
-watch:
-	coffee --watch --compile --output scripts/ src/  
+watch: 
+	make -j beobachten
 
-.PHONY: build
+beobachten: coffee less
+
+coffee:
+	coffee --watch --compile --output scripts/ src/ 
+
+less:
+	lessw -wo stylesheets src/less 
+
+.PHONY: build watch compile
+.SILENT: beobachten

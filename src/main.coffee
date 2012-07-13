@@ -44,11 +44,15 @@ require [
         
         APP = new App
         ROUTER = new Router
+                    
+        ROUTER.projectList = ->
         
-        
-        ROUTER.project = ->
             console.log '!/projects'
             PAGE.project.render()
+            
+        ROUTER.project= (id) ->
+        
+            console.log id
         
         Backbone.history.start()
         ROUTER.navigate '!/project'

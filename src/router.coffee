@@ -6,8 +6,10 @@ define [
     class Router extends Backbone.Router
         
         routes:
-            '!/project':    'project'
+            '!/project':        'projectList'
+            '!/project/:pid':   'project'
                     
-        project: -> @project()
+        project: (id) -> @project id
+        projectList: -> @projectList()
         
     return Router
