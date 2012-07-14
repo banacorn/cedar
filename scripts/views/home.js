@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'hogan', 'text!../../templates/home.page.html', '../resource'], function($, _, Backbone, hogan, template, resource) {
+  define(['jquery', 'underscore', 'backbone', 'template', 'model'], function($, _, Backbone, template, model) {
     var HomePage;
     return HomePage = (function(_super) {
 
@@ -16,17 +16,17 @@
       HomePage.prototype.el = $('#main');
 
       HomePage.prototype.initialize = function() {
-        this.template = hogan.compile(template);
-        return this.collection = new resource.Projects;
+        this.template = template.home;
+        return this.collection = new model.Projects;
       };
 
       HomePage.prototype.render = function() {
         var _this = this;
         this.collection.fetch();
         this.collection.on('reset', function() {
-          return _this.$el.html(_this.template.render({
+          return _this.$el.fadeOut(100).hide().html(_this.template.render({
             projects: _this.collection.toJSON()
-          }));
+          })).fadeIn(100);
         });
         return this;
       };

@@ -8,11 +8,14 @@
       jquery: 'jam/jquery/jquery',
       underscore: 'jam/underscore/underscore',
       backbone: 'jam/backbone/backbone',
-      hogan: 'jam/hogan/hogan'
+      hogan: 'jam/hogan/hogan',
+      router: 'router',
+      model: 'model',
+      template: 'template'
     }
   });
 
-  require(['jquery', 'underscore', 'backbone', 'hogan', 'router', 'views/home.page', 'views/project', 'views/breadcrumb'], function($, _, Backbone, hogan, router, HomePage, Project, Breadcrumb) {
+  require(['jquery', 'underscore', 'backbone', 'hogan', 'router', 'views/home', 'views/project', 'views/breadcrumb'], function($, _, Backbone, hogan, router, Home, Project, Breadcrumb) {
     var App;
     App = (function(_super) {
 
@@ -47,14 +50,15 @@
     })(Backbone.View);
     return $(function() {
       new App;
-      router.on('route:projectList', function() {
-        var projectList;
-        projectList = new Project;
-        return projectList.render();
+      new Breadcrumb;
+      router.on('route:project', function(id) {
+        var project;
+        project = new Project;
+        return project.render();
       });
       router.on('route:home', function() {
         var homePage;
-        homePage = new HomePage;
+        homePage = new Home;
         return homePage.render();
       });
       return Backbone.history.start();

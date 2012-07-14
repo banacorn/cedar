@@ -1,15 +1,15 @@
-define ['jquery', 'underscore', 'backbone', 'hogan'
-    'text!../../templates/home.page.html'
-    '../resource'
-], ($, _, Backbone, hogan, template, resource) ->
+define ['jquery', 'underscore', 'backbone'
+    'template'
+    'model'
+], ($, _, Backbone, template, model) ->
 
     class HomePage extends Backbone.View
         
         el: $('#main')
         
         initialize: ->        
-            @template = hogan.compile template
-            @collection = new resource.Projects
+            @template = template.home
+            @collection = new model.Projects
     
         render: ->
         
@@ -18,10 +18,10 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
             @collection.fetch()
             
             @collection.on 'reset', =>
-                @$el.html @template.render
+            
+                @$el.fadeOut(100).hide().html(@template.render
                     projects: @collection.toJSON()
-    
-    
+                ).fadeIn 100
     
             
     

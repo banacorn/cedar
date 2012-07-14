@@ -1,19 +1,30 @@
-define ['jquery', 'underscore', 'backbone', 'hogan', 'router'], ($, _, Backbone, hogan, router) ->
-
-
+define [
+    'jquery'
+    'underscore'
+    'backbone'
+    'template'
+    'router'
+    'model'
+], ($, _, Backbone, template, router, model) ->
 
     class Breadcrumb extends Backbone.View
         
-        initialize: ->
+        el: $('#breadcrumb')
         
+        initialize: ->        
+                     
+            @template = template.breadcrumb
+            @model = new model.Breadcrumb
         
-            router.on 'route:projectList', ->
-                console.log 'fuck'
+            router.on 'route:home', =>
+                        
+                @$el.fadeOut(100).hide().html(@template.render
+                    paths: @model.home()
+                ).fadeIn 500
         
-            router.on 'route:project', (id) ->
-                console.log 'fuck', id
-        
-        
-        
-            router.on 'route:anything', ->
-                console.log 'not found'
+            router.on 'route:prodject', (name) =>
+            
+            
+                @$el.fadeOut(100).hide().html(@template.render
+                    paths: @model.project(name)
+                ).fadeIn 500

@@ -1,23 +1,24 @@
 define ['jquery', 'underscore', 'backbone', 'hogan'
-    'text!../../templates/project.html'
-    '../resource'
-], ($, _, Backbone, hogan, template, resource) ->
+    'template'
+    'model'
+], ($, _, Backbone, hogan, template, model) ->
     
         
 
     class Project extends Backbone.View
     
-        initialize: ->
-            @template = hogan.compile template
-            @collection = new resource.Projects
+        el: $('#main')
+    
+        initialize: (name) ->
+            @template = hogan.compile template.project
+            @model = new model.Project
+                
             
         render: ->
-            @collection.fetch()
-                          
+            
             @collection.on 'reset', =>
-                $('#main').html @template.render
+                @$el.html @template.render
                     projects: @collection.toJSON()
-    
     
     
     

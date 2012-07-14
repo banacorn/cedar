@@ -9,6 +9,16 @@
     src: local('Hammersmith One'), local('HammersmithOne'), url('fonts/HammersmithOne.woff') format('woff');
 }
 
+//
+//  Colors
+//
+
+@blue: #334455;
+
+//
+//  Elements
+//
+
 html {overflow-y: scroll;}
 
 body {
@@ -21,15 +31,27 @@ a {
     text-decoration: none;
 }
 
+h2 {
+    color: @blue;
+    font-size: 150%;
+    font-weight: bold;
+    
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
 #header-container {
     height:60px;
-    background:#334455;
+    background: @blue;
 }
 
 #header {
-    width:1000px;
-    height:60px;
-    margin:0 auto;
+    width: 960px;
+    height: 60px;
+    margin: 0 auto;
+    padding: 0 20px;
+    
+    
     h1 {
         height:60px;
         line-height:60px;
@@ -50,18 +72,19 @@ a {
     top:0;
 }
 #breadcrumb {
-    width:1000px;
-    height:40px;
-    margin:0 auto;
-    line-height:40px;
-    color:#334455;
+    width: 960px;
+    height: 40px;
+    margin: 0 auto;
+    padding: 0 20px;
+    line-height: 40px;
+    color: #334455;
     li {
-        float:left;
-        padding:0 10px;
-        cursor:pointer;
+        float: left;
+        padding: 0 10px;
+        cursor: pointer;
     }
     li:hover {
-        background:rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.2);
     }
 }
 #main-container {
@@ -71,10 +94,15 @@ a {
 #main-container.fixed {
     padding:60px 0 20px 0;
 }
+
+
 #main {
-    width:1000px;
-    margin:0 auto;
+    width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
+
+
 .project {
     margin:40px 0;
     padding:20px;

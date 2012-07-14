@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'hogan', 'router'], function($, _, Backbone, hogan, router) {
+  define(['jquery', 'underscore', 'backbone', 'template', 'router', 'model'], function($, _, Backbone, template, router, model) {
     var Breadcrumb;
     return Breadcrumb = (function(_super) {
 
@@ -13,15 +13,21 @@
         return Breadcrumb.__super__.constructor.apply(this, arguments);
       }
 
+      Breadcrumb.prototype.el = $('#breadcrumb');
+
       Breadcrumb.prototype.initialize = function() {
-        router.on('route:projectList', function() {
-          return console.log('fuck');
+        var _this = this;
+        this.template = template.breadcrumb;
+        this.model = new model.Breadcrumb;
+        router.on('route:home', function() {
+          return _this.$el.fadeOut(100).hide().html(_this.template.render({
+            paths: _this.model.home()
+          })).fadeIn(500);
         });
-        router.on('route:project', function(id) {
-          return console.log('fuck', id);
-        });
-        return router.on('route:anything', function() {
-          return console.log('not found');
+        return router.on('route:prodject', function(name) {
+          return _this.$el.fadeOut(100).hide().html(_this.template.render({
+            paths: _this.model.project(name)
+          })).fadeIn(500);
         });
       };
 
