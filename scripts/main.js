@@ -12,7 +12,7 @@
     }
   });
 
-  require(['jquery', 'underscore', 'backbone', 'hogan', 'router', 'views/project'], function($, _, Backbone, hogan, Router, Project) {
+  require(['jquery', 'underscore', 'backbone', 'hogan', 'router', 'views/home.page', 'views/project', 'views/breadcrumb'], function($, _, Backbone, hogan, router, HomePage, Project, Breadcrumb) {
     var App;
     App = (function(_super) {
 
@@ -46,23 +46,18 @@
 
     })(Backbone.View);
     return $(function() {
-      var APP, PAGE, ROUTER;
-      PAGE = {};
-      PAGE.project = new Project;
-      APP = new App;
-      ROUTER = new Router;
-      ROUTER.projectList = function() {
-        console.log('!/projects');
-        return PAGE.project.render();
-      };
-      ROUTER.project = function(id) {
-        return console.log(id);
-      };
-      Backbone.history.start();
-      return ROUTER.navigate('!/project', {
-        trigger: true,
-        replace: true
+      new App;
+      router.on('route:projectList', function() {
+        var projectList;
+        projectList = new Project;
+        return projectList.render();
       });
+      router.on('route:home', function() {
+        var homePage;
+        homePage = new HomePage;
+        return homePage.render();
+      });
+      return Backbone.history.start();
     });
   });
 

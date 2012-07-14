@@ -11,10 +11,12 @@ require [
     'backbone'
     'hogan'
     'router'
+    'views/home.page'
     'views/project'
-], ($, _, Backbone, hogan, Router, Project) ->
+    'views/breadcrumb'
+], ($, _, Backbone, hogan, router, HomePage, Project, Breadcrumb) ->
     
-    
+        
     class App extends Backbone.View
     
         el: $ window
@@ -38,24 +40,18 @@ require [
     
     
     $ ->
+                
+        new App        
+        #new Breadcrumb                
         
-        PAGE = {}
-        PAGE.project = new Project
-        
-        APP = new App
-        ROUTER = new Router
-                    
-        ROUTER.projectList = ->
-        
-            console.log '!/projects'
-            PAGE.project.render()
+        router.on 'route:projectList', ->
+            projectList = new Project
+            projectList.render()
             
-        ROUTER.project= (id) ->
+        router.on 'route:home', ->
         
-            console.log id
+            homePage = new HomePage
+            homePage.render()
+            
         
         Backbone.history.start()
-        ROUTER.navigate '!/project'
-            trigger: true
-            replace: true
-        

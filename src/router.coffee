@@ -3,13 +3,10 @@ define [
     'backbone'
 ], (_, Backbone) ->
 
-    class Router extends Backbone.Router
+    new class Router extends Backbone.Router
         
         routes:
-            '!/project':        'projectList'
-            '!/project/:pid':   'project'
-                    
-        project: (id) -> @project id
-        projectList: -> @projectList()
-        
-    return Router
+            ''              : 'home'
+            'project'       : 'projectList'
+            'project/:id'   : 'project'
+            '*all'          : 'anything'
