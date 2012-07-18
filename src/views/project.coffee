@@ -1,7 +1,8 @@
 define ['jquery', 'underscore', 'backbone', 'hogan'
     'template'
     'model'
-], ($, _, Backbone, hogan, template, model) ->
+    'views/locale'
+], ($, _, Backbone, hogan, template, model, LocaleView) ->
     
         
 
@@ -10,16 +11,26 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
         el: $('#main')
     
         initialize: (name) ->
-            @template = hogan.compile template.project
-            @model = new model.Project
+            @template = template.project
+            @collection = new model.Projects
+            @collection.fetch()
+            @name = name
                 
-            
         render: ->
             
+            localeView = new LocaleView
+            
             @collection.on 'reset', =>
-                @$el.html @template.render
-                    projects: @collection.toJSON()
-    
-    
+                @model = @collection.where(
+                    name: @name
+                )[0]                    
+                @$el.render @template.render
+                    name: @model.get 'name'
+                    info: @model.get 'info'
+                    id  : @model.id
+                    locales: localeView.render(@model.id, @model.get 'name').el
+                console.log localeView.render(@model.id, @model.get 'name')
+            
+            return @
     
     

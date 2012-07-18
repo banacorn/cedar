@@ -15,8 +15,7 @@
 
       Router.prototype.routes = {
         '': 'home',
-        'project': 'projectList',
-        'project/:id': 'project',
+        'project/:name': 'project',
         '*all': 'anything'
       };
 

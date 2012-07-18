@@ -18,13 +18,11 @@ define [
         
             router.on 'route:home', =>
                         
-                @$el.fadeOut(100).hide().html(@template.render
+                @$el.html @template.render
                     paths: @model.home()
-                ).fadeIn 500
-        
-            router.on 'route:prodject', (name) =>
+                    
+                    
+            router.on 'route:project', (name) =>
             
-            
-                @$el.fadeOut(100).hide().html(@template.render
-                    paths: @model.project(name)
-                ).fadeIn 500
+                @$el.html @template.render
+                    paths: @model.project name

@@ -20,14 +20,14 @@
         this.template = template.breadcrumb;
         this.model = new model.Breadcrumb;
         router.on('route:home', function() {
-          return _this.$el.fadeOut(100).hide().html(_this.template.render({
+          return _this.$el.html(_this.template.render({
             paths: _this.model.home()
-          })).fadeIn(500);
+          }));
         });
-        return router.on('route:prodject', function(name) {
-          return _this.$el.fadeOut(100).hide().html(_this.template.render({
+        return router.on('route:project', function(name) {
+          return _this.$el.html(_this.template.render({
             paths: _this.model.project(name)
-          })).fadeIn(500);
+          }));
         });
       };
 

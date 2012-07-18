@@ -24,9 +24,9 @@
         var _this = this;
         this.collection.fetch();
         this.collection.on('reset', function() {
-          return _this.$el.fadeOut(100).hide().html(_this.template.render({
+          return _this.$el.render(_this.template.render({
             projects: _this.collection.toJSON()
-          })).fadeIn(100);
+          }));
         });
         return this;
       };

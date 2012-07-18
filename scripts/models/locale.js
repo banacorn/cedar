@@ -13,24 +13,6 @@
         return Model.__super__.constructor.apply(this, arguments);
       }
 
-      Model.prototype.home = function() {
-        return [
-          {
-            icon: 'icon-home',
-            label: '首頁'
-          }
-        ];
-      };
-
-      Model.prototype.project = function(name) {
-        return [
-          {
-            icon: 'icon-book',
-            label: name
-          }
-        ];
-      };
-
       return Model;
 
     })(Backbone.Model);

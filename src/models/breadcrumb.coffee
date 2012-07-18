@@ -12,7 +12,7 @@ define ['underscore', 'backbone'], (_, Backbone) ->
         project: (name) -> 
             [
                 {
-                    icon: 'icon-bookmark'
+                    icon: 'icon-book'
                     label: name
                 }
             ]

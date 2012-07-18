@@ -17,6 +17,11 @@
 
   require(['jquery', 'underscore', 'backbone', 'hogan', 'router', 'views/home', 'views/project', 'views/breadcrumb'], function($, _, Backbone, hogan, router, Home, Project, Breadcrumb) {
     var App;
+    $.fn.render = function(html, duration) {
+      return this.each(function() {
+        return $(this).hide().html(html).fadeIn(duration || 200);
+      });
+    };
     App = (function(_super) {
 
       __extends(App, _super);
@@ -51,15 +56,15 @@
     return $(function() {
       new App;
       new Breadcrumb;
-      router.on('route:project', function(id) {
+      router.on('route:project', function(name) {
         var project;
-        project = new Project;
+        project = new Project(name);
         return project.render();
       });
       router.on('route:home', function() {
-        var homePage;
-        homePage = new Home;
-        return homePage.render();
+        var home;
+        home = new Home;
+        return home.render();
       });
       return Backbone.history.start();
     });

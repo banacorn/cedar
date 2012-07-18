@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model'], function($, _, Backbone, hogan, template, model) {
+  define(['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views/locale'], function($, _, Backbone, hogan, template, model, LocaleView) {
     var Project;
     return Project = (function(_super) {
 
@@ -16,17 +16,29 @@
       Project.prototype.el = $('#main');
 
       Project.prototype.initialize = function(name) {
-        this.template = hogan.compile(template.project);
-        return this.model = new model.Project;
+        this.template = template.project;
+        this.collection = new model.Projects;
+        this.collection.fetch();
+        return this.name = name;
       };
 
       Project.prototype.render = function() {
-        var _this = this;
-        return this.collection.on('reset', function() {
-          return _this.$el.html(_this.template.render({
-            projects: _this.collection.toJSON()
+        var localeView,
+          _this = this;
+        localeView = new LocaleView;
+        this.collection.on('reset', function() {
+          _this.model = _this.collection.where({
+            name: _this.name
+          })[0];
+          _this.$el.render(_this.template.render({
+            name: _this.model.get('name'),
+            info: _this.model.get('info'),
+            id: _this.model.id,
+            locales: localeView.render(_this.model.id, _this.model.get('name')).el
           }));
+          return console.log(localeView.render(_this.model.id, _this.model.get('name')));
         });
+        return this;
       };
 
       return Project;

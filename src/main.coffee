@@ -19,7 +19,10 @@ require [
     'views/project'
     'views/breadcrumb'
 ], ($, _, Backbone, hogan, router, Home, Project, Breadcrumb) ->
-    
+
+
+    $.fn.render = (html, duration) ->
+        @each -> $(@).hide().html(html).fadeIn(duration || 200)
         
     class App extends Backbone.View
     
@@ -48,16 +51,16 @@ require [
         new App        
         new Breadcrumb                
         
-        router.on 'route:project', (id) ->
+        router.on 'route:project', (name) ->
         
-            project = new Project
+            project = new Project name
             project.render()
             
         router.on 'route:home', ->
         
             
-            homePage = new Home
-            homePage.render()
+            home = new Home
+            home.render()
             
         
         Backbone.history.start()

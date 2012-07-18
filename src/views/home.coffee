@@ -19,10 +19,9 @@ define ['jquery', 'underscore', 'backbone'
             
             @collection.on 'reset', =>
             
-                @$el.fadeOut(100).hide().html(@template.render
+                @$el.render @template.render
                     projects: @collection.toJSON()
-                ).fadeIn 100
-    
+                
             
     
             return @
