@@ -16,7 +16,7 @@
       Collection.prototype.model = Model;
 
       Collection.prototype.url = function() {
-        return "http://itswindtw.info:9000/projects/" + this.id + "/locales.json";
+        return "projects/" + this.id + "/locales.json";
       };
 
       Collection.prototype.initialize = function(options) {

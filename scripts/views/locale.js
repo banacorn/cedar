@@ -24,10 +24,8 @@
         this.collection = new model.Locales({
           id: id
         });
-        this.collection.fetch();
         this.collection.on('reset', function() {
           var json;
-          console.log(_this.el);
           json = _this.collection.map(function(n) {
             return n.set('pname', pname);
           }).map(function(model) {
@@ -37,6 +35,7 @@
             locales: json
           }));
         });
+        this.collection.fetch();
         return this;
       };
 

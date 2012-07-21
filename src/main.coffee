@@ -3,8 +3,7 @@ require.config
         jquery      : 'jam/jquery/jquery'
         underscore  : 'jam/underscore/underscore'
         backbone    : 'jam/backbone/backbone'
-        hogan       : 'jam/hogan/hogan'
-        
+        hogan       : 'jam/hogan/hogan'        
         router      : 'router'
         model       : 'model'
         template    : 'template'
@@ -13,16 +12,24 @@ require [
     'jquery'  
     'underscore'
     'backbone'
-    'hogan'
+    'storage'
     'router'
     'views/home'
     'views/project'
     'views/breadcrumb'
-], ($, _, Backbone, hogan, router, Home, Project, Breadcrumb) ->
+], ($, _, Backbone, storage, router, Home, Project, Breadcrumb) ->
+
+    Backbone.remoteSync = Backbone.sync
+    
+    
+    Backbone.sync = ->
+        Backbone.remoteSync.apply @, arguments
+        storage.apply @, arguments
 
 
     $.fn.render = (html, duration) ->
-        @each -> $(@).hide().html(html).fadeIn(duration || 200)
+        #@each -> $(@).hide().html(html).fadeIn(duration || 200)
+        @each -> $(@).html(html)
         
     class App extends Backbone.View
     
@@ -47,6 +54,7 @@ require [
     
     
     $ ->
+              
                     
         new App        
         new Breadcrumb                
@@ -63,4 +71,10 @@ require [
             home.render()
             
         
-        Backbone.history.start()
+        $('a').live 'click', (e) ->
+            router.navigate $(@).attr('href'), true
+            return false
+            
+            
+        Backbone.history.start
+            pushState: true

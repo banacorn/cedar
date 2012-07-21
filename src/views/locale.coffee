@@ -16,13 +16,10 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
         render: (id, pname) ->
             @collection = new model.Locales
                 id: id
-            @collection.fetch()
             
             
             
-            @collection.on 'reset', =>
-                                               
-                console.log @el
+            @collection.on 'reset', =>                                   
                 
                 json = @collection.map((n) ->
                     n.set 'pname', pname
@@ -32,6 +29,8 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
                 
                 $('#locales').render @template.render
                     locales: json
+                    
+            @collection.fetch()
                     
             return @
     

@@ -15,7 +15,7 @@
 
       Collection.prototype.model = Model;
 
-      Collection.prototype.url = 'http://itswindtw.info:9000/projects.json';
+      Collection.prototype.url = 'projects.json';
 
       return Collection;
 

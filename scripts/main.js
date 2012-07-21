@@ -15,11 +15,16 @@
     }
   });
 
-  require(['jquery', 'underscore', 'backbone', 'hogan', 'router', 'views/home', 'views/project', 'views/breadcrumb'], function($, _, Backbone, hogan, router, Home, Project, Breadcrumb) {
+  require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'views/home', 'views/project', 'views/breadcrumb'], function($, _, Backbone, storage, router, Home, Project, Breadcrumb) {
     var App;
+    Backbone.remoteSync = Backbone.sync;
+    Backbone.sync = function() {
+      Backbone.remoteSync.apply(this, arguments);
+      return storage.apply(this, arguments);
+    };
     $.fn.render = function(html, duration) {
       return this.each(function() {
-        return $(this).hide().html(html).fadeIn(duration || 200);
+        return $(this).html(html);
       });
     };
     App = (function(_super) {
@@ -66,7 +71,13 @@
         home = new Home;
         return home.render();
       });
-      return Backbone.history.start();
+      $('a').live('click', function(e) {
+        router.navigate($(this).attr('href'), true);
+        return false;
+      });
+      return Backbone.history.start({
+        pushState: true
+      });
     });
   });
 

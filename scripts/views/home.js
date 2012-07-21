@@ -22,12 +22,14 @@
 
       HomePage.prototype.render = function() {
         var _this = this;
-        this.collection.fetch();
         this.collection.on('reset', function() {
+          console.log('collection reseted', Date.now());
           return _this.$el.render(_this.template.render({
             projects: _this.collection.toJSON()
           }));
         });
+        console.log('request issued ', Date.now());
+        this.collection.fetch();
         return this;
       };
 
