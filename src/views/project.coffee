@@ -29,7 +29,6 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
                     info: @model.get 'info'
                     id  : @model.id
                     locales: localeView.render(@model.id, @model.get 'name').el
-                console.log localeView.render(@model.id, @model.get 'name')
             
             return @
     

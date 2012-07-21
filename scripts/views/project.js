@@ -30,13 +30,12 @@
           _this.model = _this.collection.where({
             name: _this.name
           })[0];
-          _this.$el.render(_this.template.render({
+          return _this.$el.render(_this.template.render({
             name: _this.model.get('name'),
             info: _this.model.get('info'),
             id: _this.model.id,
             locales: localeView.render(_this.model.id, _this.model.get('name')).el
           }));
-          return console.log(localeView.render(_this.model.id, _this.model.get('name')));
         });
         return this;
       };

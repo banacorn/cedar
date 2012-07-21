@@ -14,13 +14,10 @@ define ['jquery', 'underscore', 'backbone'
         render: ->
                     
             @collection.on 'reset', =>
-            
-                console.log 'collection reseted', Date.now()
-            
+                        
                 @$el.render @template.render
                     projects: @collection.toJSON()
                 
-            console.log 'request issued ', Date.now()
             @collection.fetch()
             
     

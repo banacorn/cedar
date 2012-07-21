@@ -12,11 +12,9 @@ define [], () ->
                 
                 # fetch localStorage
                 if localStorage?[url]?
-                    console.log 'cached: ', localStorage[url], Date.now()
                     data = JSON.parse localStorage[url]
                     model.reset data                    
                     
                 # update localStorage
                 model.on 'reset', ->
-                    console.log 'updated: ', model.toJSON(), Date.now()
                     localStorage[url] = JSON.stringify model.toJSON()
