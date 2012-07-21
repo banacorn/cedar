@@ -11,7 +11,7 @@ define [], () ->
             when 'read'
                 
                 # fetch localStorage
-                if localStorage[url]?
+                if localStorage?[url]?
                     console.log 'cached: ', localStorage[url], Date.now()
                     data = JSON.parse localStorage[url]
                     model.reset data                    

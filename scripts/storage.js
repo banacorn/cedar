@@ -11,7 +11,7 @@
       }
       switch (method) {
         case 'read':
-          if (localStorage[url] != null) {
+          if ((typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] : void 0) != null) {
             console.log('cached: ', localStorage[url], Date.now());
             data = JSON.parse(localStorage[url]);
             model.reset(data);
