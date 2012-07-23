@@ -13,23 +13,25 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
         initialize: (name) ->
             @template = template.project
             @collection = new model.Projects
-            @collection.fetch()
             @name = name
                 
         render: ->
             
             localeView = new LocaleView
             
-            @collection.on 'reset', =>
+            @collection.hol =>
+            
                 @model = @collection.where(
                     name: @name
-                )[0]                    
-                @$el.render @template.render
-                    name: @model.get 'name'
-                    info: @model.get 'info'
-                    id  : @model.id
-                    locales: localeView.render(@model.id, @model.get 'name').el
-            
+                )[0]          
+                
+                localeView.render @model.id, @model.get('name'), (content) =>
+                          
+                    @$el.render @template.render
+                        name: @model.get 'name'
+                        info: @model.get 'info'
+                        id  : @model.id
+                        locales: content
             return @
     
     

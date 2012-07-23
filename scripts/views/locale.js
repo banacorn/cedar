@@ -19,23 +19,22 @@
         return this.template = template.locale;
       };
 
-      Locale.prototype.render = function(id, pname) {
+      Locale.prototype.render = function(id, pname, callback) {
         var _this = this;
         this.collection = new model.Locales({
           id: id
         });
-        this.collection.on('reset', function() {
+        this.collection.hol(function() {
           var json;
           json = _this.collection.map(function(n) {
             return n.set('pname', pname);
           }).map(function(model) {
             return model.toJSON();
           });
-          return $('#locales').render(_this.template.render({
+          return callback(_this.template.render({
             locales: json
           }));
         });
-        this.collection.fetch();
         return this;
       };
 

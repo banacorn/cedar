@@ -18,6 +18,16 @@
   require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'views/home', 'views/project', 'views/breadcrumb'], function($, _, Backbone, storage, router, Home, Project, Breadcrumb) {
     var App;
     Backbone.remoteSync = Backbone.sync;
+    Backbone.Collection.prototype.hol = function(callback) {
+      var cb,
+        _this = this;
+      cb = function() {
+        callback();
+        return _this.off('reset', cb);
+      };
+      this.on('reset', cb);
+      return this.fetch();
+    };
     Backbone.sync = function() {
       Backbone.remoteSync.apply(this, arguments);
       return storage.apply(this, arguments);

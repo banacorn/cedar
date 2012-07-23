@@ -13,13 +13,15 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
         initialize: ->
             @template = template.locale
             
-        render: (id, pname) ->
+        render: (id, pname, callback) ->
+        
             @collection = new model.Locales
                 id: id
             
             
             
-            @collection.on 'reset', =>                                   
+            @collection.hol =>                                   
+            
                 
                 json = @collection.map((n) ->
                     n.set 'pname', pname
@@ -27,10 +29,8 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
                     model.toJSON()
                 )
                 
-                $('#locales').render @template.render
+                callback @template.render
                     locales: json
-                    
-            @collection.fetch()
                     
             return @
     

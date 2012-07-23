@@ -13,12 +13,9 @@ define ['jquery', 'underscore', 'backbone'
     
         render: ->
                     
-            @collection.on 'reset', =>
+            @collection.hol =>
                         
                 @$el.render @template.render
                     projects: @collection.toJSON()
-                
-            @collection.fetch()
-            
     
             return @

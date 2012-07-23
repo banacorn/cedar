@@ -21,6 +21,15 @@ require [
 
     Backbone.remoteSync = Backbone.sync
     
+    Backbone.Collection::hol = (callback) ->
+    
+        cb = =>
+            callback()
+            @off 'reset', cb
+    
+        @on 'reset', cb
+            
+        @fetch()
     
     Backbone.sync = ->
         Backbone.remoteSync.apply @, arguments
