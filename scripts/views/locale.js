@@ -19,7 +19,7 @@
         return this.template = template.locale;
       };
 
-      Locale.prototype.render = function(id, pname) {
+      Locale.prototype.render = function(id, pname, callback) {
         var _this = this;
         this.collection = new model.Locales({
           id: id
@@ -31,8 +31,7 @@
           }).map(function(model) {
             return model.toJSON();
           });
-          console.log('got locale', json);
-          return $('#locales').render(_this.template.render({
+          return callback(_this.template.render({
             locales: json
           }));
         });
