@@ -24,18 +24,18 @@
         this.collection = new model.Locales({
           id: id
         });
-        this.collection.on('reset', function() {
+        this.collection.hol(function() {
           var json;
           json = _this.collection.map(function(n) {
             return n.set('pname', pname);
           }).map(function(model) {
             return model.toJSON();
           });
+          console.log('got locale', json);
           return $('#locales').render(_this.template.render({
             locales: json
           }));
         });
-        this.collection.fetch();
         return this;
       };
 

@@ -18,7 +18,6 @@
       Project.prototype.initialize = function(name) {
         this.template = template.project;
         this.collection = new model.Projects;
-        this.collection.fetch();
         return this.name = name;
       };
 
@@ -26,7 +25,7 @@
         var localeView,
           _this = this;
         localeView = new LocaleView;
-        this.collection.on('reset', function() {
+        this.collection.hol(function() {
           _this.model = _this.collection.where({
             name: _this.name
           })[0];

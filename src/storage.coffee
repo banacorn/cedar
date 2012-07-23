@@ -10,10 +10,11 @@ define [], () ->
         switch method
             when 'read'
                 
+                
                 # fetch localStorage
                 if localStorage?[url]?
                     data = JSON.parse localStorage[url]
-                    model.reset data                    
+                    model.reset data                  
                     
                 # update localStorage
                 model.on 'reset', ->

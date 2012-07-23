@@ -22,12 +22,11 @@
 
       HomePage.prototype.render = function() {
         var _this = this;
-        this.collection.on('reset', function() {
+        this.collection.hol(function() {
           return _this.$el.render(_this.template.render({
             projects: _this.collection.toJSON()
           }));
         });
-        this.collection.fetch();
         return this;
       };
 

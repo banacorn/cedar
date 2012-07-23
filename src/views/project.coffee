@@ -13,14 +13,15 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
         initialize: (name) ->
             @template = template.project
             @collection = new model.Projects
-            @collection.fetch()
             @name = name
                 
         render: ->
             
             localeView = new LocaleView
             
-            @collection.on 'reset', =>
+            @collection.hol =>
+            
+            
                 @model = @collection.where(
                     name: @name
                 )[0]                    
@@ -29,7 +30,8 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
                     info: @model.get 'info'
                     id  : @model.id
                     locales: localeView.render(@model.id, @model.get 'name').el
-            
+                    
+                
             return @
     
     

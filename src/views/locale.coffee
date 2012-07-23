@@ -19,18 +19,18 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
             
             
             
-            @collection.on 'reset', =>                                   
+            @collection.hol =>                                   
+            
                 
                 json = @collection.map((n) ->
                     n.set 'pname', pname
                 ).map((model) ->
                     model.toJSON()
                 )
+                console.log 'got locale', json
                 
                 $('#locales').render @template.render
                     locales: json
-                    
-            @collection.fetch()
                     
             return @
     

@@ -798,7 +798,7 @@ h2 {
   font-family: 'Hammersmith One';
   font-style: normal;
   font-weight: normal;
-  src: local('Hammersmith One'), local('HammersmithOne'), url("fonts/HammersmithOne.woff") format('woff');
+  src: local('Hammersmith One'), local('HammersmithOne'), url("../fonts/HammersmithOne.woff") format('woff');
 }
 #header-container {
   height: 60px;
