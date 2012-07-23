@@ -2,6 +2,10 @@
 @import "nib"
 global-reset()
 
+@import "element"
+@import "param"
+
+
 @font-face  
     font-family 'Hammersmith One'
     font-style normal
@@ -9,44 +13,10 @@ global-reset()
     src local('Hammersmith One'), local('HammersmithOne'), url('fonts/HammersmithOne.woff') format('woff')
  
 
-//
-//  Colors
-//
-
-blue = #334455
-
-//
-//  Elements
-//
-
-html  
-    overflow-y scroll 
-
-body  
-    color #282828
-    background #f0f0f0
-    font-family Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif
- 
-
-a  
-    text-decoration none
-    color inherit
- 
-
-h2  
-    font-size 150%
-    font-weight bold
-    
-    color blue
-    
-    margin 20px 0
-    padding 0 20px
-    
- 
 
 #header-container  
     height 60px
-    background  blue
+    background  $blue
  
 
 #header  
@@ -82,7 +52,7 @@ h2
     padding 0 20px
     line-height 40px
     font-size 120%
-    color blue
+    color $blue
     
     i  
         padding-right 10px

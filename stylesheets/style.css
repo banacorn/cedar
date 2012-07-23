@@ -576,12 +576,6 @@ td {
 a img {
   border: none;
 }
-@font-face {
-  font-family: 'Hammersmith One';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Hammersmith One'), local('HammersmithOne'), url("fonts/HammersmithOne.woff") format('woff');
-}
 html {
   overflow-y: scroll;
 }
@@ -594,12 +588,22 @@ a {
   text-decoration: none;
   color: inherit;
 }
+h1 {
+  color: #fff;
+  font-size: 150%;
+}
 h2 {
   font-size: 150%;
   font-weight: bold;
   color: #345;
   margin: 20px 0;
   padding: 0 20px;
+}
+@font-face {
+  font-family: 'Hammersmith One';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Hammersmith One'), local('HammersmithOne'), url("fonts/HammersmithOne.woff") format('woff');
 }
 #header-container {
   height: 60px;
