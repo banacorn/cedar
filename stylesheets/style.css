@@ -1,204 +1,28 @@
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-family: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-}
-body {
-  line-height: 1;
-  color: #000;
-  background: #fff;
-}
-ol,
-ul {
-  list-style: none;
-}
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  vertical-align: middle;
-}
-caption,
-th,
-td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
-}
-a img {
-  border: none;
-}
-@font-face {
-  font-family: 'Hammersmith One';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Hammersmith One'), local('HammersmithOne'), url("fonts/HammersmithOne.woff") format('woff');
-}
-html {
-  overflow-y: scroll;
-}
-body {
-  color: #282828;
-  background: #f0f0f0;
-  font-family: Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-h2 {
-  font-size: 150%;
-  font-weight: bold;
-  color: #345;
-  margin: 20px 0;
-  padding: 0 20px;
-}
-#header-container {
-  height: 60px;
-  background: #345;
-}
-#header {
-  width: 960px;
-  height: 60px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-#header h1 {
-  height: 60px;
-  line-height: 60px;
-colorwhite
-  font-size: 150%;
-  font-family: "Hammersmith One";
-}
-#breadcrumb-container {
-  height: 40px;
-  background: rgba(220,220,220,0.8);
-}
-#breadcrumb-container.fixed {
-  width: 100%;
-  position: fixed;
-  top: 0;
-}
-#breadcrumb {
-  width: 960px;
-  height: 80px;
-  margin: 0 auto;
-  padding: 0 20px;
-  line-height: 40px;
-  font-size: 120%;
-  color: #345;
-}
-#breadcrumb i {
-  padding-right: 10px;
-}
-#breadcrumb li {
-  float: left;
-  padding: 0 10px;
-  cursor: pointer;
-}
-#breadcrumb lihover {
-  background: rgba(255,255,255,0.2);
-}
-#main-container {
-  margin: 0 auto;
-  padding: 20px 0;
-}
-#main-container.fixed {
-  padding: 60px 0 20px 0;
-}
-#main {
-  width: 960px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-.project {
-  margin: 20px 0;
-  padding: 20px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background: #f5f5f5;
-  color: #787878;
-  cursor: pointer;
-}
-.project h3 {
-  height: 40px;
-  line-height: 40px;
-  color: #345;
-  font-size: 200%;
-  font-family: "Hammersmith One";
-}
-.project h3 i {
-  height: 40px;
-  line-height: 40px;
-  padding-right: 20px;
-  color: #c8c8c8;
-}
-.project h3 span {
-  padding: 0 20px;
-  font-size: 50%;
-  color: #a0a0a0;
-}
-.projecthover {
-  background: #fff;
-}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-family:inherit;font-size:100%;vertical-align:baseline}
+body{line-height:1;color:#000;background:#fff}
+ol,ul{list-style:none}
+table{border-collapse:separate;border-spacing:0;vertical-align:middle}
+caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}
+a img{border:none}
+@font-face{font-family:'Hammersmith One';font-style:normal;font-weight:normal;src:local('Hammersmith One'),local('HammersmithOne'),url("fonts/HammersmithOne.woff") format('woff')}
+html{overflow-y:scroll}
+body{color:#282828;background:#f0f0f0;font-family:Helvetica,"LiHei Pro","微軟正黑體",Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+h2{font-size:150%;font-weight:bold;color:#345;margin:20px 0;padding:0 20px}
+#header-container{height:60px;background:#345}
+#header{width:960px;height:60px;margin:0 auto;padding:0 20px;}
+#header h1{height:60px;line-height:60px;colorwhitefont-size:150%;font-family:"Hammersmith One"}
+#breadcrumb-container{height:40px;background:rgba(220,220,220,0.8)}
+#breadcrumb-container.fixed{width:100%;position:fixed;top:0}
+#breadcrumb{width:960px;height:80px;margin:0 auto;padding:0 20px;line-height:40px;font-size:120%;color:#345;}
+#breadcrumb i{padding-right:10px}
+#breadcrumb li{float:left;padding:0 10px;cursor:pointer}
+#breadcrumb lihover{background:rgba(255,255,255,0.2)}
+#main-container{margin:0 auto;padding:20px 0}
+#main-container.fixed{padding:60px 0 20px 0}
+#main{width:960px;margin:0 auto;padding:0 20px}
+.project{margin:20px 0;padding:20px;-webkit-border-radius:5px;border-radius:5px;background:#f5f5f5;color:#787878;cursor:pointer;}
+.project h3{height:40px;line-height:40px;color:#345;font-size:200%;font-family:"Hammersmith One";}
+.project h3 i{height:40px;line-height:40px;padding-right:20px;color:#c8c8c8}
+.project h3 span{padding:0 20px;font-size:50%;color:#a0a0a0}
+.projecthover{background:#fff}
