@@ -1,21 +1,20 @@
 build: build.js
 	node build.js
-	node node_modules/requirejs/bin/r.js -o cssIn=stylesheets/style.css out=stylesheets/style.css
 	
 compile: node_modules/requirejs/bin/r.js
 	coffee --compile --output scripts/ src/
-	lessc -x src/less/style.less > stylesheets/style.css
+	stylus --include src/stylus --include node_modules/nib/lib --out stylesheets --watch src/stylus/style.styl
 	
 watch: 
 	make -j beobachten
 
-beobachten: coffee less
+beobachten: coffee stylus
 
 coffee:
 	coffee --watch --compile --output scripts/ src/ 
 
-less:
-	lessw -wo stylesheets src/less 
+stylus:
+	stylus --include src/stylus --include node_modules/nib/lib --out stylesheets --watch src/stylus/style.styl
 
 .PHONY: build watch compile
 .SILENT: beobachten
