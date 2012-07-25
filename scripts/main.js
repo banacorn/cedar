@@ -45,26 +45,6 @@
         return App.__super__.constructor.apply(this, arguments);
       }
 
-      App.prototype.el = $(window);
-
-      App.prototype.events = {
-        'scroll': 'scroll'
-      };
-
-      App.prototype.initialize = function() {};
-
-      App.prototype.scroll = function() {
-        var scrollTop;
-        scrollTop = this.$el.scrollTop();
-        if (scrollTop > 60) {
-          $('#breadcrumb-container').addClass('fixed');
-          return $('#main-container').addClass('fixed');
-        } else {
-          $('#breadcrumb-container').removeClass('fixed');
-          return $('#main-container').removeClass('fixed');
-        }
-      };
-
       return App;
 
     })(Backbone.View);

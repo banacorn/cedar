@@ -1,6 +1,29 @@
-<section id="project-{{id}}">
-    <p>{{info}}</p>
-</section>
-<section id="locales">
-    {{{locales}}}
-</section>
+<nav class="project-nav">
+    <ol>
+        <li class="selected"><a href="/project/{{name}}"><i class="icon-home"></i></a></li>
+        <li><a href="/project/{{name}}"><i class="icon-file"></i> 條目</a></li>
+        <li><a href="/project/{{name}}"><i class="icon-user"></i> 參與者</a></li>
+    </ol>
+</nav>
+<article class="project" id="project-{{id}}">
+    <section id="project-main">
+        <h2>{{name}}</h2>
+        <p class="sub">{{info}}</p>
+    </section>
+    <aside id="project-aside">
+        <ol>
+            <li>
+                <div class="stat">0</div>
+                <div class="caption">完成度 %</div>
+            </li>
+            <li>
+                <div class="stat">0</div>
+                <div class="caption">條目數 <i class="icon-list"></i></div>
+            </li>
+            <li>
+                <div class="stat">0</div>
+                <div class="caption">參與人數 <i class="icon-user"></i></div>
+            </li>
+        </ol>
+    </aside>
+</article>

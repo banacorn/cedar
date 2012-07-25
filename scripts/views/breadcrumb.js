@@ -13,22 +13,50 @@
         return Breadcrumb.__super__.constructor.apply(this, arguments);
       }
 
-      Breadcrumb.prototype.el = $('#breadcrumb');
+      Breadcrumb.prototype.el = $(window);
+
+      Breadcrumb.prototype.$breadcrumb = $('#breadcrumb-container');
+
+      Breadcrumb.prototype.events = {
+        'scroll': 'scroll'
+      };
+
+      Breadcrumb.prototype.initialize = function() {};
+
+      Breadcrumb.prototype.scroll = function() {
+        var scrollTop;
+        scrollTop = this.$el.scrollTop();
+        console.log(this.model.get('active'));
+        if (scrollTop > 60 && this.model.get('active')) {
+          $('#breadcrumb-container').addClass('fixed');
+          return $('#main-container').addClass('fixed');
+        } else {
+          $('#breadcrumb-container').removeClass('fixed');
+          return $('#main-container').removeClass('fixed');
+        }
+      };
 
       Breadcrumb.prototype.initialize = function() {
         var _this = this;
         this.template = template.breadcrumb;
         this.model = new model.Breadcrumb;
-        router.on('route:home', function() {
-          return _this.$el.html(_this.template.render({
-            paths: _this.model.home()
-          }));
-        });
+        /*router.on 'route:home', =>
+                    
+            @$breadcrumb.html @template.render
+                breadcrumb: false
+                paths: @model.home()
+        */
+
         return router.on('route:project', function(name) {
-          return _this.$el.html(_this.template.render({
+          _this.model.set('active');
+          return _this.$breadcrumb.html(_this.template.render({
+            breadcrumb: false,
             paths: _this.model.project(name)
           }));
         });
+        /*
+        */
+
       };
 
       return Breadcrumb;

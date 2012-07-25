@@ -13,6 +13,10 @@
         return Model.__super__.constructor.apply(this, arguments);
       }
 
+      Model.prototype.defaults = {
+        active: false
+      };
+
       Model.prototype.home = function() {
         return [
           {

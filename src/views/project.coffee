@@ -1,8 +1,7 @@
 define ['jquery', 'underscore', 'backbone', 'hogan'
     'template'
     'model'
-    'views/locale'
-], ($, _, Backbone, hogan, template, model, LocaleView) ->
+], ($, _, Backbone, hogan, template, model) ->
     
         
 
@@ -17,21 +16,20 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
                 
         render: ->
             
-            localeView = new LocaleView
             
             @collection.hol =>
             
                 @model = @collection.where(
                     name: @name
                 )[0]          
-                
-                localeView.render @model.id, @model.get('name'), (content) =>
-                          
-                    @$el.render @template.render
+                @$el.render @template.render
                         name: @model.get 'name'
                         info: @model.get 'info'
                         id  : @model.id
-                        locales: content
+                ###localeView.render @model.id, @model.get('name'), (content) =>
+                          
+                    
+                ###                  
             return @
     
     

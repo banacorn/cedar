@@ -1,0 +1,68 @@
+@import "element"
+@import "param"
+
+.project-nav
+
+    overflow hidden    
+    margin-bottom 10px    
+    background white
+    color $blue
+    
+    
+    .selected
+        background $blue
+        color white
+        
+        &:hover        
+            background darken($blue, 10%)
+    
+    li
+        float left
+        padding 10px
+        cursor pointer
+        
+        &:hover        
+            background rgb(230, 230, 230)
+            
+.project
+
+    overflow hidden
+
+    //border-bottom 10px solid whitergb(160, 160, 160)
+
+
+
+    
+    h2
+        font-size 300%
+        
+#project-main
+    float left
+    width 800px
+    min-height 470px
+    background white
+    
+#project-aside
+    float left
+    width 160px
+
+    li
+        background white
+        width 150px
+        margin 0 0 10px 10px
+        height 150px
+        color $blue
+        
+    .stat
+        height 120px
+        font-size 400%
+        line-height 120px
+        text-align center
+        
+        i
+            font-size 25%
+            color rgb(160, 160, 160)
+        
+    .caption
+        height 30px
+        text-align center

@@ -5,30 +5,38 @@ global-reset()
 @import "element"
 @import "param"
 
+@import "project"
+
 
 @font-face  
     font-family 'Hammersmith One'
     font-style normal
     font-weight normal
     src local('Hammersmith One'), local('HammersmithOne'), url('../fonts/HammersmithOne.woff') format('woff')
- 
+
+@font-face
+    font-family 'Droid Sans'
+    font-style normal
+    font-weight 400
+    src local('Droid Sans'), local('DroidSans'), url('../fonts/DroidSans.woff') format('woff')
+
 
 
 #header-container  
-    height 60px
+    height 40px
     background  $blue
  
 
 #header  
     width 960px
-    height 60px
+    height 40px
     margin 0 auto
     padding 0 20px
     
     
     h1  
-        height 60px
-        line-height 60px
+        height 40px
+        line-height 40px
         colorwhite
         font-size 150%
         font-family "Hammersmith One"
@@ -36,7 +44,6 @@ global-reset()
  
 
 #breadcrumb-container  
-    height 40px
     background rgba(220,220,220,0.8)
  
 
@@ -47,7 +54,7 @@ global-reset()
  
 #breadcrumb  
     width 960px
-    height 80px
+    height 40px
     margin 0 auto
     padding 0 20px
     line-height 40px
@@ -79,15 +86,16 @@ global-reset()
 #main  
     width 960px
     margin 0 auto
-    padding 0 20px
+    //padding 0 20px
  
 
 
-.project  
-    margin 20px 0
+.project-item
+    margin 10px 0
     padding 20px
-    border-radius 5px
-    background #f5f5f5
+    border-radius 4px
+    background #f8f8f8
+    //background white
     color #787878
     cursor pointer
     h3  
@@ -95,7 +103,7 @@ global-reset()
         line-height 40px
         color #334455
         font-size 200%
-        font-family "Hammersmith One"
+        //font-family "Hammersmith One"
         i  
             height 40px
             line-height 40px
@@ -106,9 +114,6 @@ global-reset()
             padding 0 20px
             font-size 50%
             color #a0a0a0
-         
-     
- 
-.projecthover  
-    background white
- 
+        
+    &:hover
+        background white
