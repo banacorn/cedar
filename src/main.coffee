@@ -42,24 +42,6 @@ require [
         
     class App extends Backbone.View
     
-        el: $ window
-        
-        
-        events:
-            'scroll': 'scroll'
-    
-        initialize: ->
-        
-    
-        scroll: ->
-            scrollTop =  @$el.scrollTop()
-            if scrollTop > 60
-                $('#breadcrumb-container').addClass 'fixed'
-                $('#main-container').addClass 'fixed'
-            else
-                $('#breadcrumb-container').removeClass 'fixed'
-                $('#main-container').removeClass 'fixed'
-                
     
     
     $ ->

@@ -777,22 +777,108 @@ html {
 body {
   color: #282828;
   background: #f0f0f0;
-  font-family: Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
+  font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
 }
 a {
   text-decoration: none;
   color: inherit;
+}
+p {
+  margin: 20px 0;
+  padding: 0 20px;
 }
 h1 {
   color: #fff;
   font-size: 150%;
 }
 h2 {
-  font-size: 150%;
+  font-size: 200%;
   font-weight: bold;
   color: #345;
   margin: 20px 0;
   padding: 0 20px;
+}
+html {
+  overflow-y: scroll;
+}
+body {
+  color: #282828;
+  background: #f0f0f0;
+  font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+p {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+h1 {
+  color: #fff;
+  font-size: 150%;
+}
+h2 {
+  font-size: 200%;
+  font-weight: bold;
+  color: #345;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+.project h2 {
+  font-size: 300%;
+}
+html {
+  overflow-y: scroll;
+}
+body {
+  color: #282828;
+  background: #f0f0f0;
+  font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+p {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+h1 {
+  color: #fff;
+  font-size: 150%;
+}
+h2 {
+  font-size: 200%;
+  font-weight: bold;
+  color: #345;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+#breadcrumb {
+  width: 960px;
+  height: 40px;
+  margin: 0 auto;
+  padding: 0 20px;
+  line-height: 40px;
+  font-size: 100%;
+  color: #a0a0a0;
+}
+#breadcrumb a {
+  display: block;
+  padding: 0 20px;
+}
+#breadcrumb li {
+  float: left;
+  cursor: pointer;
+}
+#breadcrumb li.selected {
+  color: #345;
+  height: 36px;
+  border-bottom: 4px solid #345;
+}
+#breadcrumb li:hover {
+  background: rgba(255,255,255,0.2);
 }
 @font-face {
   font-family: 'Hammersmith One';
@@ -800,25 +886,30 @@ h2 {
   font-weight: normal;
   src: local('Hammersmith One'), local('HammersmithOne'), url("../fonts/HammersmithOne.woff") format('woff');
 }
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Sans'), local('DroidSans'), url("../fonts/DroidSans.woff") format('woff');
+}
 #header-container {
-  height: 60px;
+  height: 40px;
   background: #345;
 }
 #header {
   width: 960px;
-  height: 60px;
+  height: 40px;
   margin: 0 auto;
   padding: 0 20px;
 }
 #header h1 {
-  height: 60px;
-  line-height: 60px;
+  height: 40px;
+  line-height: 40px;
 colorwhite
   font-size: 150%;
   font-family: "Hammersmith One";
 }
 #breadcrumb-container {
-  height: 40px;
   background: rgba(220,220,220,0.8);
 }
 #breadcrumb-container.fixed {
@@ -826,29 +917,8 @@ colorwhite
   position: fixed;
   top: 0;
 }
-#breadcrumb {
-  width: 960px;
-  height: 80px;
-  margin: 0 auto;
-  padding: 0 20px;
-  line-height: 40px;
-  font-size: 120%;
-  color: #345;
-}
-#breadcrumb i {
-  padding-right: 10px;
-}
-#breadcrumb li {
-  float: left;
-  padding: 0 10px;
-  cursor: pointer;
-}
-#breadcrumb lihover {
-  background: rgba(255,255,255,0.2);
-}
 #main-container {
   margin: 0 auto;
-  padding: 20px 0;
 }
 #main-container.fixed {
   padding: 60px 0 20px 0;
@@ -856,35 +926,33 @@ colorwhite
 #main {
   width: 960px;
   margin: 0 auto;
-  padding: 0 20px;
 }
-.project {
-  margin: 20px 0;
+.project-item {
+  margin: 10px 0;
   padding: 20px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background: #f5f5f5;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #f8f8f8;
   color: #787878;
   cursor: pointer;
 }
-.project h3 {
+.project-item h3 {
   height: 40px;
   line-height: 40px;
   color: #345;
   font-size: 200%;
-  font-family: "Hammersmith One";
 }
-.project h3 i {
+.project-item h3 i {
   height: 40px;
   line-height: 40px;
   padding-right: 20px;
   color: #c8c8c8;
 }
-.project h3 span {
+.project-item h3 span {
   padding: 0 20px;
   font-size: 50%;
   color: #a0a0a0;
 }
-.projecthover {
+.project-item:hover {
   background: #fff;
 }
