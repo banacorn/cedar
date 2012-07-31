@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['underscore', 'backbone', 'views/project'], function(_, Backbone, Project) {
+  define(['underscore', 'backbone', 'views/project', 'views/file'], function(_, Backbone, Project, File) {
     var Router;
     return new (Router = (function(_super) {
 
@@ -17,6 +17,7 @@
         '': 'home',
         'project/:name': 'project:home',
         'project/:name/entry': 'project:entry',
+        'project/:name/entry/*path': 'project:entry:path',
         'project/:name/user': 'project:user',
         '*all': 'otherwise'
       };
@@ -26,6 +27,13 @@
         console.log('foo');
         project = new Project;
         return project.render(name);
+      };
+
+      Router.prototype['project:entry'] = function(name) {
+        var file;
+        console.log(name);
+        file = new File;
+        return file.render(name);
       };
 
       return Router;

@@ -919,6 +919,7 @@ colorwhite
 }
 #main-container {
   margin: 0 auto;
+  padding: 20px 0;
 }
 #main-container.fixed {
   padding: 60px 0 20px 0;
