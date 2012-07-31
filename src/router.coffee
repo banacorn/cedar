@@ -2,7 +2,8 @@ define [
     'underscore'
     'backbone'
     'views/project'
-], (_, Backbone, Project) ->
+    'views/file'
+], (_, Backbone, Project, File) ->
 
     new class Router extends Backbone.Router
         
@@ -10,6 +11,7 @@ define [
             ''                      : 'home'
             'project/:name'         : 'project:home'
             'project/:name/entry'   : 'project:entry'
+            'project/:name/entry/*path'   : 'project:entry:path'
             'project/:name/user'    : 'project:user'
             '*all'                  : 'otherwise'
 
@@ -18,5 +20,10 @@ define [
             console.log 'foo'
 
             project = new Project
-
             project.render name
+
+        'project:entry': (name) ->
+            console.log name
+
+            file = new File
+            file.render name
