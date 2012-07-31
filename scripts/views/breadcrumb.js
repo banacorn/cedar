@@ -27,7 +27,7 @@
         var scrollTop;
         scrollTop = this.$el.scrollTop();
         console.log(this.model.get('active'));
-        if (scrollTop > 60 && this.model.get('active')) {
+        if (scrollTop > 40 && this.model.get('active')) {
           $('#breadcrumb-container').addClass('fixed');
           return $('#main-container').addClass('fixed');
         } else {
@@ -40,21 +40,43 @@
         var _this = this;
         this.template = template.breadcrumb;
         this.model = new model.Breadcrumb;
-        /*router.on 'route:home', =>
-                    
-            @$breadcrumb.html @template.render
-                breadcrumb: false
-                paths: @model.home()
-        */
-
-        return router.on('route:project', function(name) {
-          _this.model.set('active');
+        router.on('route:project:home', function(name) {
+          _this.model.set('active', true);
           return _this.$breadcrumb.html(_this.template.render({
-            breadcrumb: false,
-            paths: _this.model.project(name)
+            project: true,
+            projectName: name,
+            home: true
           }));
         });
-        /*
+        router.on('route:project:entry', function(name) {
+          _this.model.set('active', true);
+          return _this.$breadcrumb.html(_this.template.render({
+            project: true,
+            projectName: name,
+            entry: true
+          }));
+        });
+        router.on('route:project:user', function(name) {
+          _this.model.set('active', true);
+          return _this.$breadcrumb.html(_this.template.render({
+            projectName: name,
+            project: true,
+            user: true
+          }));
+        });
+        return router.on('route:home', function() {
+          _this.model.set('active', false);
+          return _this.$breadcrumb.html(_this.template.render({
+            breadcrumb: false,
+            paths: _this.model.home()
+          }));
+        });
+        /*     
+        router.on 'route:project', (name) =>
+            @model.set 'active'
+            @$breadcrumb.html @template.render
+                breadcrumb: false
+                paths: @model.project name
         */
 
       };

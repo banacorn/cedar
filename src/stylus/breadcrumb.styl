@@ -1,0 +1,32 @@
+@import "element"
+@import "param"
+
+
+#breadcrumb  
+    width 960px
+    height 40px
+    margin 0 auto
+    padding 0 20px
+    line-height 40px
+    font-size 100%
+    color $light
+    
+    a
+        display block 
+        padding 0 20px
+    
+
+
+    li  
+        float left
+        cursor pointer
+    
+        &.selected
+            color $blue
+            height 36px
+            border-bottom 4px solid $blue
+        
+
+        &:hover  
+            background rgba(255,255,255,0.2)
+     

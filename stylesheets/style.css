@@ -825,63 +825,60 @@ h2 {
   margin: 20px 0;
   padding: 0 20px;
 }
-.project-nav {
-  overflow: hidden;
-  margin-bottom: 10px;
-  background: #fff;
-  color: #345;
-}
-.project-nav .selected {
-  background: #345;
-  color: #fff;
-}
-.project-nav .selected:hover {
-  background: #2e3d4d;
-}
-.project-nav li {
-  float: left;
-  padding: 10px;
-  cursor: pointer;
-}
-.project-nav li:hover {
-  background: #e6e6e6;
-}
-.project {
-  overflow: hidden;
-}
 .project h2 {
   font-size: 300%;
 }
-#project-main {
-  float: left;
-  width: 800px;
-  min-height: 470px;
-  background: #fff;
+html {
+  overflow-y: scroll;
 }
-#project-aside {
-  float: left;
-  width: 160px;
+body {
+  color: #282828;
+  background: #f0f0f0;
+  font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
 }
-#project-aside li {
-  background: #fff;
-  width: 150px;
-  margin: 0 0 10px 10px;
-  height: 150px;
+a {
+  text-decoration: none;
+  color: inherit;
+}
+p {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+h1 {
+  color: #fff;
+  font-size: 150%;
+}
+h2 {
+  font-size: 200%;
+  font-weight: bold;
   color: #345;
+  margin: 20px 0;
+  padding: 0 20px;
 }
-#project-aside .stat {
-  height: 120px;
-  font-size: 400%;
-  line-height: 120px;
-  text-align: center;
-}
-#project-aside .stat i {
-  font-size: 25%;
+#breadcrumb {
+  width: 960px;
+  height: 40px;
+  margin: 0 auto;
+  padding: 0 20px;
+  line-height: 40px;
+  font-size: 100%;
   color: #a0a0a0;
 }
-#project-aside .caption {
-  height: 30px;
-  text-align: center;
+#breadcrumb a {
+  display: block;
+  padding: 0 20px;
+}
+#breadcrumb li {
+  float: left;
+  cursor: pointer;
+}
+#breadcrumb li.selected {
+  color: #345;
+  height: 36px;
+  border-bottom: 4px solid #345;
+}
+#breadcrumb li:hover {
+  background: rgba(255,255,255,0.2);
 }
 @font-face {
   font-family: 'Hammersmith One';
@@ -920,29 +917,8 @@ colorwhite
   position: fixed;
   top: 0;
 }
-#breadcrumb {
-  width: 960px;
-  height: 40px;
-  margin: 0 auto;
-  padding: 0 20px;
-  line-height: 40px;
-  font-size: 120%;
-  color: #345;
-}
-#breadcrumb i {
-  padding-right: 10px;
-}
-#breadcrumb li {
-  float: left;
-  padding: 0 10px;
-  cursor: pointer;
-}
-#breadcrumb lihover {
-  background: rgba(255,255,255,0.2);
-}
 #main-container {
   margin: 0 auto;
-  padding: 20px 0;
 }
 #main-container.fixed {
   padding: 60px 0 20px 0;

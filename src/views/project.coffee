@@ -1,7 +1,7 @@
 define ['jquery', 'underscore', 'backbone', 'hogan'
     'template'
     'model'
-], ($, _, Backbone, hogan, template, model) ->
+], ($, _, Backbone, hogan, template, MODEL) ->
     
         
 
@@ -11,25 +11,18 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
     
         initialize: (name) ->
             @template = template.project
-            @collection = new model.Projects
+            @collection = new MODEL.Projects
             @name = name
                 
-        render: ->
-            
-            
+        render: (name) ->
+
             @collection.hol =>
-            
-                @model = @collection.where(
-                    name: @name
-                )[0]          
+
+                model = @collection.where({name: name})[0]
                 @$el.render @template.render
-                        name: @model.get 'name'
-                        info: @model.get 'info'
-                        id  : @model.id
-                ###localeView.render @model.id, @model.get('name'), (content) =>
-                          
-                    
-                ###                  
+                    name: model.get 'name'
+                    info: model.get 'info'
+                    id  : model.id
             return @
     
     

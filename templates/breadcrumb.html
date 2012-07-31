@@ -1,9 +1,21 @@
-{{#breadcrumb}}
+{{#project}}
 <nav id="breadcrumb">
     <ol>
-        {{#paths}}                  
-            <li><i class="{{icon}}"></i>{{label}}</li>
-        {{/paths}}
+    	<li {{#home}}class="selected"{{/home}}>
+    		<a href="/project/{{projectName}}">
+    			<i class="icon-home"></i>
+    		</a>
+    	</li>
+    	<li {{#entry}}class="selected"{{/entry}}>
+    		<a href="/project/{{projectName}}/entry">
+				<i class="icon-file"></i>條目
+			</a>
+    	</li>
+    	<li {{#user}}class="selected"{{/user}}>
+    		<a href="/project/{{projectName}}/user">
+				<i class="icon-user"></i>參與者
+			</a>
+    	</li>
     </ol>
 </nav>
-{{/breadcrumb}}
+{{/project}}
