@@ -15,7 +15,7 @@
 
       Collection.prototype.model = Model;
 
-      Collection.prototype.url = 'projects.json';
+      Collection.prototype.url = '/api/projects';
 
       return Collection;
 

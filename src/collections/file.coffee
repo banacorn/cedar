@@ -11,4 +11,4 @@ define ['underscore', 'backbone', '../models/file'], (_, Backbone, Model) ->
 
 
         url: -> 
-            "projects/#{ @pid }/files.json"
+            "/api/projects/#{ @pid }/files"

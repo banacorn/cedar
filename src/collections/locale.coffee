@@ -3,7 +3,7 @@ define ['underscore', 'backbone', '../models/locale'], (_, Backbone, Model) ->
         
     class Collection extends Backbone.Collection
         model: Model
-        url: () -> "projects/#{ @id }/locales.json"
+        url: () -> "/api/projects/#{ @id }/locales"
         initialize: (options) ->
             @id = options.id
         

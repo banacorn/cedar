@@ -16,7 +16,7 @@
       Collection.prototype.model = Model;
 
       Collection.prototype.url = function() {
-        return "projects/" + this.id + "/locales.json";
+        return "/api/projects/" + this.id + "/locales";
       };
 
       Collection.prototype.initialize = function(options) {

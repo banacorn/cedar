@@ -20,7 +20,7 @@
       Collection.prototype.model = Model;
 
       Collection.prototype.url = function() {
-        return "projects/" + this.pid + "/files.json";
+        return "/api/projects/" + this.pid + "/files";
       };
 
       return Collection;
