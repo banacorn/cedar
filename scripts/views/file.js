@@ -31,7 +31,7 @@
           files = new MODEL.Files({
             pid: pid
           });
-          return $.get("projects/" + pid + "/files.json", function(reply) {
+          return $.get("api/projects/" + pid + "/files.json", function(reply) {
             return _this.$el.html(_this.template.render({
               test: JSON.stringify(reply)
             }));

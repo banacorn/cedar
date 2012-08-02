@@ -23,7 +23,7 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
 
                 files = new MODEL.Files
                     pid: pid
-                $.get "projects/#{ pid }/files.json", (reply) =>
+                $.get "api/projects/#{ pid }/files.json", (reply) =>
                     
                     @$el.html @template.render
                         test: JSON.stringify reply
