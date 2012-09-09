@@ -24,14 +24,12 @@
 
       Router.prototype['project:home'] = function(name) {
         var project;
-        console.log('foo');
         project = new Project;
         return project.render(name);
       };
 
       Router.prototype['project:entry'] = function(name) {
         var file;
-        console.log(name);
         file = new File;
         return file.render(name);
       };

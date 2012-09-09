@@ -17,13 +17,9 @@ define [
 
 
         'project:home': (name) ->
-            console.log 'foo'
-
             project = new Project
             project.render name
 
         'project:entry': (name) ->
-            console.log name
-
             file = new File
             file.render name

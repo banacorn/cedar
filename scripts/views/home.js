@@ -17,14 +17,14 @@
 
       HomePage.prototype.initialize = function() {
         this.template = template.home;
-        return this.collection = new model.Projects;
+        return this.projectCollection = new model.Projects;
       };
 
       HomePage.prototype.render = function() {
         var _this = this;
-        this.collection.hol(function() {
-          return _this.$el.render(_this.template.render({
-            projects: _this.collection.toJSON()
+        this.projectCollection.snatch(function() {
+          return _this.$el.html(_this.template.render({
+            projects: _this.projectCollection.toJSON()
           }));
         });
         return this;

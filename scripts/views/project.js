@@ -15,20 +15,20 @@
 
       Project.prototype.el = $('#main');
 
-      Project.prototype.initialize = function(name) {
+      Project.prototype.initialize = function() {
         this.template = template.project;
-        this.collection = new MODEL.Projects;
-        return this.name = name;
+        return this.collection = new MODEL.Projects;
       };
 
       Project.prototype.render = function(name) {
         var _this = this;
-        this.collection.hol(function() {
+        this.collection.snatch(function() {
           var model;
+          console.log(name);
           model = _this.collection.where({
             name: name
           })[0];
-          return _this.$el.render(_this.template.render({
+          return _this.$el.html(_this.template.render({
             name: model.get('name'),
             info: model.get('info'),
             id: model.id

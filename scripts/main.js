@@ -18,7 +18,7 @@
   require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'views/home', 'views/project', 'views/breadcrumb'], function($, _, Backbone, storage, router, Home, Project, Breadcrumb) {
     var App;
     Backbone.remoteSync = Backbone.sync;
-    Backbone.Collection.prototype.hol = function(callback) {
+    Backbone.Collection.prototype.snatch = function(callback) {
       var cb,
         _this = this;
       cb = function() {
@@ -28,14 +28,12 @@
       this.on('reset', cb);
       return this.fetch();
     };
+    Backbone.View.prototype.assign = function(view, selector) {
+      return view.setElement(this.$(selector)).render();
+    };
     Backbone.sync = function() {
       Backbone.remoteSync.apply(this, arguments);
       return storage.apply(this, arguments);
-    };
-    $.fn.render = function(html, duration) {
-      return this.each(function() {
-        return $(this).html(html);
-      });
     };
     App = (function(_super) {
 

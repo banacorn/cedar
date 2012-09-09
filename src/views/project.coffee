@@ -9,20 +9,19 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
     
         el: $('#main')
     
-        initialize: (name) ->
+        initialize: ->
             @template = template.project
             @collection = new MODEL.Projects
-            @name = name
-                
         render: (name) ->
 
-            @collection.hol =>
-
+            @collection.snatch =>
+                console.log name
                 model = @collection.where({name: name})[0]
-                @$el.render @template.render
+                @$el.html @template.render
                     name: model.get 'name'
                     info: model.get 'info'
                     id  : model.id
+
             return @
     
     

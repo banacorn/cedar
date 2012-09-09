@@ -5,17 +5,22 @@ define ['jquery', 'underscore', 'backbone'
 
     class HomePage extends Backbone.View
         
+
         el: $('#main')
         
         initialize: ->        
+
             @template = template.home
-            @collection = new model.Projects
+            @projectCollection = new model.Projects
     
         render: ->
-                    
-            @collection.hol =>
-                        
-                @$el.render @template.render
-                    projects: @collection.toJSON()
+
+
+            @projectCollection.snatch =>  
+                # console.log @projectCollection          
+                @$el.html @template.render
+                    projects: @projectCollection.toJSON()
+
+
     
             return @

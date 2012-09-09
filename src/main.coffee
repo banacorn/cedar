@@ -21,7 +21,8 @@ require [
 
     Backbone.remoteSync = Backbone.sync
     
-    Backbone.Collection::hol = (callback) ->
+
+    Backbone.Collection::snatch = (callback) ->
     
         cb = =>
             callback()
@@ -30,15 +31,14 @@ require [
         @on 'reset', cb
             
         @fetch()
+
+
+    Backbone.View::assign = (view, selector) ->
+        view.setElement(this.$(selector)).render()
     
     Backbone.sync = ->
         Backbone.remoteSync.apply @, arguments
         storage.apply @, arguments
-
-
-    $.fn.render = (html, duration) ->
-        #@each -> $(@).hide().html(html).fadeIn(duration || 200)
-        @each -> $(@).html(html)
         
     class App extends Backbone.View
     
