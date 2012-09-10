@@ -13,7 +13,6 @@ define [
         
         $breadcrumb: $ '#breadcrumb-container'
         
-        
         events:
             'scroll': 'scroll'
     

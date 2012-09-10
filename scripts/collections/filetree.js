@@ -3,8 +3,19 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['underscore', 'backbone', '../models/project'], function(_, Backbone, Model) {
-    var Collection;
+  define(['underscore', 'backbone'], function(_, Backbone) {
+    var Collection, Model;
+    Model = (function(_super) {
+
+      __extends(Model, _super);
+
+      function Model() {
+        return Model.__super__.constructor.apply(this, arguments);
+      }
+
+      return Model;
+
+    })(Backbone.Model);
     return Collection = (function(_super) {
 
       __extends(Collection, _super);
@@ -15,25 +26,40 @@
 
       Collection.prototype.model = Model;
 
-      Collection.prototype.url = '/api/projects';
+      Collection.prototype.url = function() {
+        return "/api/projects/" + this.id + "/files";
+      };
+
+      Collection.prototype.initiailze = function(projectID) {
+        return console.log('file tree id is ', projectID);
+      };
 
       Collection.prototype.parse = function(data) {
         var fold, models;
+        if (data == null) {
+          data = [];
+        }
         models = [];
-        fold = function(tree) {
+        fold = function(tree, level) {
           var node, _i, _len, _results;
           _results = [];
           for (_i = 0, _len = tree.length; _i < _len; _i++) {
             node = tree[_i];
+            node.level = level;
+            if (node.filetype === 0) {
+              node.folder = true;
+            } else {
+              node.folder = false;
+            }
             if (node.children) {
-              fold(node.children);
+              fold(node.children, level + 1);
             }
             delete node.children;
             _results.push(models.push(node));
           }
           return _results;
         };
-        fold(data);
+        fold(data, 0);
         return models;
       };
 

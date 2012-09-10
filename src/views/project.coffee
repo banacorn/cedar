@@ -9,20 +9,56 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
     
         el: $('#main')
     
-        initialize: (name) ->
+        initialize: ->
             @template = template.project
-            @collection = new MODEL.Projects
-            @name = name
-                
-        render: (name) ->
+            @projectList    = new MODEL.Projects
+            @fileTree       = new MODEL.FileTree
 
-            @collection.hol =>
+        render: (name, path) ->
 
-                model = @collection.where({name: name})[0]
-                @$el.render @template.render
-                    name: model.get 'name'
-                    info: model.get 'info'
-                    id  : model.id
+            @projectList.snatch =>
+                project = @projectList.where({name: name})[0]
+
+
+
+                # set filetree's id
+                @fileTree.id = project.id
+
+                @fileTree.snatch =>
+                    path ?= ''
+                    path = path.replace /\/$/, ''
+
+                    if path and path.length isnt 0
+                        path += '/'
+                    else
+                        path = ''
+
+                    match = path.match(/\//ig)
+                    match ?= []
+                    level = match.length
+
+                    fileTree = @fileTree.where({ level: level }).map (model) -> model.toJSON()
+                    
+                    root = _.compact path.split('/')
+                    roots = ['']
+                    for pathseg in root
+                        roots.push _.last(roots) + pathseg + '/'
+                    roots = _.tail roots
+                    roots = _(roots).map (e, i) -> 
+                        { segment: e, pathname: root[i] }
+
+
+
+
+                    @$el.html @template.render
+                        projectName : project.get 'name'
+                        projectInfo : project.get 'info'
+                        id          : project.id
+                        files       : fileTree
+                        roots       : roots
+
+
+
             return @
     
     

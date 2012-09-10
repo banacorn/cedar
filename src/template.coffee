@@ -4,11 +4,11 @@ define [
     'text!../templates/breadcrumb.html'
     'text!../templates/project.html'
     'text!../templates/locale.html'
-    'text!../templates/file.html'
-], (hogan, home, breadcrumb, project, locale, file) ->
+    'text!../templates/login.html'
+], (hogan, home, breadcrumb, project, locale, login) ->
 
     home        : hogan.compile home
     breadcrumb  : hogan.compile breadcrumb
     project     : hogan.compile project
     locale      : hogan.compile locale
-    file		: hogan.compile file
+    login		: hogan.compile login

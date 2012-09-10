@@ -21,6 +21,9 @@ global-reset()
     font-weight 400
     src local('Droid Sans'), local('DroidSans'), url('../fonts/DroidSans.woff') format('woff')
 
+//
+//  HEADER
+//
 
 
 #header-container  
@@ -49,29 +52,26 @@ global-reset()
      
     #login
         float right
+
+        i
+            display inline-block
+            width 25px
  
         height 40px
         line-height 40px
-        color white
+        color #EEE
+        padding 0 10px
+        cursor pointer
+        user-select none
         
 
-#breadcrumb-container  
-    background rgba(220,220,220,0.8)
- 
+//
+//  MAIN
+//
 
-#breadcrumb-container.fixed  
-    width 100%
-    position fixed
-    top 0
- 
+
 #main-container  
     margin 0 auto
-    padding 20px 0
- 
-#main-container.fixed  
-    padding 60px 0 20px 0
- 
-
 
 #main  
     width 960px
@@ -79,31 +79,37 @@ global-reset()
     //padding 0 20px
  
 
-
-.project-item
-    margin 10px 0
-    padding 20px
-    border-radius 4px
+.hero
     background #f8f8f8
-    //background white
-    color #787878
-    cursor pointer
-    h3  
-        height 40px
-        line-height 40px
-        color #334455
-        font-size 200%
-        //font-family "Hammersmith One"
-        i  
-            height 40px
-            line-height 40px
-            padding-right 20px
-            color #c8c8c8
-         
-        span  
-            padding 0 20px
-            font-size 50%
-            color #a0a0a0
-        
-    &:hover
-        background white
+    padding 80px 40px
+    font-size 200%
+    color $blue
+    border-radius 4px
+    text-align center
+
+//
+//  LOGIN
+//
+
+#login-back
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 500%
+
+    background rgba(0, 0, 0, 0.7)
+
+
+#login-box
+
+    background url("/images/light_noise_diagonal.png")
+
+    width 400px
+    height 300px
+
+    margin 100px auto
+
+    border-radius 6px
+
+    box-shadow black 2px
