@@ -12,6 +12,8 @@ define ['jquery', 'underscore', 'backbone'
 
             @template = template.home
             @projectCollection = new model.Projects
+
+            
     
         render: ->
 

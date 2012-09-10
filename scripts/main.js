@@ -15,7 +15,7 @@
     }
   });
 
-  require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'views/home', 'views/project', 'views/breadcrumb'], function($, _, Backbone, storage, router, Home, Project, Breadcrumb) {
+  require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'views/home', 'views/project', 'views/login'], function($, _, Backbone, storage, router, Home, Project, Login) {
     var App;
     Backbone.remoteSync = Backbone.sync;
     Backbone.Collection.prototype.snatch = function(callback) {
@@ -29,7 +29,7 @@
       return this.fetch();
     };
     Backbone.View.prototype.assign = function(view, selector) {
-      return view.setElement(this.$(selector)).render();
+      return view.setElement($(selector)).render();
     };
     Backbone.sync = function() {
       Backbone.remoteSync.apply(this, arguments);
@@ -48,12 +48,7 @@
     })(Backbone.View);
     return $(function() {
       new App;
-      new Breadcrumb;
-      router.on('route:project', function(name) {
-        var project;
-        project = new Project(name);
-        return project.render();
-      });
+      new Login;
       router.on('route:home', function() {
         var home;
         home = new Home;

@@ -20,7 +20,7 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
             
             
             
-            @collection.hol =>                                   
+            @collection.snatch =>                                   
             
                 
                 json = @collection.map((n) ->

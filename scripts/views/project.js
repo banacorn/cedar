@@ -17,22 +17,60 @@
 
       Project.prototype.initialize = function() {
         this.template = template.project;
-        return this.collection = new MODEL.Projects;
+        this.projectList = new MODEL.Projects;
+        return this.fileTree = new MODEL.FileTree;
       };
 
-      Project.prototype.render = function(name) {
+      Project.prototype.render = function(name, path) {
         var _this = this;
-        this.collection.snatch(function() {
-          var model;
-          console.log(name);
-          model = _this.collection.where({
+        this.projectList.snatch(function() {
+          var project;
+          project = _this.projectList.where({
             name: name
           })[0];
-          return _this.$el.html(_this.template.render({
-            name: model.get('name'),
-            info: model.get('info'),
-            id: model.id
-          }));
+          _this.fileTree.id = project.id;
+          return _this.fileTree.snatch(function() {
+            var fileTree, level, match, pathseg, root, roots, _i, _len;
+            if (path == null) {
+              path = '';
+            }
+            path = path.replace(/\/$/, '');
+            if (path && path.length !== 0) {
+              path += '/';
+            } else {
+              path = '';
+            }
+            match = path.match(/\//ig);
+            if (match == null) {
+              match = [];
+            }
+            level = match.length;
+            fileTree = _this.fileTree.where({
+              level: level
+            }).map(function(model) {
+              return model.toJSON();
+            });
+            root = _.compact(path.split('/'));
+            roots = [''];
+            for (_i = 0, _len = root.length; _i < _len; _i++) {
+              pathseg = root[_i];
+              roots.push(_.last(roots) + pathseg + '/');
+            }
+            roots = _.tail(roots);
+            roots = _(roots).map(function(e, i) {
+              return {
+                segment: e,
+                pathname: root[i]
+              };
+            });
+            return _this.$el.html(_this.template.render({
+              projectName: project.get('name'),
+              projectInfo: project.get('info'),
+              id: project.id,
+              files: fileTree,
+              roots: roots
+            }));
+          });
         });
         return this;
       };

@@ -2,24 +2,17 @@ define [
     'underscore'
     'backbone'
     'views/project'
-    'views/file'
-], (_, Backbone, Project, File) ->
+], (_, Backbone, Project) ->
 
     new class Router extends Backbone.Router
         
         routes:
-            ''                      : 'home'
-            'project/:name'         : 'project:home'
-            'project/:name/entry'   : 'project:entry'
-            'project/:name/entry/*path'   : 'project:entry:path'
-            'project/:name/user'    : 'project:user'
-            '*all'                  : 'otherwise'
+            ''                              : 'home'
+            'project/:name/file'            : 'project:file'
+            'project/:name/file/*path'      : 'project:file'
+            '*all'                          : 'otherwise'
 
 
-        'project:home': (name) ->
+        'project:file': (name, path) ->
             project = new Project
-            project.render name
-
-        'project:entry': (name) ->
-            file = new File
-            file.render name
+            project.render name, path

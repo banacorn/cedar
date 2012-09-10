@@ -24,7 +24,7 @@
         this.collection = new model.Locales({
           id: id
         });
-        this.collection.hol(function() {
+        this.collection.snatch(function() {
           var json;
           json = _this.collection.map(function(n) {
             return n.set('pname', pname);
