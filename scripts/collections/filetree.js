@@ -13,6 +13,14 @@
         return Model.__super__.constructor.apply(this, arguments);
       }
 
+      Model.prototype.initialize = function() {
+        if (this.get('filetype' === 0)) {
+          return this.set('folder', true);
+        } else {
+          return this.set('folder', false);
+        }
+      };
+
       return Model;
 
     })(Backbone.Model);
@@ -30,10 +38,6 @@
         return "/api/projects/" + this.id + "/files";
       };
 
-      Collection.prototype.initiailze = function(projectID) {
-        return console.log('file tree id is ', projectID);
-      };
-
       Collection.prototype.parse = function(data) {
         var fold, models;
         if (data == null) {
@@ -46,11 +50,6 @@
           for (_i = 0, _len = tree.length; _i < _len; _i++) {
             node = tree[_i];
             node.level = level;
-            if (node.filetype === 0) {
-              node.folder = true;
-            } else {
-              node.folder = false;
-            }
             if (node.children) {
               fold(node.children, level + 1);
             }

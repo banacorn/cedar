@@ -1,15 +1,16 @@
 define ['underscore', 'backbone'], (_, Backbone) ->
     
     class Model extends Backbone.Model
-
+        initialize: ->
+            if @get 'filetype' is 0 
+                @set 'folder', true
+            else
+                @set 'folder', false
 
         
     class Collection extends Backbone.Collection
         model: Model
         url: -> "/api/projects/#{ @id }/files"
-
-        initiailze: (projectID) ->
-            console.log 'file tree id is ', projectID
 
         parse: (data) ->
             data ?= []
@@ -18,10 +19,7 @@ define ['underscore', 'backbone'], (_, Backbone) ->
             fold = (tree, level) ->
                 for node in tree
                     node.level = level
-                    if node.filetype is 0 
-                        node.folder = true
-                    else
-                        node.folder = false
+                    
 
                     if node.children
                         fold node.children, level + 1
