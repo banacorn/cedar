@@ -17,8 +17,9 @@
 
       Project.prototype.initialize = function() {
         this.template = template.project;
-        this.projectList = new MODEL.Projects;
-        return this.fileTree = new MODEL.FileTree;
+        this.projectList = new MODEL.ProjectList;
+        this.fileTree = new MODEL.FileTree;
+        return this.locales = new MODEL.Locales;
       };
 
       Project.prototype.render = function(name, path) {
@@ -30,46 +31,47 @@
           })[0];
           _this.fileTree.id = project.id;
           return _this.fileTree.snatch(function() {
-            var fileTree, level, match, pathseg, root, roots, _i, _len;
-            if (path == null) {
-              path = '';
-            }
-            path = path.replace(/\/$/, '');
-            if (path && path.length !== 0) {
-              path += '/';
+            var fileTree, inits, level, pathname, root, segment, segments, _i, _len;
+            if (path != null) {
+              pathname = path.replace(/\/$/, '');
             } else {
-              path = '';
+              pathname = '';
             }
-            match = path.match(/\//ig);
-            if (match == null) {
-              match = [];
-            }
-            level = match.length;
+            level = _.compact(pathname.replace(/\/$/, '').split('/')).length;
             fileTree = _this.fileTree.where({
               level: level
             }).map(function(model) {
               return model.toJSON();
             });
-            root = _.compact(path.split('/'));
-            roots = [''];
-            for (_i = 0, _len = root.length; _i < _len; _i++) {
-              pathseg = root[_i];
-              roots.push(_.last(roots) + pathseg + '/');
+            segments = _.compact(pathname.split('/'));
+            inits = [''];
+            for (_i = 0, _len = segments.length; _i < _len; _i++) {
+              segment = segments[_i];
+              inits.push(_.last(inits) + segment + '/');
             }
-            roots = _.tail(roots);
-            roots = _(roots).map(function(e, i) {
+            inits = _.tail(inits);
+            inits = _(inits).map(function(e, i) {
               return {
                 segment: e,
-                pathname: root[i]
+                pathname: segments[i]
               };
             });
-            return _this.$el.html(_this.template.render({
+            if (pathname !== '') {
+              root = pathname + '/';
+            } else {
+              root = '';
+            }
+            console.log(fileTree);
+            _this.$el.html(_this.template.render({
               projectName: project.get('name'),
               projectInfo: project.get('info'),
               id: project.id,
               files: fileTree,
-              roots: roots
+              crumbs: inits,
+              root: root
             }));
+            _this.locales.id = project.id;
+            return _this.locales.snatch(function() {});
           });
         });
         return this;

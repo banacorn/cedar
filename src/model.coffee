@@ -1,18 +1,17 @@
 define [
     'models/project'
     'collections/project'
-    'models/locale'
     'collections/locale'
     'models/breadcrumb', 
     'collections/filetree'
-], (Project, Projects, Locale, Locales, Breadcrumb, FileTree) ->
+], (Project, ProjectList, Locales, Breadcrumb, FileTree) ->
     
     Project     : Project
-    Projects    : Projects
+    ProjectList : ProjectList
     
-    Locale      : Locale
     Locales     : Locales
     
     Breadcrumb  : Breadcrumb
 
     FileTree    : FileTree
+

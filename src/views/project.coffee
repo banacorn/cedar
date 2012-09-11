@@ -10,9 +10,11 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
         el: $('#main')
     
         initialize: ->
-            @template = template.project
-            @projectList    = new MODEL.Projects
+            @template       = template.project
+            @projectList    = new MODEL.ProjectList
             @fileTree       = new MODEL.FileTree
+            @locales        = new MODEL.Locales
+
 
         render: (name, path) ->
 
@@ -21,43 +23,56 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
 
 
 
+
+
                 # set filetree's id
                 @fileTree.id = project.id
 
                 @fileTree.snatch =>
-                    path ?= ''
-                    path = path.replace /\/$/, ''
-
-                    if path and path.length isnt 0
-                        path += '/'
-                    else
-                        path = ''
-
-                    match = path.match(/\//ig)
-                    match ?= []
-                    level = match.length
-
-                    fileTree = @fileTree.where({ level: level }).map (model) -> model.toJSON()
                     
-                    root = _.compact path.split('/')
-                    roots = ['']
-                    for pathseg in root
-                        roots.push _.last(roots) + pathseg + '/'
-                    roots = _.tail roots
-                    roots = _(roots).map (e, i) -> 
-                        { segment: e, pathname: root[i] }
+                    #   level '' = 0
+                    #   level 'a' = 1
+                    #   level 'a/' = 1
+                    #   level 'a/a' = 2
 
+                    if path?
+                        pathname = path.replace(/\/$/, '')
+                    else
+                        pathname = ''
 
+                    level = _.compact(pathname.replace(/\/$/, '').split('/')).length
 
+                    # get the nodes at some level
+                    fileTree = @fileTree.where({ level: level }).map (model) -> model.toJSON()
+
+                    # inits
+                    segments = _.compact pathname.split '/'
+                    inits = ['']
+                    for segment in segments
+                        inits.push _.last(inits) + segment + '/'
+                    inits = _.tail inits
+                    inits = _(inits).map (e, i) -> 
+                        { segment: e, pathname: segments[i] }
+
+                    if pathname isnt ''
+                        root = pathname + '/'
+                    else
+                        root = ''
+
+                    console.log fileTree
 
                     @$el.html @template.render
                         projectName : project.get 'name'
                         projectInfo : project.get 'info'
                         id          : project.id
                         files       : fileTree
-                        roots       : roots
+                        crumbs      : inits
+                        root        : root
 
 
+                    @locales.id = project.id
+                    @locales.snatch =>
+                        #console.log @locales.toJSON()
 
             return @
     
