@@ -28,7 +28,6 @@
           projectName: this.model.get('projectName'),
           crumbs: this.model.get('crumbs')
         }));
-        console.log(this.$el);
         return this;
       };
 

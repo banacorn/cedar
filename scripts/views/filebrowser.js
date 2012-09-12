@@ -17,18 +17,19 @@
 
       ProjectBreadcrumb.prototype.initialize = function() {
         var _this = this;
-        return this.model.on('change', function() {
+        return this.collection.on('reset', function() {
           return _this.render();
         });
       };
 
       ProjectBreadcrumb.prototype.render = function() {
-        this.template = template.projectBreadcrumb;
+        this.template = template.filebrowser;
         this.$el.html(this.template.render({
-          projectName: this.model.get('projectName'),
-          crumbs: this.model.get('crumbs')
+          files: this.collection.children(),
+          root: this.collection.root(),
+          projectName: this.collection.name
         }));
-        console.log(this.$el);
+        console.log(this.collection.children());
         return this;
       };
 

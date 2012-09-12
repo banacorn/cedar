@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views/projectbreadcrumb', 'views/projectfilebrowser'], function($, _, Backbone, hogan, template, MODEL, projectBreadcrumb) {
+  define(['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views/projectbreadcrumb', 'views/filebrowser'], function($, _, Backbone, hogan, template, MODEL, ProjectBreadcrumb, FileBrowser) {
     var Project;
     return Project = (function(_super) {
 
@@ -18,12 +18,15 @@
       Project.prototype.initialize = function() {
         this.template = template.project;
         this.projectList = new MODEL.ProjectList;
-        this.fileTree = new MODEL.FileTree;
         this.locales = new MODEL.Locales;
         this.localeTree = new MODEL.LocaleTree;
         this.breadcrumb = new MODEL.ProjectBreadcrumb;
-        return this.breadcrumbView = new projectBreadcrumb({
+        this.breadcrumbView = new ProjectBreadcrumb({
           model: this.breadcrumb
+        });
+        this.fileTree = new MODEL.FileTree;
+        return this.fileBrowserView = new FileBrowser({
+          collection: this.fileTree
         });
       };
 
@@ -39,21 +42,21 @@
             projectInfo: project.get('info')
           }));
           _this.breadcrumb.path(path);
-          _this.breadcrumb.set('projectName', project.get('name'));
+          _this.breadcrumb.set('projectName', name);
           _this.assign(_this.breadcrumbView, '#project-breadcrumb');
+          _this.fileTree.id = project.id;
+          _this.fileTree.path = path;
+          _this.fileTree.name = name;
+          _this.assign(_this.fileBrowserView, '#project-file');
           _this.locales.id = project.id;
           return _this.locales.snatch(function() {
             project.locale = _this.locales.where({
               localeID: 1
             })[0].get('id');
-            _this.fileTree.id = project.id;
             return _this.fileTree.snatch(function() {
-              var children, node, root;
-              children = _this.fileTree.children(path);
-              node = _this.fileTree.node(path);
-              if ((node != null) && !node.folder) {
+              if ((typeof node !== "undefined" && node !== null) && !node.folder) {
                 _this.localeTree.id = project.locale;
-                _this.localeTree.snatch(function() {
+                return _this.localeTree.snatch(function() {
                   var entryList, entryListID;
                   entryListID = _this.localeTree.where({
                     project_file_id: node.id
@@ -62,11 +65,6 @@
                   entryList.id = entryListID;
                   return entryList.snatch(function() {});
                 });
-              }
-              if (path !== '') {
-                return root = path + '/';
-              } else {
-                return root = '';
               }
             });
           });

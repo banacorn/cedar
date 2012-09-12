@@ -4,21 +4,18 @@ define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model'
         
 
     class ProjectBreadcrumb extends Backbone.View
-    	
+        
 
-    	tagName: 'ol'
+        tagName: 'ol'
 
-    	initialize: ->
-    		@model.on 'change', => @render()
+        initialize: ->
+            @model.on 'change', => @render()
 
-    	render: ->
-    		@template = template.projectBreadcrumb
+        render: ->
+            @template = template.projectBreadcrumb
 
-    		@$el.html @template.render
-    			projectName	: @model.get 'projectName'
-    			crumbs		: @model.get 'crumbs'
+            @$el.html @template.render
+                projectName : @model.get 'projectName'
+                crumbs      : @model.get 'crumbs'
 
-
-    		console.log @$el
-
-    		return @
+            return @

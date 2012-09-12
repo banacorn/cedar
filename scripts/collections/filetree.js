@@ -57,6 +57,7 @@
             if (node.children.length !== 0) {
               fold(node.children, level + 1);
             }
+            delete node.children;
             _results.push(models.push(node));
           }
           return _results;
@@ -65,9 +66,9 @@
         return models;
       };
 
-      Collection.prototype.children = function(path) {
+      Collection.prototype.children = function() {
         var level;
-        level = _.compact(path.replace(/\/$/, '').split('/')).length;
+        level = _.compact(this.path.replace(/\/$/, '').split('/')).length;
         return this.where({
           level: level
         }).map(function(model) {
@@ -75,11 +76,19 @@
         });
       };
 
-      Collection.prototype.node = function(path) {
+      Collection.prototype.node = function() {
         var _ref;
         return (_ref = this.where({
-          path: path
+          path: this.path
         })[0]) != null ? _ref.toJSON() : void 0;
+      };
+
+      Collection.prototype.root = function() {
+        if (this.path !== '') {
+          return this.path + '/';
+        } else {
+          return '';
+        }
       };
 
       return Collection;

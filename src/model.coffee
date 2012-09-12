@@ -3,11 +3,12 @@ define [
     'collections/project'
     'collections/locale'
     'models/projectbreadcrumb', 
+    'models/filebrowser', 
     'collections/filetree'
     'collections/localetree'
     'collections/entrylist'
     'collections/entry'
-], (Project, ProjectList, Locales, ProjectBreadcrumb, FileTree, LocaleTree, EntryList, Entries) ->
+], (Project, ProjectList, Locales, ProjectBreadcrumb, FileBrowser, FileTree, LocaleTree, EntryList, Entries) ->
     
     Project     : Project
     ProjectList : ProjectList
@@ -15,6 +16,8 @@ define [
     Locales     : Locales
     
     ProjectBreadcrumb  : ProjectBreadcrumb
+
+    FileBrowser : FileBrowser
 
     FileTree    : FileTree
     LocaleTree  : LocaleTree

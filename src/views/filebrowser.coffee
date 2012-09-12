@@ -1,7 +1,7 @@
 define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model'
 ], ($, _, Backbone, hogan, template, MODEL) ->
     
-        
+    
 
     class ProjectBreadcrumb extends Backbone.View
     	
@@ -9,16 +9,13 @@ define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model'
     	tagName: 'ol'
 
     	initialize: ->
-    		@model.on 'change', => @render()
+    		@collection.on 'reset', => @render()
 
     	render: ->
-    		@template = template.projectBreadcrumb
-
+    		@template = template.filebrowser
     		@$el.html @template.render
-    			projectName	: @model.get 'projectName'
-    			crumbs		: @model.get 'crumbs'
-
-
-    		console.log @$el
-
+    			files: @collection.children()
+    			root: @collection.root()
+    			projectName: @collection.name
+    		console.log @collection.children()
     		return @

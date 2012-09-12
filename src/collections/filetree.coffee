@@ -26,24 +26,27 @@ define ['underscore', 'backbone'], (_, Backbone) ->
                     node.level = level
                     if node.children.length isnt 0
                         fold node.children, level + 1
-                    # delete node.children
+                    delete node.children
 
                     models.push node
             fold data, 0
 
             return models
 
-        children: (path) ->
-
+        children: ->
 
             #   level '' = 0
             #   level 'a' = 1
             #   level 'a/' = 1
             #   level 'a/a' = 2
 
-            level = _.compact(path.replace(/\/$/, '').split('/')).length
-
+            level = _.compact(@path.replace(/\/$/, '').split('/')).length
             return @where({ level: level }).map (model) -> model.toJSON()
 
-        node: (path) -> @where({ path: path })[0]?.toJSON()
+        node: -> @where({ path: @path })[0]?.toJSON()
 
+        root: ->
+            if @path isnt ''
+                return @path + '/'
+            else
+                return ''
