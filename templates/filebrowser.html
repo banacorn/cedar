@@ -1,0 +1,20 @@
+<ol>
+    {{#files}}
+    <li>
+        <a href="#project/{{projectName}}/file/{{root}}{{name}}">
+            {{#folder}}
+                <i class="icon-folder-close"></i> {{name}}
+            {{/folder}}
+            {{^folder}}                   
+                <i class="icon-file"></i> {{name}}
+            {{/folder}}
+        </a>
+    </li>
+    {{/files}}
+    {{^files}}
+    <li id="project-nofile">
+        沒有檔案
+    </li>
+    {{/files}}
+
+</ol>

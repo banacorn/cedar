@@ -9,8 +9,13 @@ define ['underscore', 'backbone'], (_, Backbone) ->
 
         url: -> "/api/projects/#{ @id }/locales"
 
-        parse: (data) ->
-            
-            return data
+        parse: (data) -> data.map (locale) ->
+            id: locale.id
+            localeID: locale.locale.id
+            localeName: locale.locale.name
+
+
+
+
 
 

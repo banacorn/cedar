@@ -26,19 +26,19 @@
 
       Collection.prototype.model = Model;
 
-      Collection.prototype.url = function() {
-        return "/api/projects/" + this.id + "/locales";
+      Collection.prototype.initialize = function(entryList) {
+        var entry, _i, _len, _ref, _results;
+        this.entryList = entryList;
+        _ref = this.entryList;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          entry = _ref[_i];
+          _results.push(this.add(new Model(entry)));
+        }
+        return _results;
       };
 
-      Collection.prototype.parse = function(data) {
-        return data.map(function(locale) {
-          return {
-            id: locale.id,
-            localeID: locale.locale.id,
-            localeName: locale.locale.name
-          };
-        });
-      };
+      Collection.prototype.url = "/api/entries/";
 
       return Collection;
 

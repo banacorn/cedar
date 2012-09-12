@@ -4,40 +4,8 @@
         <p class="sub">{{projectInfo}}</p>
     </header>
     <section id="project-breadcrumb">
-        <ol>
-        	<li>
-        		<a href="#project/{{projectName}}/file/{{filepath}}">
-        			<i class="icon-home"></i>
-        		</a>
-        	</li>
-        	{{#crumbs}}
-				<li>
-	        		<a href="#project/{{projectName}}/file/{{segment}}">{{pathname}}</a>
-	        	</li>        
-	        {{/crumbs}}
-        </ol>
     </section>
     <section id="project-file">
-        <ol>
-        	{{#files}}
-        	<li>
-                <a href="#project/{{projectName}}/file/{{root}}{{name}}">
-                    {{#folder}}
-                        <i class="icon-folder-close"></i> {{name}}
-                    {{/folder}}
-                    {{^folder}}                   
-                        <i class="icon-file"></i> {{name}}
-                    {{/folder}}
-                </a>
-        	</li>
-        	{{/files}}
-        	{{^files}}
-        	<li id="project-nofile">
-        		沒有檔案
-        	</li>
-        	{{/files}}
-
-        </ol>
     </section>
     
 </article>
