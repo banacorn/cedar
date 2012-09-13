@@ -23,6 +23,11 @@
       Router.prototype['project:file'] = function(name, path) {
         var project;
         project = new Project;
+        if (path != null) {
+          path = path.replace(/\/$/, '');
+        } else {
+          path = '';
+        }
         return project.render(name, path);
       };
 

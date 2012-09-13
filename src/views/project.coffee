@@ -1,7 +1,9 @@
 define ['jquery', 'underscore', 'backbone', 'hogan'
     'template'
     'model'
-], ($, _, Backbone, hogan, template, MODEL) ->
+    'views/projectbreadcrumb'
+    'views/filebrowser'
+], ($, _, Backbone, hogan, template, MODEL, ProjectBreadcrumb, FileBrowser) ->
     
         
 
@@ -10,52 +12,66 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
         el: $('#main')
     
         initialize: ->
-            @template = template.project
-            @projectList    = new MODEL.Projects
+            @template       = template.project
+            @projectList    = new MODEL.ProjectList
+            @locales        = new MODEL.Locales
+            @localeTree     = new MODEL.LocaleTree
+
+            @breadcrumb     = new MODEL.ProjectBreadcrumb            
+            @breadcrumbView = new ProjectBreadcrumb
+                model: @breadcrumb
+
             @fileTree       = new MODEL.FileTree
+            @fileBrowserView = new FileBrowser
+                collection: @fileTree
+            
+
+
 
         render: (name, path) ->
 
             @projectList.snatch =>
+                # get project
                 project = @projectList.where({name: name})[0]
 
+                @$el.html @template.render
+                    projectName: project.get 'name'
+                    projectInfo: project.get 'info'
 
+                # breadcrumb
+                @breadcrumb.path path
+                @breadcrumb.set 'projectName', name
+                @assign @breadcrumbView, '#project-breadcrumb'
 
-                # set filetree's id
+                # filebrowser                    
                 @fileTree.id = project.id
+                @fileTree.path = path
+                @fileTree.name = name
+                @assign @fileBrowserView, '#project-file'
 
-                @fileTree.snatch =>
-                    path ?= ''
-                    path = path.replace /\/$/, ''
+                @locales.id = project.id
+                @locales.snatch =>
 
-                    if path and path.length isnt 0
-                        path += '/'
-                    else
-                        path = ''
+                    # get zh_TW 
+                    project.locale = @locales.where({localeID: 1})[0].get 'id'
 
-                    match = path.match(/\//ig)
-                    match ?= []
-                    level = match.length
+                    # set filetree's id
+                    @fileTree.snatch =>
 
-                    fileTree = @fileTree.where({ level: level }).map (model) -> model.toJSON()
-                    
-                    root = _.compact path.split('/')
-                    roots = ['']
-                    for pathseg in root
-                        roots.push _.last(roots) + pathseg + '/'
-                    roots = _.tail roots
-                    roots = _(roots).map (e, i) -> 
-                        { segment: e, pathname: root[i] }
+                        # get the children
 
+                        #
+                        #   locale files
+                        #
+                        if node? and not node.folder
+                            @localeTree.id = project.locale
+                            @localeTree.snatch =>
+                                entryListID = @localeTree.where({ project_file_id: node.id })[0].get 'id'
+                                entryList = new MODEL.EntryList
+                                entryList.id = entryListID
+                                entryList.snatch =>
 
 
-
-                    @$el.html @template.render
-                        projectName : project.get 'name'
-                        projectInfo : project.get 'info'
-                        id          : project.id
-                        files       : fileTree
-                        roots       : roots
 
 
 

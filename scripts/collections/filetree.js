@@ -13,6 +13,18 @@
         return Model.__super__.constructor.apply(this, arguments);
       }
 
+      Model.prototype.initialize = function() {
+        var path;
+        if (this.get('filetype') === 0) {
+          this.set('folder', true);
+        } else {
+          this.set('folder', false);
+        }
+        path = this.get('filepath') + '/' + this.get('name');
+        path = _.tail(path.split('/')).join('/');
+        return this.set('path', path);
+      };
+
       return Model;
 
     })(Backbone.Model);
@@ -30,10 +42,6 @@
         return "/api/projects/" + this.id + "/files";
       };
 
-      Collection.prototype.initiailze = function(projectID) {
-        return console.log('file tree id is ', projectID);
-      };
-
       Collection.prototype.parse = function(data) {
         var fold, models;
         if (data == null) {
@@ -46,12 +54,7 @@
           for (_i = 0, _len = tree.length; _i < _len; _i++) {
             node = tree[_i];
             node.level = level;
-            if (node.filetype === 0) {
-              node.folder = true;
-            } else {
-              node.folder = false;
-            }
-            if (node.children) {
+            if (node.children.length !== 0) {
               fold(node.children, level + 1);
             }
             delete node.children;
@@ -61,6 +64,31 @@
         };
         fold(data, 0);
         return models;
+      };
+
+      Collection.prototype.children = function() {
+        var level;
+        level = _.compact(this.path.replace(/\/$/, '').split('/')).length;
+        return this.where({
+          level: level
+        }).map(function(model) {
+          return model.toJSON();
+        });
+      };
+
+      Collection.prototype.node = function() {
+        var _ref;
+        return (_ref = this.where({
+          path: this.path
+        })[0]) != null ? _ref.toJSON() : void 0;
+      };
+
+      Collection.prototype.root = function() {
+        if (this.path !== '') {
+          return this.path + '/';
+        } else {
+          return '';
+        }
       };
 
       return Collection;

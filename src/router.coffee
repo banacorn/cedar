@@ -15,4 +15,8 @@ define [
 
         'project:file': (name, path) ->
             project = new Project
+            if path?
+                path = path.replace(/\/$/, '')
+            else
+                path = ''
             project.render name, path

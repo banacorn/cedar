@@ -27,15 +27,13 @@
       Collection.prototype.model = Model;
 
       Collection.prototype.url = function() {
-        return "/api/projects/" + this.id + "/locales";
+        return "/api/po_files/" + this.id + "/entry_ids";
       };
 
       Collection.prototype.parse = function(data) {
-        return data.map(function(locale) {
+        return data.map(function(entryID) {
           return {
-            id: locale.id,
-            localeID: locale.locale.id,
-            localeName: locale.locale.name
+            id: entryID
           };
         });
       };

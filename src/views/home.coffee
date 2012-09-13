@@ -11,17 +11,15 @@ define ['jquery', 'underscore', 'backbone'
         initialize: ->        
 
             @template = template.home
-            @projectCollection = new model.Projects
+            @ProjectList = new model.ProjectList
 
             
     
         render: ->
 
-
-            @projectCollection.snatch =>  
-                # console.log @projectCollection          
+            @ProjectList.snatch =>  
                 @$el.html @template.render
-                    projects: @projectCollection.toJSON()
+                    projects: @ProjectList.toJSON()
 
 
     

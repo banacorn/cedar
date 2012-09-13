@@ -27,17 +27,12 @@
       Collection.prototype.model = Model;
 
       Collection.prototype.url = function() {
-        return "/api/projects/" + this.id + "/locales";
+        return "/api/project_locales/" + this.id + "/po_files";
       };
 
       Collection.prototype.parse = function(data) {
-        return data.map(function(locale) {
-          return {
-            id: locale.id,
-            localeID: locale.locale.id,
-            localeName: locale.locale.name
-          };
-        });
+        console.log(data);
+        return data;
       };
 
       return Collection;
