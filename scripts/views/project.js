@@ -48,25 +48,12 @@
           _this.fileTree.path = path;
           _this.fileTree.name = name;
           _this.assign(_this.fileBrowserView, '#project-file');
-          _this.locales.id = project.id;
-          return _this.locales.snatch(function() {
-            project.locale = _this.locales.where({
-              localeID: 1
-            })[0].get('id');
-            return _this.fileTree.snatch(function() {
-              if ((typeof node !== "undefined" && node !== null) && !node.folder) {
-                _this.localeTree.id = project.locale;
-                return _this.localeTree.snatch(function() {
-                  var entryList, entryListID;
-                  entryListID = _this.localeTree.where({
-                    project_file_id: node.id
-                  })[0].get('id');
-                  entryList = new MODEL.EntryList;
-                  entryList.id = entryListID;
-                  return entryList.snatch(function() {});
-                });
-              }
-            });
+          return _this.fileTree.snatch(function() {
+            var _ref;
+            console.log(_this.fileTree.toJSON());
+            if (((_ref = _this.fileTree.node()) != null ? _ref.folder : void 0) === false) {
+              return console.log('FILE!!');
+            }
           });
         });
         return this;

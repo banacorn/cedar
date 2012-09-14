@@ -14,15 +14,11 @@
       }
 
       Model.prototype.initialize = function() {
-        var path;
         if (this.get('filetype') === 0) {
-          this.set('folder', true);
+          return this.set('folder', true);
         } else {
-          this.set('folder', false);
+          return this.set('folder', false);
         }
-        path = this.get('filepath') + '/' + this.get('name');
-        path = _.tail(path.split('/')).join('/');
-        return this.set('path', path);
       };
 
       return Model;
@@ -43,19 +39,26 @@
       };
 
       Collection.prototype.parse = function(data) {
-        var fold, models;
+        var fold, models, root;
         if (data == null) {
           data = [];
         }
         models = [];
-        fold = function(tree, level) {
+        root = '';
+        fold = function(tree, level, prefix) {
           var node, _i, _len, _results;
           _results = [];
           for (_i = 0, _len = tree.length; _i < _len; _i++) {
             node = tree[_i];
+            if (level === 0) {
+              prefix = node.filepath.length;
+            }
             node.level = level;
+            node.path = node.filepath.substr(prefix) + '/' + node.name;
+            node.path = node.path.replace(/^\//, '');
+            delete node.filepath;
             if (node.children.length !== 0) {
-              fold(node.children, level + 1);
+              fold(node.children, level + 1, prefix);
             }
             delete node.children;
             _results.push(models.push(node));

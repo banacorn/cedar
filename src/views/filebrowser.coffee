@@ -17,5 +17,4 @@ define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model'
     			files: @collection.children()
     			root: @collection.root()
     			projectName: @collection.name
-    		console.log @collection.children()
     		return @

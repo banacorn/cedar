@@ -25,7 +25,7 @@
         Backbone.Collection::snatch = (callback) ->
         
             cb = =>
-                callback()
+                callback?()
                 @off 'reset', cb
         
             @on 'reset', cb
