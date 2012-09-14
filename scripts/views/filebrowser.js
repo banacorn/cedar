@@ -29,7 +29,6 @@
           root: this.collection.root(),
           projectName: this.collection.name
         }));
-        console.log(this.collection.children());
         return this;
       };
 

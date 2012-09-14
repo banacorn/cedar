@@ -22,7 +22,9 @@
       var cb,
         _this = this;
       cb = function() {
-        callback();
+        if (typeof callback === "function") {
+          callback();
+        }
         return _this.off('reset', cb);
       };
       this.on('reset', cb);

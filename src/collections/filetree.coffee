@@ -7,11 +7,6 @@ define ['underscore', 'backbone'], (_, Backbone) ->
                 @set 'folder', true
             else
                 @set 'folder', false
-
-            # path
-            path = @get('filepath') + '/' + @get 'name'
-            path = _.tail(path.split('/')).join '/'
-            @set 'path', path
         
     class Collection extends Backbone.Collection
         model: Model
@@ -21,11 +16,21 @@ define ['underscore', 'backbone'], (_, Backbone) ->
             data ?= []
 
             models = []
-            fold = (tree, level) ->
+
+            root = ''
+            fold = (tree, level, prefix) ->
                 for node in tree
+                    
+                    if level is 0
+                        prefix = node.filepath.length
+
                     node.level = level
+                    node.path = node.filepath.substr(prefix) + '/' + node.name
+                    node.path = node.path.replace /^\//, ''
+                    delete node.filepath
+
                     if node.children.length isnt 0
-                        fold node.children, level + 1
+                        fold node.children, level + 1, prefix
                     delete node.children
 
                     models.push node

@@ -49,27 +49,33 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
                 @fileTree.name = name
                 @assign @fileBrowserView, '#project-file'
 
-                @locales.id = project.id
-                @locales.snatch =>
 
-                    # get zh_TW 
-                    project.locale = @locales.where({localeID: 1})[0].get 'id'
+                @fileTree.snatch =>
+                    console.log @fileTree.toJSON()
+                    if @fileTree.node()?.folder is false
+                        console.log 'FILE!!'
 
-                    # set filetree's id
-                    @fileTree.snatch =>
+                # @locales.id = project.id
+                # @locales.snatch =>
 
-                        # get the children
+                #     # get zh_TW
+                #     project.locale = @locales.where({localeID: 1})[0]?.get 'id'
 
-                        #
-                        #   locale files
-                        #
-                        if node? and not node.folder
-                            @localeTree.id = project.locale
-                            @localeTree.snatch =>
-                                entryListID = @localeTree.where({ project_file_id: node.id })[0].get 'id'
-                                entryList = new MODEL.EntryList
-                                entryList.id = entryListID
-                                entryList.snatch =>
+                #     # set filetree's id
+                #     @fileTree.snatch =>
+
+                #         # get the children
+
+                #         #
+                #         #   locale files
+                #         #
+                #         if node? and not node.folder
+                #             @localeTree.id = project.locale
+                #             @localeTree.snatch =>
+                #                 entryListID = @localeTree.where({ project_file_id: node.id })[0].get 'id'
+                #                 entryList = new MODEL.EntryList
+                #                 entryList.id = entryListID
+                #                 entryList.snatch =>
 
 
 
