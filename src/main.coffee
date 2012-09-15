@@ -22,15 +22,26 @@
         Backbone.remoteSync = Backbone.sync
         
 
+
         Backbone.Collection::snatch = (callback) ->
-        
+
             cb = =>
                 callback?()
                 @off 'reset', cb
         
             @on 'reset', cb
-                
-            @fetch()
+
+            @fetch
+                silent: true
+                success: (collection, res) ->
+
+                    # invoke the callback only when data changed
+                    url = collection.url?() || collection.url
+                    cache = localStorage[url]
+
+
+                    if not cache? or not _.isEqual collection.toJSON(), JSON.parse cache
+                        collection.trigger 'reset'
 
 
         Backbone.View::assign = (view, selector) ->
@@ -39,7 +50,7 @@
         Backbone.sync = ->
             Backbone.remoteSync.apply @, arguments
             storage.apply @, arguments
-            
+
         class App extends Backbone.View
         
 
