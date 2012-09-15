@@ -42,27 +42,17 @@ define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views
                     localeTree = new @model.LocaleTree
                     localeTree.id = projectLocaleID
                     localeTree.snatch =>
-
                         # match it with current page
                         projectFileID = @collection.node().id
                         fileID = localeTree.where({'project_file_id': projectFileID})?[0].get 'id'
 
                         entries = new @model.Entries
                         entries.id = fileID
-                        entries.on 'reset', ->
-                            console.log 'reset'
-                        entries.snatch =>
-                            # console.log entries.toJSON()
+                        entriesView = new @view.Entries
+                            collection: entries
+                        @assign entriesView, '#project-file'
 
-
-                            # entryIDs = _.pluck entryList.toJSON(), 'id'
-                            # entryIDs.forEach (id) =>
-
-                            #     entry = new @model.Entry
-                            #         id: id
-                            #     entryView = new @view.Entry
-
-                            #     entry.snatch()
+                        entries.snatch()
 
 
             return @
