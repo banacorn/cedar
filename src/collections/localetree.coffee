@@ -10,7 +10,6 @@ define ['underscore', 'backbone'], (_, Backbone) ->
         url: -> "/api/project_locales/#{ @id }/po_files"
 
         parse: (data) -> 
-        	console.log data
         	data
 
 

@@ -26,19 +26,9 @@
 
       Collection.prototype.model = Model;
 
-      Collection.prototype.initialize = function(entryList) {
-        var entry, _i, _len, _ref, _results;
-        this.entryList = entryList;
-        _ref = this.entryList;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          entry = _ref[_i];
-          _results.push(this.add(new Model(entry)));
-        }
-        return _results;
+      Collection.prototype.url = function() {
+        return "/api/po_files/" + this.id + "/entries/page/0";
       };
-
-      Collection.prototype.url = "/api/entries/";
 
       return Collection;
 

@@ -5,6 +5,7 @@ define ['underscore', 'backbone'], (_, Backbone) ->
 
         
     class Collection extends Backbone.Collection
+
         model: Model
 
         url: -> "/api/projects/#{ @id }/locales"

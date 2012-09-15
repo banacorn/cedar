@@ -6,9 +6,8 @@ define [
     'models/filebrowser', 
     'collections/filetree'
     'collections/localetree'
-    'collections/entrylist'
     'collections/entry'
-], (Project, ProjectList, Locales, ProjectBreadcrumb, FileBrowser, FileTree, LocaleTree, EntryList, Entries) ->
+], (Project, ProjectList, Locales, ProjectBreadcrumb, FileBrowser, FileTree, LocaleTree, Entries) ->
     
     Project     : Project
     ProjectList : ProjectList
@@ -21,6 +20,4 @@ define [
 
     FileTree    : FileTree
     LocaleTree  : LocaleTree
-    EntryList   : EntryList
     Entries     : Entries
-

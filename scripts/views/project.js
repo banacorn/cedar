@@ -18,8 +18,6 @@
       Project.prototype.initialize = function() {
         this.template = template.project;
         this.projectList = new MODEL.ProjectList;
-        this.locales = new MODEL.Locales;
-        this.localeTree = new MODEL.LocaleTree;
         this.breadcrumb = new MODEL.ProjectBreadcrumb;
         this.breadcrumbView = new ProjectBreadcrumb({
           model: this.breadcrumb
@@ -48,13 +46,7 @@
           _this.fileTree.path = path;
           _this.fileTree.name = name;
           _this.assign(_this.fileBrowserView, '#project-file');
-          return _this.fileTree.snatch(function() {
-            var _ref;
-            console.log(_this.fileTree.toJSON());
-            if (((_ref = _this.fileTree.node()) != null ? _ref.folder : void 0) === false) {
-              return console.log('FILE!!');
-            }
-          });
+          return _this.fileTree.snatch();
         });
         return this;
       };

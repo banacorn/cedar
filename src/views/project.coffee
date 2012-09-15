@@ -14,8 +14,6 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
         initialize: ->
             @template       = template.project
             @projectList    = new MODEL.ProjectList
-            @locales        = new MODEL.Locales
-            @localeTree     = new MODEL.LocaleTree
 
             @breadcrumb     = new MODEL.ProjectBreadcrumb            
             @breadcrumbView = new ProjectBreadcrumb
@@ -29,11 +27,9 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
 
 
         render: (name, path) ->
-
             @projectList.snatch =>
                 # get project
                 project = @projectList.where({name: name})[0]
-
                 @$el.html @template.render
                     projectName: project.get 'name'
                     projectInfo: project.get 'info'
@@ -49,34 +45,7 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
                 @fileTree.name = name
                 @assign @fileBrowserView, '#project-file'
 
-
-                @fileTree.snatch =>
-                    console.log @fileTree.toJSON()
-                    if @fileTree.node()?.folder is false
-                        console.log 'FILE!!'
-
-                # @locales.id = project.id
-                # @locales.snatch =>
-
-                #     # get zh_TW
-                #     project.locale = @locales.where({localeID: 1})[0]?.get 'id'
-
-                #     # set filetree's id
-                #     @fileTree.snatch =>
-
-                #         # get the children
-
-                #         #
-                #         #   locale files
-                #         #
-                #         if node? and not node.folder
-                #             @localeTree.id = project.locale
-                #             @localeTree.snatch =>
-                #                 entryListID = @localeTree.where({ project_file_id: node.id })[0].get 'id'
-                #                 entryList = new MODEL.EntryList
-                #                 entryList.id = entryListID
-                #                 entryList.snatch =>
-
+                @fileTree.snatch()
 
 
 
