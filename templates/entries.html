@@ -1,0 +1,17 @@
+<ol>
+    {{#entries}}
+        <li>
+            <div class="entry-context">
+                {{context}}
+            </div>
+            <div class="entry-translation">
+                {{translation}}
+            </div>
+        </li>
+    {{/entries}}
+    {{^entries}}
+        <li id="project-nofile">
+            沒有條目
+        </li>
+    {{/entries}}
+</ol>

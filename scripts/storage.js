@@ -11,13 +11,13 @@
       }
       switch (method) {
         case 'read':
-          if ((typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] : void 0) != null) {
-            data = JSON.parse(localStorage[url]);
-            model.reset(data);
-          }
-          return model.on('reset', function() {
+          model.on('reset', function() {
             return localStorage[url] = JSON.stringify(model.toJSON());
           });
+          if ((typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] : void 0) != null) {
+            data = JSON.parse(localStorage[url]);
+            return model.reset(data);
+          }
       }
     };
   });

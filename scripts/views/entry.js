@@ -13,6 +13,26 @@
         return View.__super__.constructor.apply(this, arguments);
       }
 
+      View.prototype.initialize = function() {
+        var _this = this;
+        this.collection.on('reset', function() {
+          return _this.render();
+        });
+        return this.template = template.entries;
+      };
+
+      View.prototype.render = function() {
+        var entries;
+        entries = this.collection.toJSON().map(function(entry) {
+          entry.context = entry.msgid[0].slice(1, -1);
+          entry.translation = entry.msgstr[0].slice(1, -1);
+          return entry;
+        });
+        return this.$el.html(this.template.render({
+          entries: entries
+        }));
+      };
+
       return View;
 
     })(Backbone.View);

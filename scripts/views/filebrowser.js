@@ -50,17 +50,18 @@
             localeTree = new _this.model.LocaleTree;
             localeTree.id = projectLocaleID;
             return localeTree.snatch(function() {
-              var entries, projectFileID, _ref2;
+              var entries, entriesView, projectFileID, _ref2;
               projectFileID = _this.collection.node().id;
               fileID = (_ref2 = localeTree.where({
                 'project_file_id': projectFileID
               })) != null ? _ref2[0].get('id') : void 0;
               entries = new _this.model.Entries;
               entries.id = fileID;
-              entries.on('reset', function() {
-                return console.log('reset');
+              entriesView = new _this.view.Entries({
+                collection: entries
               });
-              return entries.snatch(function() {});
+              _this.assign(entriesView, '#project-file');
+              return entries.snatch();
             });
           });
         }

@@ -23,10 +23,9 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
             @fileBrowserView = new FileBrowser
                 collection: @fileTree
             
-
-
-
         render: (name, path) ->
+
+
             @projectList.snatch =>
                 # get project
                 project = @projectList.where({name: name})[0]

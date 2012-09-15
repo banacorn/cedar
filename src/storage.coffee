@@ -9,13 +9,12 @@ define [], () ->
     
         switch method
             when 'read'
-                
+                # update localStorage
+                model.on 'reset', ->
+                    localStorage[url] = JSON.stringify model.toJSON()
+
                 
                 # fetch localStorage
                 if localStorage?[url]?
                     data = JSON.parse localStorage[url]
-                    model.reset data                  
-                    
-                # update localStorage
-                model.on 'reset', ->
-                    localStorage[url] = JSON.stringify model.toJSON()
+                    model.reset data

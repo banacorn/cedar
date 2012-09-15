@@ -34,7 +34,6 @@
             @fetch
                 silent: true
                 success: (collection, res) ->
-
                     # invoke the callback only when data changed
                     url = collection.url?() || collection.url
                     cache = localStorage[url]

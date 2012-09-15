@@ -931,15 +931,21 @@ h3.heavy {
   background: #fff;
 }
 #project-file li {
-  height: 60px;
+  background: #fff;
   line-height: 60px;
   padding: 0 20px;
   color: #3c3c3c;
   font-size: 150%;
+  overflow: hidden;
 }
 #project-file #project-nofile {
   text-align: center;
   color: #a0a0a0;
+}
+.entry-context,
+.entry-translation {
+  float: left;
+  width: 50%;
 }
 html {
   overflow-y: scroll;
