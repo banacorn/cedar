@@ -15,7 +15,7 @@
     }
   });
 
-  require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'views/home', 'views/project', 'views/login'], function($, _, Backbone, storage, router, Home, Project, Login) {
+  require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'views/home', 'views/project', 'views/account'], function($, _, Backbone, storage, router, Home, Project, Account) {
     var App;
     Backbone.remoteSync = Backbone.sync;
     Backbone.Collection.prototype.snatch = function(callback) {
@@ -55,12 +55,22 @@
         return App.__super__.constructor.apply(this, arguments);
       }
 
+      App.prototype.el = 'body';
+
+      App.prototype.render = function() {
+        var account;
+        account = new Account;
+        this.assign(account, '#account');
+        return $('#account').hide().fadeIn();
+      };
+
       return App;
 
     })(Backbone.View);
     return $(function() {
-      new App;
-      new Login;
+      var app;
+      app = new App;
+      app.render();
       router.on('route:home', function() {
         var home;
         home = new Home;

@@ -771,6 +771,97 @@ td {
 a img {
   border: none;
 }
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+a,
+abbr,
+acronym,
+address,
+code,
+del,
+dfn,
+em,
+img,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+caption,
+tbody,
+tfoot,
+thead,
+tr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]),
+[hidden] {
+  display: none;
+}
 html {
   overflow-y: scroll;
   height: 100%;
@@ -789,6 +880,24 @@ p {
   margin: 20px 0;
   padding: 0 20px;
 }
+input {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+button {
+  border: 0;
+  background: inherit;
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+menu {
+  padding: 0;
+  margin: 0;
+  border: none;
+  list-style: none;
+}
 h1 {
   color: #fff;
   font-size: 150%;
@@ -799,13 +908,6 @@ h2 {
   color: #345;
   margin: 40px 0;
   padding: 0 20px;
-}
-h3.heavy {
-  height: 60px;
-  margin: 5px;
-  font-size: 150%;
-  color: #fff;
-  background: #345;
 }
 html {
   overflow-y: scroll;
@@ -825,6 +927,24 @@ p {
   margin: 20px 0;
   padding: 0 20px;
 }
+input {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+button {
+  border: 0;
+  background: inherit;
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+menu {
+  padding: 0;
+  margin: 0;
+  border: none;
+  list-style: none;
+}
 h1 {
   color: #fff;
   font-size: 150%;
@@ -835,13 +955,6 @@ h2 {
   color: #345;
   margin: 40px 0;
   padding: 0 20px;
-}
-h3.heavy {
-  height: 60px;
-  margin: 5px;
-  font-size: 150%;
-  color: #fff;
-  background: #345;
 }
 .project,
 #project-header {
@@ -965,6 +1078,24 @@ p {
   margin: 20px 0;
   padding: 0 20px;
 }
+input {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+button {
+  border: 0;
+  background: inherit;
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+menu {
+  padding: 0;
+  margin: 0;
+  border: none;
+  list-style: none;
+}
 h1 {
   color: #fff;
   font-size: 150%;
@@ -975,13 +1106,6 @@ h2 {
   color: #345;
   margin: 40px 0;
   padding: 0 20px;
-}
-h3.heavy {
-  height: 60px;
-  margin: 5px;
-  font-size: 150%;
-  color: #fff;
-  background: #345;
 }
 #breadcrumb {
   width: 960px;
@@ -1041,22 +1165,6 @@ h3.heavy {
   font-size: 150%;
   font-family: "Hammersmith One";
 }
-#header #login {
-  float: right;
-  height: 40px;
-  line-height: 40px;
-  color: #eee;
-  padding: 0 10px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-#header #login i {
-  display: inline-block;
-  width: 25px;
-}
 #main-container {
   margin: 0 auto;
 }
@@ -1073,7 +1181,63 @@ h3.heavy {
   border-radius: 4px;
   text-align: center;
 }
-#login-back {
+#account {
+  float: right;
+  width: 130px;
+}
+#account i {
+  float: left;
+  text-align: center;
+  display: inline-block;
+  width: 30px;
+}
+.account-label {
+  float: left;
+  width: 70px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  color: #eee;
+}
+#account-panel {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+  color: #eee;
+  cursor: pointer;
+}
+#account-panel:hover,
+.active #account-panel {
+  cursor: default;
+  background: #3c3c3c;
+}
+#account-panel.unauthorized:hover {
+  background: #293644;
+}
+#account-menu {
+  float: left;
+  display: none;
+  margin-top: -1px;
+}
+#account-menu i {
+  height: 40px;
+}
+#account-menu li {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+  background: #3c3c3c;
+  cursor: pointer;
+  color: #eee;
+}
+#account-menu li:hover {
+  background: #2e3d4d;
+}
+.active #account-menu {
+  display: block;
+}
+#signin-mask {
   position: absolute;
   top: 0;
   left: 0;
@@ -1081,13 +1245,45 @@ h3.heavy {
   height: 500%;
   background: rgba(0,0,0,0.7);
 }
-#login-box {
+#signin-box {
   background: url("/images/light_noise_diagonal.png");
   width: 400px;
-  height: 300px;
+  height: 230px;
+  padding: 20px 40px;
   margin: 100px auto;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
   -webkit-box-shadow: #000 2px;
   box-shadow: #000 2px;
+}
+#signin-box form {
+  width: 400px;
+}
+#signin-box form div {
+  margin: 20px 0;
+}
+#signin-box input {
+  width: 380px;
+  height: 40px;
+  padding: 5px 10px;
+  font-size: 200%;
+  line-height: 40px;
+  -webkit-box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 1px #fff;
+}
+#signin-box button {
+  width: 400px;
+  height: 50px;
+  color: #fff;
+  background: #345;
+  padding: 5px 10px;
+  font-size: 150%;
+  line-height: 40px;
+}
+#signin-box button:hover {
+  background: #41576c;
+}
+#signin-box button:active {
+  background: #345;
 }

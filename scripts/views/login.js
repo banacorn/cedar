@@ -4,7 +4,20 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['jquery', 'underscore', 'backbone', 'template', 'model'], function($, _, Backbone, template, model) {
-    var Box, Login;
+    var Box, Login, Model;
+    Model = (function(_super) {
+
+      __extends(Model, _super);
+
+      function Model() {
+        return Model.__super__.constructor.apply(this, arguments);
+      }
+
+      Model.prototype.url = 'http://itswindtw.info:9001/api/users/sign_in';
+
+      return Model;
+
+    })(Backbone.Model);
     Box = (function(_super) {
 
       __extends(Box, _super);
@@ -15,15 +28,43 @@
 
       Box.prototype.events = {
         'click': 'resume',
-        'click #login-box': 'click'
+        'click #login-box': 'click',
+        'submit form': 'submit',
+        'click button': 'submit'
       };
 
       Box.prototype.initialize = function() {
-        return this.template = template.login;
+        var _this = this;
+        this.template = template.login;
+        return this.model.on('change:success', function(model, status) {
+          if (status) {
+            return _this.success();
+          }
+        });
+      };
+
+      Box.prototype.submit = function() {
+        return this.model.fetch({
+          data: JSON.stringify({
+            user: {
+              login: 'skuld',
+              password: '123456',
+              remember_me: 0
+            }
+          }),
+          type: 'POST',
+          xhrFields: {
+            withCredentials: true
+          },
+          contentType: 'application/json; charset=utf-8'
+        });
+      };
+
+      Box.prototype.success = function() {
+        return this.resume();
       };
 
       Box.prototype.resume = function() {
-        console.log('resume');
         return this.remove();
       };
 
@@ -32,8 +73,8 @@
       };
 
       Box.prototype.render = function() {
-        console.log(this.el);
-        this.$el.html(this.template.render());
+        this.$el.html(this.template.render()).hide().fadeIn(200);
+        $('input', this.$el)[0].focus();
         return this;
       };
 
@@ -51,7 +92,20 @@
       Login.prototype.el = $('#login');
 
       Login.prototype.initialize = function() {
-        return this.template = template.login;
+        var _this = this;
+        this.account = new Model;
+        this.account.on('change:success', function(model, success) {
+          if (success) {
+            return _this.renderLogout();
+          }
+        });
+        this.template = {
+          login: template.login,
+          logout: template.logout
+        };
+        return setTimeout(function() {
+          return _this.login;
+        }, 0);
       };
 
       Login.prototype.events = {
@@ -59,9 +113,16 @@
       };
 
       Login.prototype.login = function() {
-        this.box = new Box;
+        console.log('asdf');
+        this.box = new Box({
+          model: this.account
+        });
         $('#main').append('<div id="slot"></div>');
         return this.assign(this.box, '#slot');
+      };
+
+      Login.prototype.renderLogout = function() {
+        return this.$el.html(this.template.logout.render());
       };
 
       return Login;

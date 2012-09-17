@@ -1,0 +1,22 @@
+{{#authorized}}
+<div id="account-panel">
+	<i class="icon-user"></i>
+	<div class="account-label"> {{username}} </div>
+</div>
+<menu id="account-menu">
+	<li>
+        <i class="icon-wrench"></i>
+        <div class="account-label"> 設定 </div>
+    </li>
+	<li id="account-signout">
+		<i class="icon-signout"></i> 
+		<div class="account-label"> 登出 </div>
+	</li>
+</menu>
+{{/authorized}}
+{{^authorized}}
+<div id="account-panel" class="unauthorized">
+	<i class="icon-signin"></i> 
+	<div class="account-label"> 登入 </div>
+</div>
+{{/authorized}}
