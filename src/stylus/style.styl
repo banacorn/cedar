@@ -1,6 +1,8 @@
 @import "font-awesome"
 @import "nib"
 global-reset()
+nested-reset()
+reset-html5()
 
 @import "element"
 @import "param"
@@ -50,19 +52,7 @@ global-reset()
         font-size 150%
         font-family "Hammersmith One"
      
-    #login
-        float right
 
-        i
-            display inline-block
-            width 25px
- 
-        height 40px
-        line-height 40px
-        color #EEE
-        padding 0 10px
-        cursor pointer
-        user-select none
         
 
 //
@@ -88,10 +78,69 @@ global-reset()
     text-align center
 
 //
-//  LOGIN
+//  Account
 //
 
-#login-back
+
+#account
+    float right
+    width 130px
+
+    i
+        float left
+        text-align center
+        display inline-block
+        width 30px
+
+.account-label
+    float left
+    width 70px
+
+    height 40px
+    line-height 40px
+    padding 0 10px
+    color #EEE
+
+#account-panel
+    width 120px
+
+    height 40px
+    line-height 40px
+    padding-left 10px
+    color #EEE
+    cursor pointer
+    
+
+    &:hover
+    .active &
+        cursor default
+        background $base//darken($blue, 10%)
+
+    &.unauthorized:hover
+        background darken($blue, 20%)
+
+
+#account-menu
+    float left
+    display none
+    margin-top -1px
+    i
+        height 40px
+    li
+        height 40px
+        line-height 40px
+        padding-left 10px
+
+        background $base //darken($blue, 10%)
+        cursor pointer
+        color #EEE
+        &:hover
+            background darken($blue, 10%)
+
+    .active &
+        display block
+
+#signin-mask
     position absolute
     top 0
     left 0
@@ -101,15 +150,50 @@ global-reset()
     background rgba(0, 0, 0, 0.7)
 
 
-#login-box
+#signin-box
 
     background url("/images/light_noise_diagonal.png")
 
-    width 400px
-    height 300px
+    width 400px 
+    height 230px
 
+    padding 20px 40px
     margin 100px auto
 
-    border-radius 6px
+    border-radius 4px
 
     box-shadow black 2px
+
+    form
+        width 400px
+        div
+            margin 20px 0
+
+    input
+        width 380px
+        height 40px
+        
+        padding 5px 10px
+        font-size 200%
+        line-height 40px
+
+        ditch()
+
+    button
+        width 400px
+        height 50px
+
+        color white
+        background $blue
+
+
+        padding 5px 10px
+        font-size 150%
+        line-height 40px
+
+        &:hover
+            background lighten($blue, 10%)
+
+        &:active
+            background $blue
+

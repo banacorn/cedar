@@ -16,8 +16,8 @@
         'router'
         'views/home'
         'views/project'
-        'views/login'
-    ], ($, _, Backbone, storage, router, Home, Project, Login) ->
+        'views/account'
+    ], ($, _, Backbone, storage, router, Home, Project, Account) ->
 
         Backbone.remoteSync = Backbone.sync
         
@@ -52,17 +52,39 @@
 
         class App extends Backbone.View
         
+            el: 'body'
 
-                
+            render: ->
+                account = new Account
+                @assign account, '#account'
+                $('#account').hide().fadeIn()
+
+
         
         
         $ ->
                   
                         
-            new App        
-            # new Breadcrumb                
-            new Login
+            app = new App        
+            app.render()            
+            
 
+
+            # setTimeout ->
+            #     $('.hero').click ->
+            #         $.ajax({
+            #             type: 'POST',
+            #             url: "http://itswindtw.info:9001/api/entries/1/translations",
+            #             data: JSON.stringify({ translation: {msgstr: "XDDDD"}}),
+            #             contentType: 'application/json; charset=utf-8',
+            #             xhrFields: {
+            #                 withCredentials: true
+            #             }
+            #         }).complete (xhr) ->
+            #             console.log(xhr.responseText);
+                    
+                
+            # , 0
 
             router.on 'route:home', ->
             

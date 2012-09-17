@@ -25,7 +25,6 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
             
         render: (name, path) ->
 
-
             @projectList.snatch =>
                 # get project
                 project = @projectList.where({name: name})[0]

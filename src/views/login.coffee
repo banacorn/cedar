@@ -3,26 +3,51 @@ define ['jquery', 'underscore', 'backbone'
     'model'
 ], ($, _, Backbone, template, model) ->
 
+    class Model extends Backbone.Model
+        url: 'http://itswindtw.info:9001/api/users/sign_in'
+
 
     class Box extends Backbone.View
 
         events:
             'click': 'resume'
             'click #login-box': 'click'
+            'submit form': 'submit'
+            'click button': 'submit'
 
         initialize: ->
             @template = template.login
 
-        resume: ->
-            console.log 'resume'
+            @model.on 'change:success', (model, status) =>
+                if status
+                    @success()
 
+        submit: ->
+
+            @model.fetch
+                data: JSON.stringify
+                    user:
+                        login: 'skuld'#$('#username').val()
+                        password: '123456'#$('#password').val()
+                        remember_me: 0
+                type: 'POST'
+                xhrFields: 
+                    withCredentials: true
+                contentType: 'application/json; charset=utf-8'
+
+        success: ->
+            @resume()
+
+
+        resume: ->
             @remove()
 
         click: -> false
 
         render: ->
-            console.log @el
-            @$el.html @template.render()
+            @$el.html(@template.render()).hide().fadeIn(200);
+            $('input', @$el)[0].focus()
+
 
             return @
         
@@ -34,14 +59,40 @@ define ['jquery', 'underscore', 'backbone'
 
         initialize: ->
 
-            @template = template.login
+            @account = new Model
+            @account.on 'change:success', (model, success) =>
+                if success
+                    @renderLogout()
+
+
+            @template = 
+                login: template.login
+                logout: template.logout
+
+
+
+
+            setTimeout =>
+                @login
+            , 0
 
         events:
             'click': 'login'
 
         login: ->
+            console.log 'asdf'
             @box = new Box
+                model: @account
+
             $('#main').append('<div id="slot"></div>')
             @assign @box, '#slot'
+
+        renderLogout: ->
+
+            @$el.html @template.logout.render()
+
+
+
+
 
     return Login
