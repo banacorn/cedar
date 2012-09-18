@@ -19,17 +19,22 @@
         'authorized': false
       };
 
+      Model.prototype.parse = function(data) {
+        if (data != null) {
+          data.authorized = true;
+          if (data.user != null) {
+            _.extend(data, data.user);
+            delete data.user;
+          }
+        }
+        return data;
+      };
+
       Model.prototype.authorize = function() {
         var _this = this;
         return this.fetch({
-          url: 'http://itswindtw.info:9001/api/entries/1/translations',
-          type: 'GET',
           xhrFields: {
             withCredentials: true
-          },
-          contentType: 'application/json; charset=utf-8',
-          success: function() {
-            return _this.set('authorized', true);
           },
           error: function() {
             return _this.set('authorized', false);
@@ -42,8 +47,8 @@
         return this.fetch({
           data: JSON.stringify({
             user: {
-              login: 'skuld',
-              password: '123456',
+              login: username,
+              password: password,
               remember_me: 0
             }
           }),
@@ -66,7 +71,6 @@
           xhrFields: {
             withCredentials: true
           },
-          contentType: 'application/json; charset=utf-8',
           success: function() {
             return _this.set('authorized', false);
           },
@@ -151,10 +155,9 @@
       };
 
       Account.prototype.render = function() {
-        var _ref;
         this.$el.html(this.template.render({
           authorized: this.account.get('authorized'),
-          username: (_ref = this.account.get('user')) != null ? _ref.username : void 0
+          username: this.account.get('username')
         }));
         return this;
       };

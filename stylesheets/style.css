@@ -1262,7 +1262,8 @@ h2 {
 #signin-box form div {
   margin: 20px 0;
 }
-#signin-box input {
+#signin-box [type='text'],
+#signin-box [type='password'] {
   width: 380px;
   height: 40px;
   padding: 5px 10px;
