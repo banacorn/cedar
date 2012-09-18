@@ -3,7 +3,7 @@ define ['jquery', 'underscore', 'backbone'
     'model'
 ], ($, _, Backbone, template, model) ->
 
-    class HomePage extends Backbone.View
+    class Home extends Backbone.View
         
 
         el: $('#main')
@@ -11,16 +11,10 @@ define ['jquery', 'underscore', 'backbone'
         initialize: ->        
 
             @template = template.home
-            @ProjectList = new model.ProjectList
 
             
     
         render: ->
-
-            @ProjectList.snatch =>  
-                @$el.html @template.render
-                    projects: @ProjectList.toJSON()
-
-
+            @$el.html @template.render()
     
             return @

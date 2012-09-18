@@ -4,33 +4,27 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['jquery', 'underscore', 'backbone', 'template', 'model'], function($, _, Backbone, template, model) {
-    var HomePage;
-    return HomePage = (function(_super) {
+    var Home;
+    return Home = (function(_super) {
 
-      __extends(HomePage, _super);
+      __extends(Home, _super);
 
-      function HomePage() {
-        return HomePage.__super__.constructor.apply(this, arguments);
+      function Home() {
+        return Home.__super__.constructor.apply(this, arguments);
       }
 
-      HomePage.prototype.el = $('#main');
+      Home.prototype.el = $('#main');
 
-      HomePage.prototype.initialize = function() {
-        this.template = template.home;
-        return this.ProjectList = new model.ProjectList;
+      Home.prototype.initialize = function() {
+        return this.template = template.home;
       };
 
-      HomePage.prototype.render = function() {
-        var _this = this;
-        this.ProjectList.snatch(function() {
-          return _this.$el.html(_this.template.render({
-            projects: _this.ProjectList.toJSON()
-          }));
-        });
+      Home.prototype.render = function() {
+        this.$el.html(this.template.render());
         return this;
       };
 
-      return HomePage;
+      return Home;
 
     })(Backbone.View);
   });

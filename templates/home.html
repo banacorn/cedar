@@ -1,13 +1,32 @@
-</section>
-	<p class="hero">
-		快來幫忙翻譯自由軟體吧 :D
-	</p>
-    <h2><i class="icon-list"></i> 專案列表</h2>
-    {{#projects}}
-    <a href="#project/{{name}}/file" data-id="{{id}}">
-        <section class="project-item" id="project-{{id}}">
-            <h3><i class="icon-book"></i>{{name}}<span>{{info}}</span></h3>
-        </section>
-    </a>
-    {{/projects}}
+</section id="home">
+	<section class="hero">
+		<h2>Tryneeds 是什麼?</h2>
+        <p>
+            自由軟體中文化的翻譯平台<br>
+            快加入自由軟體中文化的行列吧！
+        </p>
+
+	</section>
+    <section class="main-block">
+        <a href="/project">
+            <div class="main-body">
+                <h2><i class="icon-list"></i> 專案列表</h2>
+                <p>目前加入計畫的所有專案</p>
+            </div>
+            <div class="main-chevron">
+                <i class="icon-chevron-right"></i>
+            </div>
+        </a>
+    </section>
+    <section class="main-block">
+        <a href="/api_reference">
+            <div class="main-body">
+                <h2><i class="icon-book"></i> API</h2>
+                <p>後端 API 服務檢索與使用說明</p>
+            </div>
+            <div class="main-chevron">
+                <i class="icon-chevron-right"></i>
+            </div>
+        </a>
+    </section>
 </section>

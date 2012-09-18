@@ -8,7 +8,6 @@ reset-html5()
 @import "param"
 
 @import "project"
-@import "breadcrumb"
 
 
 @font-face  
@@ -62,6 +61,7 @@ reset-html5()
 
 #main-container  
     margin 0 auto
+    padding-bottom 60px
 
 #main  
     width 960px
@@ -70,12 +70,56 @@ reset-html5()
  
 
 .hero
-    background #f8f8f8
-    padding 80px 40px
+    background #F8F8F8
+    padding 40px
+    margin 40px 10px 20px
     font-size 200%
     color $blue
     border-radius 4px
-    text-align center
+    h2
+        color $blue
+        margin 20px 0
+    p
+        color $base
+
+.main-block
+    width 420px
+    height 140px
+
+    float left
+
+    margin 20px 10px
+    padding 20px
+    border-radius 4px
+
+    background #F8F8F8
+
+    cursor pointer
+
+    &:hover
+        background #FCFCFF
+        .main-chevron
+            color $light
+    h2
+        color $blue
+        margin 20px 0
+    p
+        color $base
+        font-size 150%
+
+.main-body
+    float left
+    width 380px
+    height 140px
+
+.main-chevron
+    float left
+    width 40px
+    height 140px
+    line-height 140px
+    color #DDD
+    font-size 300%
+
 
 //
 //  Account

@@ -1060,78 +1060,6 @@ h2 {
   float: left;
   width: 50%;
 }
-html {
-  overflow-y: scroll;
-  height: 100%;
-}
-body {
-  color: #282828;
-  background: url("/images/light_noise_diagonal.png");
-  font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
-  height: 100%;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-p {
-  margin: 20px 0;
-  padding: 0 20px;
-}
-input {
-  border: none;
-  padding: 0;
-  margin: 0;
-}
-button {
-  border: 0;
-  background: inherit;
-  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-  cursor: pointer;
-}
-menu {
-  padding: 0;
-  margin: 0;
-  border: none;
-  list-style: none;
-}
-h1 {
-  color: #fff;
-  font-size: 150%;
-}
-h2 {
-  font-size: 200%;
-  font-weight: bold;
-  color: #345;
-  margin: 40px 0;
-  padding: 0 20px;
-}
-#breadcrumb {
-  width: 960px;
-  height: 40px;
-  margin: 0 auto;
-  padding: 0 20px;
-  line-height: 40px;
-  font-size: 100%;
-  color: #a0a0a0;
-}
-#breadcrumb a {
-  display: block;
-  padding: 0 20px;
-}
-#breadcrumb li {
-  float: left;
-  cursor: pointer;
-}
-#breadcrumb li.selected {
-  color: #345;
-  height: 36px;
-  border-bottom: 4px solid #345;
-}
-#breadcrumb li:hover {
-  background: rgba(255,255,255,0.2);
-}
 @font-face {
   font-family: 'Hammersmith One';
   font-style: normal;
@@ -1167,6 +1095,7 @@ h2 {
 }
 #main-container {
   margin: 0 auto;
+  padding-bottom: 60px;
 }
 #main {
   width: 960px;
@@ -1174,12 +1103,57 @@ h2 {
 }
 .hero {
   background: #f8f8f8;
-  padding: 80px 40px;
+  padding: 40px;
+  margin: 40px 10px 20px;
   font-size: 200%;
   color: #345;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  text-align: center;
+}
+.hero h2 {
+  color: #345;
+  margin: 20px 0;
+}
+.hero p {
+  color: #3c3c3c;
+}
+.main-block {
+  width: 420px;
+  height: 140px;
+  float: left;
+  margin: 20px 10px;
+  padding: 20px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #f8f8f8;
+  cursor: pointer;
+}
+.main-block:hover {
+  background: #fcfcff;
+}
+.main-block:hover .main-chevron {
+  color: #a0a0a0;
+}
+.main-block h2 {
+  color: #345;
+  margin: 20px 0;
+}
+.main-block p {
+  color: #3c3c3c;
+  font-size: 150%;
+}
+.main-body {
+  float: left;
+  width: 380px;
+  height: 140px;
+}
+.main-chevron {
+  float: left;
+  width: 40px;
+  height: 140px;
+  line-height: 140px;
+  color: #ddd;
+  font-size: 300%;
 }
 #account {
   float: right;
