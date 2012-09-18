@@ -1,0 +1,143 @@
+<h2><i class="icon-book"></i> API 檢索</h2>
+<section class="api">
+    <section>
+        <h5>All API calls start with:</h5>
+        <pre>http://itswindtw.info:9001/api/</pre>
+        
+    </section>
+</section>
+<section class="api">
+    <h3>User</h3>
+    <h4>List Users</h4>
+    <section>
+        <h5><span class="api-request">GET users/</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/users/</pre>
+        <pre>
+[
+    {
+        id: 1,
+        name: null,
+        username: "skuld",
+        avatar: {
+            medium: "/images/avatar_missing.jpg",
+            thumb: "/images/avatar_missing.jpg"
+        }
+    },
+    {
+        id: 2,
+        name: "user1",
+        username: "user1",
+        avatar: {
+            medium: "/images/avatar_missing.jpg",
+            thumb: "/images/avatar_missing.jpg"
+        }
+    }
+]</pre>
+    </section>
+    <h4>Get a User</h4>
+    <section>
+        <h5><span class="api-request">GET users/:id</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/users/1</pre>
+        <pre>
+[
+    {
+        id: 1,
+        name: null,
+        username: "skuld",
+        avatar: {
+            medium: "/images/avatar_missing.jpg",
+            thumb: "/images/avatar_missing.jpg"
+        }
+    }
+]</pre>
+    </section>
+    <h4>Status</h4>
+    <section>
+        <h5><span class="api-request">GET /users/sign_in</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/users/sign_in</pre>
+        <pre>
+null</pre>
+        <pre>
+{
+    email: banana@mail.com,
+    name: banana, 
+    username: banana
+}</pre>
+    </section>
+    <h4>Sign In</h4>
+    <section>
+        <h5><span class="api-request">POST /users/sign_in</span></h5>
+        <h5>Parameter (stringified)</h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/users/sign_in -X POST</pre>
+        <pre>
+{
+    success: true,
+    auth_token: 123, 
+    ...
+}</pre>
+    </section><h4>Sign Out</h4>
+    <section>
+        <h5><span class="api-request">DELETE /users/sign_out</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/users/sign_out -X DELETE</pre>
+    </section>
+</section>
+<section class="api">
+    <h3>Locale</h3>
+    <h4>List Locales</h4>
+    <section>
+        <h5><span class="api-request">GET locales/</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/locales/</pre>
+        <pre>
+[
+    {
+        id: 1,
+        name: "zh_TW"
+    },
+    {
+        id: 2,
+        name: "en_US"
+    },
+    {
+        id: 3,
+        name: "zh_CN"
+    }
+]<pre>
+    </section>
+</section>
+<section class="api">
+    <h3>Project</h3>
+    <h4>List Projects</h4>
+    <section>
+        <h5><span class="api-request">GET projects/</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/projects/</pre>
+        <pre>
+[
+    {
+        id: 1,
+        info: "The New TryNeeds",
+        name: "Skuld"
+    }
+]<pre>
+    </section>
+    <h4>Get a Project</h4>
+    <section>
+        <h5><span class="api-request">GET projects/:id</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/projects/1</pre>
+        <pre>
+{
+    file_type: 0,
+    id: 1,
+    info: "The New TryNeeds",
+    name: "Skuld",
+    tags: [ ]
+}<pre>
+    </section>
+</section>

@@ -3,7 +3,9 @@ define [
     'backbone'
     'views/projectlist'
     'views/project'
-], (_, Backbone, ProjectList, Project) ->
+    'views/notfound'
+    'views/api'
+], (_, Backbone, ProjectList, Project, NotFound, API) ->
 
     new class Router extends Backbone.Router
         
@@ -12,13 +14,12 @@ define [
             'project'                       : 'project'
             'project/:name/file'            : 'project:file'
             'project/:name/file/*path'      : 'project:file'
+            'api_reference'                 : 'api'
             '*all'                          : 'otherwise'
 
         'project': ->
-            console.log 'project page!!'
             projectList = new ProjectList
             projectList.render()
-
 
 
         'project:file': (name, path) ->
@@ -28,3 +29,12 @@ define [
             else
                 path = ''
             project.render name, path
+
+
+        'api': ->
+            api = new API
+            api.render()
+
+        'otherwise': (path) ->
+            notFound = new NotFound
+            notFound.render path
