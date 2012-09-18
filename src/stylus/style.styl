@@ -8,7 +8,6 @@ reset-html5()
 @import "param"
 
 @import "project"
-@import "breadcrumb"
 
 
 @font-face  
@@ -62,6 +61,7 @@ reset-html5()
 
 #main-container  
     margin 0 auto
+    padding-bottom 60px
 
 #main  
     width 960px
@@ -70,12 +70,56 @@ reset-html5()
  
 
 .hero
-    background #f8f8f8
-    padding 80px 40px
+    background #F8F8F8
+    padding 40px
+    margin 40px 10px 20px
     font-size 200%
     color $blue
     border-radius 4px
-    text-align center
+    h2
+        color $blue
+        margin 20px 0
+    p
+        color $base
+
+.main-block
+    width 420px
+    height 140px
+
+    float left
+
+    margin 20px 10px
+    padding 20px
+    border-radius 4px
+
+    background #F8F8F8
+
+    cursor pointer
+
+    &:hover
+        background #FCFCFF
+        .main-chevron
+            color $light
+    h2
+        color $blue
+        margin 20px 0
+    p
+        color $base
+        font-size 150%
+
+.main-body
+    float left
+    width 380px
+    height 140px
+
+.main-chevron
+    float left
+    width 40px
+    height 140px
+    line-height 140px
+    color #DDD
+    font-size 300%
+
 
 //
 //  Account
@@ -197,4 +241,53 @@ reset-html5()
 
         &:active
             background $blue
+
+//
+//  API
+//
+
+.api
+
+
+    font-family "Lucida Grande", "Lucida Grande Unicode", "Helvetica", sans-serif
+    margin 20px
+    h3
+        font-size 200%
+        padding 20px 0
+        border-bottom 6px solid $blue
+
+    h4
+        height 40px
+        line-height 40px
+        margin 20px 0 10px
+        font-weight bold
+        font-size 150%
+
+    h5
+        margin 10px 0
+        font-weight bold
+
+
+
+    pre
+        padding 10px 20px
+        margin 10px 0
+        color white
+        background $blue
+
+    p
+        padding 0
+
+    .api-request
+        padding 10px 20px
+        margin-bottom 20px
+        display inline-block
+        background $blue
+        color white
+
+    > section
+
+        padding 20px 40px 40px
+        background white
+
 

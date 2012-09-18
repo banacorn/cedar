@@ -1,9 +1,6 @@
 @import "element"
 @import "param"
 
-.project
-
-
 
 #project-header
 
@@ -55,10 +52,8 @@
 
 .project-item
     margin 10px 0
-    padding 20px
-    border-radius 4px
-    background #f8f8f8
-    //background white
+    padding 10px
+    background $ghost
     color #787878
     cursor pointer
     h3  
@@ -66,7 +61,6 @@
         line-height 40px
         color #334455
         font-size 200%
-        //font-family "Hammersmith One"
         i  
             height 40px
             line-height 40px
@@ -84,15 +78,22 @@
 
 #project-file
     background white
-    li
+    > ol > li
         //height 60px
-        background white
+        background #F8F8F8
         
         line-height 60px
         padding 0 20px
         color $base
         font-size 150%
         overflow hidden
+
+
+        a
+            display block
+
+        &:hover
+            background white
 
     #project-nofile
         text-align center
@@ -106,7 +107,71 @@
 //  Entry
 //
 
+.entry
+    > li
+        padding 20px !important
+        border-bottom 1px solid $ghost
+        border-top 1px solid #E8E8E8
+
+        line-height 40px
+
+
+        &.expand
+            background white !important
+
+
 .entry-context
+    float left
+    width 380px
+    padding 0 20px
+
+    line-height 40px
+
+
 .entry-translation
     float left
-    width 50%
+    width 380px
+    padding 0 20px
+    cursor text    
+    line-height 40px
+
+.entry-chevron
+    float left
+    width 80px
+    height 40px
+    line-height 40px
+    color #DDD
+    text-align center
+    cursor pointer
+    user-select none
+
+    .expand &
+    &:hover
+        color $light    
+
+.entry-detail-outer
+    clear both
+    display none
+    padding-top 20px
+    .expand &
+        display block
+.entry-detail
+    display none
+    width 880px
+    padding 0 20px
+    background $blue    
+    color white
+    font-size 75%
+
+    .expand &
+        display block
+
+    ul
+        overflow hidden
+    li
+        float left
+        width 440px
+
+        .entry-key
+            font-weight bold
+            color #889

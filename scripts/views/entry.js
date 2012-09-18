@@ -4,36 +4,115 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['jquery', 'underscore', 'backbone', 'template', 'model'], function($, _, Backbone, template, model) {
-    var View;
-    return View = (function(_super) {
+    var Entry, EntryList, EntryView;
+    Entry = (function(_super) {
 
-      __extends(View, _super);
+      __extends(Entry, _super);
 
-      function View() {
-        return View.__super__.constructor.apply(this, arguments);
+      function Entry() {
+        return Entry.__super__.constructor.apply(this, arguments);
       }
 
-      View.prototype.initialize = function() {
+      Entry.prototype.defaults = {
+        expand: false
+      };
+
+      Entry.prototype.toggle = function() {
+        return this.set('expand', !this.get('expand'));
+      };
+
+      return Entry;
+
+    })(Backbone.Model);
+    EntryView = (function(_super) {
+
+      __extends(EntryView, _super);
+
+      function EntryView() {
+        return EntryView.__super__.constructor.apply(this, arguments);
+      }
+
+      EntryView.prototype.events = {
+        'click .entry-chevron': 'toggle'
+      };
+
+      EntryView.prototype.initialize = function() {
+        var _this = this;
+        this.template = template.entry;
+        this.status = new Entry;
+        return this.status.on('change:expand', function(model, expanded) {
+          if (expanded) {
+            return _this.$el.addClass('expand');
+          } else {
+            return _this.$el.removeClass('expand');
+          }
+        });
+      };
+
+      EntryView.prototype.toggle = function() {
+        console.log(this.model.toJSON());
+        return this.status.toggle();
+      };
+
+      EntryView.prototype.render = function() {
+        var _ref, _ref1, _ref2, _ref3, _ref4;
+        model = this.model.toJSON();
+        return this.$el.html(this.template.render({
+          translation: model.translation,
+          context: model.context,
+          id: model.id,
+          flag: (_ref = model.flag) != null ? _ref.toString() : void 0,
+          msgctxt: (_ref1 = model.msgctxt) != null ? _ref1.toString() : void 0,
+          msgid: (_ref2 = model.msgid) != null ? _ref2.toString() : void 0,
+          msgid_plural: (_ref3 = model.msgid_plural) != null ? _ref3.toString() : void 0,
+          msgstr: (_ref4 = model.msgstr) != null ? _ref4.toString() : void 0,
+          created_at: model.created_at,
+          updated_at: model.updated_at,
+          extracted_comments: model.extracted_comments
+        }));
+      };
+
+      return EntryView;
+
+    })(Backbone.View);
+    return EntryList = (function(_super) {
+
+      __extends(EntryList, _super);
+
+      function EntryList() {
+        return EntryList.__super__.constructor.apply(this, arguments);
+      }
+
+      EntryList.prototype.initialize = function() {
         var _this = this;
         this.collection.on('reset', function() {
           return _this.render();
         });
-        return this.template = template.entries;
+        return this.template = template.entrylist;
       };
 
-      View.prototype.render = function() {
-        var entries;
+      EntryList.prototype.render = function() {
+        var entries,
+          _this = this;
         entries = this.collection.toJSON().map(function(entry) {
           entry.context = entry.msgid[0].slice(1, -1);
           entry.translation = entry.msgstr[0].slice(1, -1);
           return entry;
         });
-        return this.$el.html(this.template.render({
+        this.$el.html(this.template.render({
           entries: entries
         }));
+        return entries.forEach(function(entry) {
+          var view;
+          model = new Entry(entry);
+          view = new EntryView({
+            model: model
+          });
+          return _this.assign(view, "#entry-" + entry.id);
+        });
       };
 
-      return View;
+      return EntryList;
 
     })(Backbone.View);
   });

@@ -3,18 +3,19 @@ define ['jquery', 'underscore', 'backbone'
     'model'
 ], ($, _, Backbone, template, model) ->
 
-    class Home extends Backbone.View
+    class View extends Backbone.View
         
 
         el: $('#main')
         
         initialize: ->        
 
-            @template = template.home
+            @template = template.api
 
             
     
         render: ->
+            # console.log @template.render()
             @$el.html @template.render()
-    
+
             return @
