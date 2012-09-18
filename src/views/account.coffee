@@ -9,15 +9,20 @@ define ['jquery', 'underscore', 'backbone'
         defaults:
             'authorized': false
 
+        parse: (data) ->
+            if data?
+                data.authorized = true
+                if data.user?
+                    _.extend data, data.user
+                    delete data.user
+            return data
+
         authorize: ->
+
+
             @fetch
-                url: 'http://itswindtw.info:9001/api/entries/1/translations'
-                type: 'GET'
                 xhrFields: 
                     withCredentials: true
-                contentType: 'application/json; charset=utf-8'
-                success: =>
-                    @set 'authorized', true
                 error: =>
                     @set 'authorized', false
 
@@ -25,8 +30,8 @@ define ['jquery', 'underscore', 'backbone'
             @fetch
                 data: JSON.stringify
                     user:
-                        login: 'skuld'#username
-                        password: '123456'#password
+                        login: username
+                        password: password
                         remember_me: 0
                 type: 'POST'
                 xhrFields: 
@@ -41,7 +46,7 @@ define ['jquery', 'underscore', 'backbone'
                 type: 'DELETE'
                 xhrFields: 
                     withCredentials: true
-                contentType: 'application/json; charset=utf-8'
+                # contentType: 'application/json; charset=utf-8'
                 success: =>
                     @set 'authorized', false
                 error: =>
@@ -105,7 +110,7 @@ define ['jquery', 'underscore', 'backbone'
         render: ->
             @$el.html @template.render
                 authorized: @account.get 'authorized'
-                username: @account.get('user')?.username
+                username: @account.get 'username'
 
             return @
 
