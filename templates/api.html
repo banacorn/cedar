@@ -107,7 +107,7 @@ null</pre>
         id: 3,
         name: "zh_CN"
     }
-]<pre>
+]</pre>
     </section>
 </section>
 <section class="api">
@@ -124,7 +124,7 @@ null</pre>
         info: "The New TryNeeds",
         name: "Skuld"
     }
-]<pre>
+]</pre>
     </section>
     <h4>Get a Project</h4>
     <section>
@@ -138,6 +138,124 @@ null</pre>
     info: "The New TryNeeds",
     name: "Skuld",
     tags: [ ]
-}<pre>
+}</pre>
+    </section>
+    <h4>Update a Project</h4>
+    <section>
+        <h5><span class="api-request">PUT projects/:id</span></h5>
+        <h5>Parameters</h5>
+        <pre>
+{
+    project: {
+        name: ...,
+        info: ...,
+        file_type: ...,
+        tags: ...
+    }
+}</pre>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/projects/1 -X PUT -d ...</pre>
+        <pre>
+{ success: true }</pre>
+    </section>
+</section>
+<section class="api">
+    <h3>PoFile</h3>
+    <h4>List PoFiles</h4>
+    <section>
+        <h5><span class="api-request">GET po_files/</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/po_files/</pre>
+        <pre>
+... </pre>
+    </section>
+    <h4>Get a PoFiles</h4>
+    <section>
+        <h5><span class="api-request">GET po_files/:id</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/po_files/1</pre>
+        <pre>
+... </pre>
+    </section>
+</section>
+<section class="api">
+    <h3>Translation</h3>
+    <h4>List Translations</h4>
+    <section>
+        <h5><span class="api-request">GET translations/</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/translations/</pre>
+        <pre>
+[
+    { 
+        id: ...,
+        msgstr: ...
+    }
+] </pre>
+    </section>
+    <h4>Get a Translation</h4>
+    <section>
+        <h5><span class="api-request">GET translations/:id</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/translations/1</pre>
+        <pre>
+{
+    id: ...,
+    msgstr: ...
+}</pre>
+    </section>
+    <h4>Create a Translation</h4>
+    <section>
+        <h5><span class="api-request">PUT translations/:id</span></h5>
+        <h5>Parameters</h5>
+        <pre>
+{
+    translation: { msgstr: ... }
+}</pre>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/translations/1 -X PUT -d ...</pre>
+        <pre>
+{ success: true }</pre>
+    </section>
+    <h4>Destroy a Translation</h4>
+    <section>
+        <h5><span class="api-request">DELETE translations/:id</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/translations/1 -X DELETE</pre>
+        <pre>
+{ success: true }</pre>
+    </section>
+</section>
+<section class="api">
+    <h3>Entry</h3>
+    <h4>List Entries</h4>
+    <section>
+        <h5><span class="api-request">GET entries/</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/entries/</pre>
+        <pre>
+[ entry, ... ] </pre>
+    </section>
+    <h4>List Subset of Entries</h4>
+    <section>
+        <h5><span class="api-request">GET entries</span></h5>
+        <h5>Parameters<h5>
+        <pre>
+{
+    po_file_id: ...,
+    ...
+}</pre>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/entries -d ...</pre>
+        <pre>
+[ ... ] </pre>
+    </section>
+    <h4>Get a Entry</h4>
+    <section>
+        <h5><span class="api-request">GET entries/:id</span></h5>
+        <h5>Example request</h5>
+        <pre>curl http://itswindtw.info:9001/api/entries/1</pre>
+        <pre>
+{ ... } </pre>
     </section>
 </section>
