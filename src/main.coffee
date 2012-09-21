@@ -6,6 +6,7 @@
             hogan       : 'jam/hogan/hogan'        
             router      : 'router'
             model       : 'model'
+            voir        : 'voir'
             template    : 'template'
             
     require [
@@ -14,10 +15,8 @@
         'backbone'
         'storage'
         'router'
-        'views/home'
-        'views/project'
-        'views/account'
-    ], ($, _, Backbone, storage, router, Home, Project, Account) ->
+        'voir'
+    ], ($, _, Backbone, storage, router, view) ->
 
         Backbone.remoteSync = Backbone.sync
         
@@ -55,7 +54,7 @@
             el: 'body'
 
             render: ->
-                account = new Account
+                account = new view.Account
                 @assign account, '#account'
                 $('#account').hide().fadeIn()
 
@@ -89,7 +88,7 @@
             router.on 'route:home', ->
             
                 
-                home = new Home
+                home = new view.Home
                 home.render()
                 
             

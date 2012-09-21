@@ -9,7 +9,11 @@ compile: node_modules/requirejs/bin/r.js
 watch: 
 	make -j beobachten
 
-beobachten: coffee stylus
+
+beobachten: coffee stylus babysitter
+
+babysitter:
+	node babysitter
 
 coffee:
 	coffee --watch --compile --output scripts/ src/ 

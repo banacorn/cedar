@@ -11,11 +11,12 @@
       hogan: 'jam/hogan/hogan',
       router: 'router',
       model: 'model',
+      voir: 'voir',
       template: 'template'
     }
   });
 
-  require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'views/home', 'views/project', 'views/account'], function($, _, Backbone, storage, router, Home, Project, Account) {
+  require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'voir'], function($, _, Backbone, storage, router, view) {
     var App;
     Backbone.remoteSync = Backbone.sync;
     Backbone.Collection.prototype.snatch = function(callback) {
@@ -59,7 +60,7 @@
 
       App.prototype.render = function() {
         var account;
-        account = new Account;
+        account = new view.Account;
         this.assign(account, '#account');
         return $('#account').hide().fadeIn();
       };
@@ -73,7 +74,7 @@
       app.render();
       router.on('route:home', function() {
         var home;
-        home = new Home;
+        home = new view.Home;
         return home.render();
       });
       $('a').live('click', function(e) {

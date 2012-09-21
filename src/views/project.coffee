@@ -1,11 +1,10 @@
 define ['jquery', 'underscore', 'backbone', 'hogan'
     'template'
     'model'
-    'views/projectbreadcrumb'
-    'views/filebrowser'
-], ($, _, Backbone, hogan, template, MODEL, ProjectBreadcrumb, FileBrowser) ->
+    'collection'
+    'voir'
+], ($, _, Backbone, hogan, template, model, collection, view) ->
     
-        
 
     class Project extends Backbone.View
     
@@ -13,14 +12,14 @@ define ['jquery', 'underscore', 'backbone', 'hogan'
     
         initialize: ->
             @template       = template.project
-            @projectList    = new MODEL.ProjectList
-
-            @breadcrumb     = new MODEL.ProjectBreadcrumb            
-            @breadcrumbView = new ProjectBreadcrumb
+            @projectList    = new collection.Project
+            console.log view
+            @breadcrumb     = new model.ProjectBreadcrumb            
+            @breadcrumbView = new view.ProjectBreadcrumb
                 model: @breadcrumb
 
-            @fileTree       = new MODEL.FileTree
-            @fileBrowserView = new FileBrowser
+            @fileTree       = new collection.FileTree
+            @fileBrowserView = new view.FileBrowser
                 collection: @fileTree
             
         render: (name, path) ->

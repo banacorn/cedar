@@ -1,7 +1,8 @@
 define ['jquery', 'underscore', 'backbone'
     'template'
     'model'
-], ($, _, Backbone, template, model) ->
+    'collection'
+], ($, _, Backbone, template, model, collection) ->
 
     class ProjectList extends Backbone.View
         
@@ -11,7 +12,7 @@ define ['jquery', 'underscore', 'backbone'
         initialize: ->        
 
             @template = template.projectList
-            @projects = new model.ProjectList
+            @projects = new collection.Project
 
             
     
