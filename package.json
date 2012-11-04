@@ -13,7 +13,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "requirejs": "~ 1.0.8",
-    "nib": "~ 0.7.0"
+    "requirejs": "~ 2.1.1",
+    "nib": "~ 0.7.0",
+    "requirejs-preprocessor": "git://github.com/banacorn/requirejs-preprocessor.git"
   }
 }
