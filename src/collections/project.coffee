@@ -1,8 +1,8 @@
-define ['underscore', 'backbone', '../models/project'], (_, Backbone, Model) ->
+define ['underscore', 'backbone', 'model'], (_, Backbone, model) ->
     
         
     class Collection extends Backbone.Collection
-        model: Model
+        model: model.Project
         url: '/api/projects'
         parse: (data) ->
 

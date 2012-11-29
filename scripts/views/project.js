@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views/projectbreadcrumb', 'views/filebrowser'], function($, _, Backbone, hogan, template, MODEL, ProjectBreadcrumb, FileBrowser) {
+  define(['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'collection', 'voir'], function($, _, Backbone, hogan, template, model, collection, view) {
     var Project;
     return Project = (function(_super) {
 
@@ -17,13 +17,14 @@
 
       Project.prototype.initialize = function() {
         this.template = template.project;
-        this.projectList = new MODEL.ProjectList;
-        this.breadcrumb = new MODEL.ProjectBreadcrumb;
-        this.breadcrumbView = new ProjectBreadcrumb({
+        this.projectList = new collection.Project;
+        console.log(view);
+        this.breadcrumb = new model.ProjectBreadcrumb;
+        this.breadcrumbView = new view.ProjectBreadcrumb({
           model: this.breadcrumb
         });
-        this.fileTree = new MODEL.FileTree;
-        return this.fileBrowserView = new FileBrowser({
+        this.fileTree = new collection.FileTree;
+        return this.fileBrowserView = new view.FileBrowser({
           collection: this.fileTree
         });
       };

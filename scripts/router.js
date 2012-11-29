@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['underscore', 'backbone', 'views/projectlist', 'views/project', 'views/notfound', 'views/api'], function(_, Backbone, ProjectList, Project, NotFound, API) {
+  define(['underscore', 'backbone', 'voir'], function(_, Backbone, view) {
     var Router;
     return new (Router = (function(_super) {
 
@@ -24,13 +24,13 @@
 
       Router.prototype['project'] = function() {
         var projectList;
-        projectList = new ProjectList;
+        projectList = new view.ProjectList;
         return projectList.render();
       };
 
       Router.prototype['project:file'] = function(name, path) {
         var project;
-        project = new Project;
+        project = new view.Project;
         if (path != null) {
           path = path.replace(/\/$/, '');
         } else {
@@ -41,13 +41,13 @@
 
       Router.prototype['api'] = function() {
         var api;
-        api = new API;
+        api = new view.Api;
         return api.render();
       };
 
       Router.prototype['otherwise'] = function(path) {
         var notFound;
-        notFound = new NotFound;
+        notFound = new view.NotFound;
         return notFound.render(path);
       };
 
