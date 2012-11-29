@@ -1,13 +1,11 @@
 define [
+    'models/localetree',
     'backbone'
-], (Backbone) ->
+], (ModelLocaletree, Backbone) ->
     
-    class Model extends Backbone.Model
-
-
         
     class Collection extends Backbone.Collection
-        model: Model
+        model: ModelLocaletree
 
         url: -> "/api/project_locales/#{ @id }/po_files"
 
