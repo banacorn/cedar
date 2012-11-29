@@ -1,12 +1,10 @@
 define [
+    'models/entrylist',
     'backbone'
-], (Backbone) ->
+], (ModelEntrylist, Backbone) ->
     
-    class Model extends Backbone.Model
-
-        
     class Collection extends Backbone.Collection
-        model: Model
+        model: ModelEntrylist
 
         url: -> "/api/po_files/#{ @id }/entry_ids"
 
