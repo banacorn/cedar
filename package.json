@@ -1,11 +1,11 @@
 {
-  "author": "Elliot Lai <ellliotlai@gmail.com>",
-  "name": "breadcrumb",
+  "author": "Ting-Yen Lai <banacorn@gmail.com>",
+  "name": "cedar",
   "description": "skuld frontend",
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/elliotlai/breadcrumb.git"
+    "url": "git://github.com/banacorn/breadcrumb.git"
   },
   "main": "lib/app.js",
   "engines": {
