@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views/entry'], function($, _, Backbone, hogan, template, MODEL, EntryView) {
+  define(['collections/entry', 'collections/locale', 'collections/localetree', 'views/entry', 'jquery', 'backbone', 'template'], function(CollectionEntry, CollectionLocale, CollectionLocaletree, ViewEntry, $, Backbone, $$) {
     var ProjectBreadcrumb;
     return ProjectBreadcrumb = (function(_super) {
 
@@ -20,16 +20,15 @@
         this.collection.on('reset', function() {
           return _this.render();
         });
-        this.model = MODEL;
         return this.view = {
-          Entries: EntryView
+          Entries: ViewEntry
         };
       };
 
       ProjectBreadcrumb.prototype.render = function() {
         var fileID, isFile, locales, projectID, _ref,
           _this = this;
-        this.template = template.filebrowser;
+        this.template = $$.filebrowser;
         isFile = ((_ref = this.collection.node()) != null ? _ref.folder : void 0) === false;
         this.$el.html(this.template.render({
           isFile: isFile,
@@ -40,14 +39,14 @@
         projectID = this.collection.id;
         fileID = this.collection.node();
         if (isFile) {
-          locales = new this.model.Locales;
+          locales = new CollectionLocale;
           locales.id = projectID;
           locales.snatch(function() {
             var localeTree, projectLocaleID, _ref1;
             projectLocaleID = (_ref1 = locales.where({
               localeID: 1
             })) != null ? _ref1[0].get('id') : void 0;
-            localeTree = new _this.model.LocaleTree;
+            localeTree = new CollectionLocaletree;
             localeTree.id = projectLocaleID;
             return localeTree.snatch(function() {
               var entries, entriesView, projectFileID, _ref2;
@@ -55,9 +54,9 @@
               fileID = (_ref2 = localeTree.where({
                 'project_file_id': projectFileID
               })) != null ? _ref2[0].get('id') : void 0;
-              entries = new _this.model.Entries;
+              entries = new CollectionEntry;
               entries.id = fileID;
-              entriesView = new _this.view.Entries({
+              entriesView = new ViewEntry({
                 collection: entries
               });
               _this.assign(entriesView, '#project-file');

@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'template', 'model'], function($, _, Backbone, template, model) {
+  define(['jquery', 'backbone', 'template'], function($, Backbone, $$) {
     var View;
     return View = (function(_super) {
 
@@ -16,7 +16,7 @@
       View.prototype.el = $('#main');
 
       View.prototype.initialize = function() {
-        return this.template = template.notfound;
+        return this.template = $$.notfound;
       };
 
       View.prototype.render = function(path) {

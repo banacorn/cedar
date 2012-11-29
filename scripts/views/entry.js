@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'template', 'model'], function($, _, Backbone, template, model) {
+  define(['jquery', 'backbone', 'template'], function($, Backbone, $$) {
     var Entry, EntryList, EntryView;
     Entry = (function(_super) {
 
@@ -38,7 +38,7 @@
 
       EntryView.prototype.initialize = function() {
         var _this = this;
-        this.template = template.entry;
+        this.template = $$.entry;
         this.status = new Entry;
         return this.status.on('change:expand', function(model, expanded) {
           if (expanded) {
@@ -55,7 +55,7 @@
       };
 
       EntryView.prototype.render = function() {
-        var _ref, _ref1, _ref2, _ref3, _ref4;
+        var model, _ref, _ref1, _ref2, _ref3, _ref4;
         model = this.model.toJSON();
         return this.$el.html(this.template.render({
           translation: model.translation,
@@ -88,7 +88,7 @@
         this.collection.on('reset', function() {
           return _this.render();
         });
-        return this.template = template.entrylist;
+        return this.template = $$.entrylist;
       };
 
       EntryList.prototype.render = function() {
@@ -103,7 +103,7 @@
           entries: entries
         }));
         return entries.forEach(function(entry) {
-          var view;
+          var model, view;
           model = new Entry(entry);
           view = new EntryView({
             model: model

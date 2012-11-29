@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'template', 'model', 'collection'], function($, _, Backbone, template, model, collection) {
+  define(['collections/project', 'jquery', 'backbone', 'template'], function(CollectionProject, $, Backbone, $$) {
     var ProjectList;
     return ProjectList = (function(_super) {
 
@@ -16,8 +16,8 @@
       ProjectList.prototype.el = $('#main');
 
       ProjectList.prototype.initialize = function() {
-        this.template = template.projectList;
-        return this.projects = new collection.Project;
+        this.template = $$.projectList;
+        return this.projects = new CollectionProject;
       };
 
       ProjectList.prototype.render = function() {

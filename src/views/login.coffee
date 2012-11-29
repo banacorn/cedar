@@ -1,7 +1,8 @@
-define ['jquery', 'underscore', 'backbone'
+define [
+    'jquery',
+    'backbone',
     'template'
-    'model'
-], ($, _, Backbone, template, model) ->
+], ($, Backbone, $$) ->
 
     class Model extends Backbone.Model
         url: 'http://itswindtw.info:9001/api/users/sign_in'
@@ -16,7 +17,7 @@ define ['jquery', 'underscore', 'backbone'
             'click button': 'submit'
 
         initialize: ->
-            @template = template.login
+            @template = $$.login
 
             @model.on 'change:success', (model, status) =>
                 if status
@@ -66,8 +67,8 @@ define ['jquery', 'underscore', 'backbone'
 
 
             @template = 
-                login: template.login
-                logout: template.logout
+                login: $$.login
+                logout: $$.logout
 
 
 

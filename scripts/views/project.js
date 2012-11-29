@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'collection', 'voir'], function($, _, Backbone, hogan, template, model, collection, view) {
+  define(['collections/filetree', 'collections/project', 'models/project/breadcrumb', 'views/filebrowser', 'views/project/breadcrumb', 'jquery', 'backbone', 'template'], function(CollectionFiletree, CollectionProject, ModelProjectBreadcrumb, ViewFilebrowser, ViewProjectBreadcrumb, $, Backbone, $$) {
     var Project;
     return Project = (function(_super) {
 
@@ -16,15 +16,14 @@
       Project.prototype.el = $('#main');
 
       Project.prototype.initialize = function() {
-        this.template = template.project;
-        this.projectList = new collection.Project;
-        console.log(view);
-        this.breadcrumb = new model.ProjectBreadcrumb;
-        this.breadcrumbView = new view.ProjectBreadcrumb({
+        this.template = $$.project;
+        this.projectList = new CollectionProject;
+        this.breadcrumb = new ModelProjectBreadcrumb;
+        this.breadcrumbView = new ViewProjectBreadcrumb({
           model: this.breadcrumb
         });
-        this.fileTree = new collection.FileTree;
-        return this.fileBrowserView = new view.FileBrowser({
+        this.fileTree = new CollectionFiletree;
+        return this.fileBrowserView = new ViewFilebrowser({
           collection: this.fileTree
         });
       };

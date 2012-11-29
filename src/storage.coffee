@@ -1,4 +1,6 @@
-define [], () ->
+define [
+    ''
+], () ->
     (method, model, options) -> 
     
         if typeof model.url is 'function'

@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model'], function($, _, Backbone, hogan, template, MODEL) {
+  define(['jquery', 'backbone', 'template'], function($, Backbone, $$) {
     var ProjectBreadcrumb;
     return ProjectBreadcrumb = (function(_super) {
 
@@ -23,7 +23,7 @@
       };
 
       ProjectBreadcrumb.prototype.render = function() {
-        this.template = template.projectBreadcrumb;
+        this.template = $$.projectBreadcrumb;
         this.$el.html(this.template.render({
           projectName: this.model.get('projectName'),
           crumbs: this.model.get('crumbs')

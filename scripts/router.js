@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['underscore', 'backbone', 'voir'], function(_, Backbone, view) {
+  define(['views/api', 'views/notfound', 'views/project/list', 'views/project', 'jquery', 'backbone'], function(ViewApi, ViewNotfound, ViewProjectList, ViewProject, $, Backbone) {
     var Router;
     return new (Router = (function(_super) {
 
@@ -24,13 +24,13 @@
 
       Router.prototype['project'] = function() {
         var projectList;
-        projectList = new view.ProjectList;
+        projectList = new ViewProjectList;
         return projectList.render();
       };
 
       Router.prototype['project:file'] = function(name, path) {
         var project;
-        project = new view.Project;
+        project = new ViewProject;
         if (path != null) {
           path = path.replace(/\/$/, '');
         } else {
@@ -41,13 +41,13 @@
 
       Router.prototype['api'] = function() {
         var api;
-        api = new view.Api;
+        api = new ViewApi;
         return api.render();
       };
 
       Router.prototype['otherwise'] = function(path) {
         var notFound;
-        notFound = new view.NotFound;
+        notFound = new ViewNotfound;
         return notFound.render(path);
       };
 

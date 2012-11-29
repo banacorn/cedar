@@ -1,7 +1,8 @@
-define ['jquery', 'underscore', 'backbone'
+define [
+    'jquery',
+    'backbone',
     'template'
-    'model'
-], ($, _, Backbone, template, model) ->
+], ($, Backbone, $$) ->
 
     class Entry extends Backbone.Model
         defaults:
@@ -15,7 +16,7 @@ define ['jquery', 'underscore', 'backbone'
             'click .entry-chevron': 'toggle'
 
         initialize: ->
-            @template = template.entry
+            @template = $$.entry
             @status = new Entry
             @status.on 'change:expand', (model, expanded) =>
                 if expanded
@@ -51,7 +52,7 @@ define ['jquery', 'underscore', 'backbone'
             @collection.on 'reset', => @render()
             
 
-            @template = template.entrylist
+            @template = $$.entrylist
 
         render: ->
             entries = @collection.toJSON().map (entry) ->

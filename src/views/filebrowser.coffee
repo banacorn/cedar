@@ -1,6 +1,13 @@
 
-define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views/entry'
-], ($, _, Backbone, hogan, template, MODEL, EntryView) ->
+define [
+    'collections/entry',
+    'collections/locale',
+    'collections/localetree',
+    'views/entry',
+    'jquery',
+    'backbone',
+    'template'
+], (CollectionEntry, CollectionLocale, CollectionLocaletree, ViewEntry, $, Backbone, $$) ->
     
     
 
@@ -11,12 +18,11 @@ define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views
 
         initialize: ->
             @collection.on 'reset', => @render()
-            @model = MODEL
             @view = 
-                Entries: EntryView
+                Entries: ViewEntry
         render: ->
 
-            @template = template.filebrowser
+            @template = $$.filebrowser
 
             isFile = @collection.node()?.folder is false
             @$el.html @template.render
@@ -31,7 +37,7 @@ define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views
 
             if isFile
                 # get project-locale id
-                locales = new @model.Locales
+                locales = new CollectionLocale
                 locales.id = projectID
                 locales.snatch =>
 
@@ -39,16 +45,16 @@ define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model', 'views
                     projectLocaleID = locales.where({localeID: 1})?[0].get 'id'
                     
                     # get locale-tree
-                    localeTree = new @model.LocaleTree
+                    localeTree = new CollectionLocaletree
                     localeTree.id = projectLocaleID
                     localeTree.snatch =>
                         # match it with current page
                         projectFileID = @collection.node().id
                         fileID = localeTree.where({'project_file_id': projectFileID})?[0].get 'id'
 
-                        entries = new @model.Entries
+                        entries = new CollectionEntry
                         entries.id = fileID
-                        entriesView = new @view.Entries
+                        entriesView = new ViewEntry
                             collection: entries
                         @assign entriesView, '#project-file'
 

@@ -1,22 +1,20 @@
-    require.config
+require.config
         paths:
             jquery      : 'jam/jquery/jquery'
             underscore  : 'jam/underscore/underscore'
             backbone    : 'jam/backbone/backbone'
             hogan       : 'jam/hogan/hogan'        
             router      : 'router'
-            model       : 'model'
-            voir        : 'voir'
             template    : 'template'
-            
-    require [
-        'jquery'  
-        'underscore'
-        'backbone'
-        'storage'
-        'router'
-        'voir'
-    ], ($, _, Backbone, storage, router, view) ->
+require [
+    'router',
+    'storage',
+    'views/account',
+    'views/home',
+    'jquery',
+    'underscore',
+    'backbone'
+], (Router, Storage, ViewAccount, ViewHome, $, _, Backbone) ->
 
         Backbone.remoteSync = Backbone.sync
         
@@ -47,14 +45,14 @@
         
         Backbone.sync = ->
             Backbone.remoteSync.apply @, arguments
-            storage.apply @, arguments
+            Storage.apply @, arguments
 
         class App extends Backbone.View
         
             el: 'body'
 
             render: ->
-                account = new view.Account
+                account = new ViewAccount
                 @assign account, '#account'
                 $('#account').hide().fadeIn()
 
@@ -85,15 +83,15 @@
                 
             # , 0
 
-            router.on 'route:home', ->
+            Router.on 'route:home', ->
             
                 
-                home = new view.Home
+                home = new ViewHome
                 home.render()
                 
             
             $('a').live 'click', (e) ->
-                router.navigate $(@).attr('href'), true
+                Router.navigate $(@).attr('href'), true
                 return false
                 
                 

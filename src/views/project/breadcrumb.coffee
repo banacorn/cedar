@@ -1,5 +1,8 @@
-define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model'
-], ($, _, Backbone, hogan, template, MODEL) ->
+define [
+    'jquery',
+    'backbone',
+    'template'
+], ($, Backbone, $$) ->
     
         
 
@@ -12,7 +15,7 @@ define ['jquery', 'underscore', 'backbone', 'hogan', 'template', 'model'
             @model.on 'change', => @render()
 
         render: ->
-            @template = template.projectBreadcrumb
+            @template = $$.projectBreadcrumb
 
             @$el.html @template.render
                 projectName : @model.get 'projectName'

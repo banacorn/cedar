@@ -1,7 +1,8 @@
-define ['jquery', 'underscore', 'backbone'
+define [
+    'jquery',
+    'backbone',
     'template'
-    'model'
-], ($, _, Backbone, template, model) ->
+], ($, Backbone, $$) ->
 
     class View extends Backbone.View
         
@@ -10,7 +11,7 @@ define ['jquery', 'underscore', 'backbone'
         
         initialize: ->        
 
-            @template = template.notfound
+            @template = $$.notfound
 
             
     

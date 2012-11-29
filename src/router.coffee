@@ -1,8 +1,11 @@
 define [
-    'underscore'
+    'views/api',
+    'views/notfound',
+    'views/project/list',
+    'views/project',
+    'jquery',
     'backbone'
-    'voir'
-], (_, Backbone, view) ->
+], (ViewApi, ViewNotfound, ViewProjectList, ViewProject, $, Backbone) ->
     new class Router extends Backbone.Router
         
         routes:
@@ -14,12 +17,12 @@ define [
             '*all'                          : 'otherwise'
 
         'project': ->
-            projectList = new view.ProjectList
+            projectList = new ViewProjectList
             projectList.render()
 
 
         'project:file': (name, path) ->
-            project = new view.Project
+            project = new ViewProject
             if path?
                 path = path.replace(/\/$/, '')
             else
@@ -28,9 +31,9 @@ define [
 
 
         'api': ->
-            api = new view.Api
+            api = new ViewApi
             api.render()
 
         'otherwise': (path) ->
-            notFound = new view.NotFound
+            notFound = new ViewNotfound
             notFound.render path

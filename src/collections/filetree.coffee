@@ -1,4 +1,8 @@
-define ['underscore', 'backbone'], (_, Backbone) ->
+define [
+    'jquery',
+    'underscore',
+    'backbone'
+], ($, _, Backbone) ->
     
     class Model extends Backbone.Model
         initialize: ->

@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'template', 'model'], function($, _, Backbone, template, model) {
+  define(['jquery', 'backbone', 'template'], function($, Backbone, $$) {
     var Box, Login, Model;
     Model = (function(_super) {
 
@@ -35,7 +35,7 @@
 
       Box.prototype.initialize = function() {
         var _this = this;
-        this.template = template.login;
+        this.template = $$.login;
         return this.model.on('change:success', function(model, status) {
           if (status) {
             return _this.success();
@@ -100,8 +100,8 @@
           }
         });
         this.template = {
-          login: template.login,
-          logout: template.logout
+          login: $$.login,
+          logout: $$.logout
         };
         return setTimeout(function() {
           return _this.login;

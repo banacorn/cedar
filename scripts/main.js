@@ -10,13 +10,11 @@
       backbone: 'jam/backbone/backbone',
       hogan: 'jam/hogan/hogan',
       router: 'router',
-      model: 'model',
-      voir: 'voir',
       template: 'template'
     }
   });
 
-  require(['jquery', 'underscore', 'backbone', 'storage', 'router', 'voir'], function($, _, Backbone, storage, router, view) {
+  require(['router', 'storage', 'views/account', 'views/home', 'jquery', 'underscore', 'backbone'], function(Router, Storage, ViewAccount, ViewHome, $, _, Backbone) {
     var App;
     Backbone.remoteSync = Backbone.sync;
     Backbone.Collection.prototype.snatch = function(callback) {
@@ -46,7 +44,7 @@
     };
     Backbone.sync = function() {
       Backbone.remoteSync.apply(this, arguments);
-      return storage.apply(this, arguments);
+      return Storage.apply(this, arguments);
     };
     App = (function(_super) {
 
@@ -60,7 +58,7 @@
 
       App.prototype.render = function() {
         var account;
-        account = new view.Account;
+        account = new ViewAccount;
         this.assign(account, '#account');
         return $('#account').hide().fadeIn();
       };
@@ -72,13 +70,13 @@
       var app;
       app = new App;
       app.render();
-      router.on('route:home', function() {
+      Router.on('route:home', function() {
         var home;
-        home = new view.Home;
+        home = new ViewHome;
         return home.render();
       });
       $('a').live('click', function(e) {
-        router.navigate($(this).attr('href'), true);
+        Router.navigate($(this).attr('href'), true);
         return false;
       });
       return Backbone.history.start({

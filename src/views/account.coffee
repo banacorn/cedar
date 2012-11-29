@@ -1,7 +1,9 @@
-define ['jquery', 'underscore', 'backbone'
+define [
+    'jquery',
+    'underscore',
+    'backbone',
     'template'
-    'model'
-], ($, _, Backbone, template, model) ->
+], ($, _, Backbone, $$) ->
 
     class Model extends Backbone.Model
         url: 'http://itswindtw.info:9001/api/users/sign_in'
@@ -62,7 +64,7 @@ define ['jquery', 'underscore', 'backbone'
             'click button': 'submit'
 
         initialize: ->
-            @template = template.signinbox
+            @template = $$.signinbox
 
         render: ->
             @$el.html @template.render()
@@ -98,8 +100,7 @@ define ['jquery', 'underscore', 'backbone'
 
             @account.on 'change', =>
                 @render()
-
-            @template = template.account
+            @template = $$.account
             
             @box = new Box
                 model: @account
