@@ -1,19 +1,12 @@
 define [
+    'models/filetree',
     'jquery',
     'underscore',
     'backbone'
-], ($, _, Backbone) ->
-    
-    class Model extends Backbone.Model
-        initialize: ->
-
-            if @get('filetype') is 0
-                @set 'folder', true
-            else
-                @set 'folder', false
+], (ModelFiletree, $, _, Backbone) ->
         
     class Collection extends Backbone.Collection
-        model: Model
+        model: ModelFiletree
         url: -> "/api/projects/#{ @id }/files"
 
         parse: (data) ->
