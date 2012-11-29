@@ -1,11 +1,11 @@
 {
-  "author": "Elliot Lai <ellliotlai@gmail.com>",
-  "name": "breadcrumb",
+  "author": "Ting-Yen Lai <banacorn@gmail.com>",
+  "name": "cedar",
   "description": "skuld frontend",
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/elliotlai/breadcrumb.git"
+    "url": "git://github.com/banacorn/cedar.git"
   },
   "main": "lib/app.js",
   "engines": {
@@ -13,7 +13,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "requirejs": "~ 1.0.8",
-    "nib": "~ 0.7.0"
+    "requirejs": "~ 2.1.1",
+    "nib": "~ 0.7.0",
+    "requirejs-preprocessor": "git://github.com/banacorn/requirejs-preprocessor.git"
   }
 }

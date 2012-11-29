@@ -1,0 +1,18 @@
+{
+    "target": "src",
+    "source": "src",
+    "language": "coffeescript",
+    "templateSource": "templates",
+    "templateHub": "src/template.coffee",
+    "dependency": {
+        "$"             : "jquery",
+        "_"             : "underscore",
+        "Backbone"      : "backbone",
+        "Hogan"         : "hogan"
+    },
+    "rewrite": {
+        "Views"         : "View",
+        "Models"        : "Model",
+        "Collections"   : "Collection"
+    }
+}
