@@ -1,14 +1,9 @@
 define [
+    'models/entry',
     'jquery',
     'backbone',
     'template'
-], ($, Backbone, $$) ->
-
-    class Entry extends Backbone.Model
-        defaults:
-            expand: false
-        toggle: ->
-            @set 'expand', not @get('expand')
+], (ModelEntry, $, Backbone, $$) ->
 
     class EntryView extends Backbone.View
 
@@ -17,7 +12,7 @@ define [
 
         initialize: ->
             @template = $$.entry
-            @status = new Entry
+            @status = new ModelEntry
             @status.on 'change:expand', (model, expanded) =>
                 if expanded
                     @$el.addClass 'expand'
@@ -64,7 +59,7 @@ define [
                 entries: entries
 
             entries.forEach (entry) =>
-                model = new Entry entry
+                model = new ModelEntry entry
                 view = new EntryView
                     model: model
                 @assign view, "#entry-#{ entry.id }"

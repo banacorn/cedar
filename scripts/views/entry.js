@@ -3,27 +3,8 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'backbone', 'template'], function($, Backbone, $$) {
-    var Entry, EntryList, EntryView;
-    Entry = (function(_super) {
-
-      __extends(Entry, _super);
-
-      function Entry() {
-        return Entry.__super__.constructor.apply(this, arguments);
-      }
-
-      Entry.prototype.defaults = {
-        expand: false
-      };
-
-      Entry.prototype.toggle = function() {
-        return this.set('expand', !this.get('expand'));
-      };
-
-      return Entry;
-
-    })(Backbone.Model);
+  define(['models/entry', 'jquery', 'backbone', 'template'], function(ModelEntry, $, Backbone, $$) {
+    var EntryList, EntryView;
     EntryView = (function(_super) {
 
       __extends(EntryView, _super);
@@ -39,7 +20,7 @@
       EntryView.prototype.initialize = function() {
         var _this = this;
         this.template = $$.entry;
-        this.status = new Entry;
+        this.status = new ModelEntry;
         return this.status.on('change:expand', function(model, expanded) {
           if (expanded) {
             return _this.$el.addClass('expand');
@@ -104,7 +85,7 @@
         }));
         return entries.forEach(function(entry) {
           var model, view;
-          model = new Entry(entry);
+          model = new ModelEntry(entry);
           view = new EntryView({
             model: model
           });
