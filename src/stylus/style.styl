@@ -79,8 +79,37 @@ reset-html5()
     h2
         color $blue
         margin 20px 0
-    p
+
+    #hero-content
+        overflow hidden
+
+
+    #hero-text
+        float left
+        width 600px
         color $base
+
+    #hero-register
+        margin 20px 0
+        background $blue
+        padding 20px
+        text-align center
+        color white
+        float left
+
+        border-radius 5px
+        width 140px
+
+        cursor pointer
+
+        &:hover
+            background lighten($blue, 10%)
+
+
+        i
+            color white
+            margin-left 20px
+
 
 .main-block
     width 420px

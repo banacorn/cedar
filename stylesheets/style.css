@@ -1190,8 +1190,32 @@ h3 {
   color: #345;
   margin: 20px 0;
 }
-.hero p {
+.hero #hero-content {
+  overflow: hidden;
+}
+.hero #hero-text {
+  float: left;
+  width: 600px;
   color: #3c3c3c;
+}
+.hero #hero-register {
+  margin: 20px 0;
+  background: #345;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  float: left;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 140px;
+  cursor: pointer;
+}
+.hero #hero-register:hover {
+  background: #41576c;
+}
+.hero #hero-register i {
+  color: #fff;
+  margin-left: 20px;
 }
 .main-block {
   width: 420px;
