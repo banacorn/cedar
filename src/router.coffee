@@ -4,14 +4,16 @@ define [
     'views/project/list',
     'views/project',
     'views/registration',
+    'views/settings',
     'jquery',
     'backbone'
-], (ViewApi, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, $, Backbone) ->
+], (ViewApi, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, ViewSettings, $, Backbone) ->
     new class Router extends Backbone.Router
         
         routes:
             ''                              : 'home'
             'registration'                  : 'registration'
+            'settings'                      : 'settings'
             'project'                       : 'project'
             'project/:name/file'            : 'project:file'
             'project/:name/file/*path'      : 'project:file'
@@ -21,6 +23,10 @@ define [
         'registration': ->
             registrationPage = new ViewRegistration
             registrationPage.render()
+
+        'settings': ->
+            settingsPage = new ViewSettings
+            settingsPage.render()
 
         'project': ->
             projectList = new ViewProjectList

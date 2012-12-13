@@ -13,8 +13,6 @@
         return Model.__super__.constructor.apply(this, arguments);
       }
 
-      Model.prototype.url = 'http://itswindtw.info:9001/api/users/sign_in';
-
       return Model;
 
     })(Backbone.Model);

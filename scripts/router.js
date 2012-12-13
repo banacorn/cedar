@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['views/api', 'views/notfound', 'views/project/list', 'views/project', 'views/registration', 'jquery', 'backbone'], function(ViewApi, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, $, Backbone) {
+  define(['views/api', 'views/notfound', 'views/project/list', 'views/project', 'views/registration', 'views/settings', 'jquery', 'backbone'], function(ViewApi, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, ViewSettings, $, Backbone) {
     var Router;
     return new (Router = (function(_super) {
 
@@ -16,6 +16,7 @@
       Router.prototype.routes = {
         '': 'home',
         'registration': 'registration',
+        'settings': 'settings',
         'project': 'project',
         'project/:name/file': 'project:file',
         'project/:name/file/*path': 'project:file',
@@ -27,6 +28,12 @@
         var registrationPage;
         registrationPage = new ViewRegistration;
         return registrationPage.render();
+      };
+
+      Router.prototype['settings'] = function() {
+        var settingsPage;
+        settingsPage = new ViewSettings;
+        return settingsPage.render();
       };
 
       Router.prototype['project'] = function() {

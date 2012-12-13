@@ -1,9 +1,9 @@
-<section id="registration">
-    <h2>註冊</h2>
+<section id="settings">
+    <h2>設定</h2>
     <form id="form">
         <ul>
             <li>
-                <label for="username">帳號</label>
+                <label for="username">帳號名稱</label>
                 <input id="username" pattern=".{3,}" required>
                 <span class="hint"></span>
             </li>
@@ -13,8 +13,13 @@
                 <span class="hint"></span>
             </li>
             <li>
-                <label for="password">密碼</label>
+                <label for="password">舊密碼</label>
                 <input id="password"  pattern=".{6,}"  type="password" required>
+                <span class="hint"></span>
+            </li>
+            <li>
+                <label for="new-password">新密碼</label>
+                <input id="new-password"  pattern=".{6,}"  type="password" required>
                 <span class="hint"></span>
             </li>
             <li>
@@ -24,7 +29,7 @@
             </li>
             <li>
                 <label for="submit"></label>
-                <button type="submit" id="submit">註冊</button>
+                <button type="submit" id="submit">更新</button>
                 <span class="hint"></span>
             </li>
         </ul>
