@@ -882,15 +882,34 @@ p {
 }
 input {
   border: none;
-  padding: 0;
+  padding: 5px;
   margin: 0;
+  font-size: 150%;
+  -webkit-box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 1px #fff;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+input.invalid {
+  background: #fac8c8;
 }
 button {
   border: 0;
-  background: inherit;
-  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  background: #345;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
   cursor: pointer;
+}
+button:hover {
+  background: #41576c;
+}
+span.hint {
+  color: #787878;
+}
+span.invalid {
+  color: #8b0000;
 }
 menu {
   padding: 0;
@@ -936,15 +955,34 @@ p {
 }
 input {
   border: none;
-  padding: 0;
+  padding: 5px;
   margin: 0;
+  font-size: 150%;
+  -webkit-box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 1px #fff;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+input.invalid {
+  background: #fac8c8;
 }
 button {
   border: 0;
-  background: inherit;
-  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  background: #345;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
   cursor: pointer;
+}
+button:hover {
+  background: #41576c;
+}
+span.hint {
+  color: #787878;
+}
+span.invalid {
+  color: #8b0000;
 }
 menu {
   padding: 0;
@@ -1135,6 +1173,109 @@ h3 {
 .entry-detail li .entry-key {
   font-weight: bold;
   color: #889;
+}
+html {
+  overflow-y: scroll;
+  height: 100%;
+}
+body {
+  color: #282828;
+  background: url("/images/light_noise_diagonal.png");
+  font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
+  height: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+p {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+input {
+  border: none;
+  padding: 5px;
+  margin: 0;
+  font-size: 150%;
+  -webkit-box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: 0 1px 0 #fff, inset 0 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 1px #fff;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+input.invalid {
+  background: #fac8c8;
+}
+button {
+  border: 0;
+  background: #345;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+button:hover {
+  background: #41576c;
+}
+span.hint {
+  color: #787878;
+}
+span.invalid {
+  color: #8b0000;
+}
+menu {
+  padding: 0;
+  margin: 0;
+  border: none;
+  list-style: none;
+}
+h1 {
+  color: #fff;
+  font-size: 150%;
+}
+h2 {
+  font-size: 200%;
+  font-weight: bold;
+  color: #345;
+  margin: 40px 0;
+  padding: 0 20px;
+}
+h3 {
+  font-size: 150%;
+  font-weight: bold;
+  color: #345;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+#registration form {
+  margin: 20px;
+}
+#registration form li {
+  height: 60px;
+  line-height: 60px;
+}
+#registration form label {
+  width: 80px;
+  height: 60px;
+  line-height: 60px;
+  display: inline-block;
+  float: left;
+  text-align: right;
+  padding: 0 10px;
+}
+#registration form button {
+  width: 210px;
+  height: 40px;
+  line-height: 40px;
+  margin: 10px;
+  font-size: 120%;
+}
+#registration form input {
+  height: 30px;
+  line-height: 30px;
+  margin: 10px;
+  float: left;
+  width: 200px;
 }
 @font-face {
   font-family: 'Hammersmith One';

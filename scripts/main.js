@@ -75,6 +75,9 @@
         home = new ViewHome;
         return home.render();
       });
+      $('form').live('submit', function() {
+        return false;
+      });
       $('a').live('click', function(e) {
         Router.navigate($(this).attr('href'), true);
         return false;

@@ -11,8 +11,9 @@ define [
     'text!../templates/project/breadcrumb.html'
     'text!../templates/project/list.html'
     'text!../templates/project.html'
+    'text!../templates/registration.html'
     'text!../templates/signinbox.html'
-], (Hogan, Account, Api, Entry, Entrylist, Filebrowser, Home, Locale, Notfound, ProjectBreadcrumb, ProjectList, Project, Signinbox) ->
+], (Hogan, Account, Api, Entry, Entrylist, Filebrowser, Home, Locale, Notfound, ProjectBreadcrumb, ProjectList, Project, Registration, Signinbox) ->
     account: Hogan.compile Account
     api: Hogan.compile Api
     entry: Hogan.compile Entry
@@ -24,4 +25,5 @@ define [
     projectBreadcrumb: Hogan.compile ProjectBreadcrumb
     projectList: Hogan.compile ProjectList
     project: Hogan.compile Project
+    registration: Hogan.compile Registration
     signinbox: Hogan.compile Signinbox

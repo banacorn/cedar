@@ -16,9 +16,9 @@ require [
     'backbone'
 ], (Router, Storage, ViewAccount, ViewHome, $, _, Backbone) ->
 
+        # sync machanism
         Backbone.remoteSync = Backbone.sync
         
-
 
         Backbone.Collection::snatch = (callback) ->
 
@@ -89,7 +89,10 @@ require [
                 home = new ViewHome
                 home.render()
                 
-            
+            # disable form:submit
+            $('form').live 'submit', -> false
+
+            # disable a:click
             $('a').live 'click', (e) ->
                 Router.navigate $(@).attr('href'), true
                 return false

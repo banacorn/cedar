@@ -3,18 +3,24 @@ define [
     'views/notfound',
     'views/project/list',
     'views/project',
+    'views/registration',
     'jquery',
     'backbone'
-], (ViewApi, ViewNotfound, ViewProjectList, ViewProject, $, Backbone) ->
+], (ViewApi, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, $, Backbone) ->
     new class Router extends Backbone.Router
         
         routes:
             ''                              : 'home'
+            'registration'                  : 'registration'
             'project'                       : 'project'
             'project/:name/file'            : 'project:file'
             'project/:name/file/*path'      : 'project:file'
             'api_reference'                 : 'api'
             '*all'                          : 'otherwise'
+
+        'registration': ->
+            registrationPage = new ViewRegistration
+            registrationPage.render()
 
         'project': ->
             projectList = new ViewProjectList
