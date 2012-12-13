@@ -3,21 +3,8 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'backbone', 'template'], function($, Backbone, $$) {
-    var Box, Login, Model;
-    Model = (function(_super) {
-
-      __extends(Model, _super);
-
-      function Model() {
-        return Model.__super__.constructor.apply(this, arguments);
-      }
-
-      Model.prototype.url = 'http://itswindtw.info:9001/api/users/sign_in';
-
-      return Model;
-
-    })(Backbone.Model);
+  define(['models/login', 'jquery', 'backbone', 'template'], function(ModelLogin, $, Backbone, $$) {
+    var Box, Login;
     Box = (function(_super) {
 
       __extends(Box, _super);
@@ -93,7 +80,7 @@
 
       Login.prototype.initialize = function() {
         var _this = this;
-        this.account = new Model;
+        this.account = new ModelLogin;
         this.account.on('change:success', function(model, success) {
           if (success) {
             return _this.renderLogout();

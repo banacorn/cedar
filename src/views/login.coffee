@@ -1,12 +1,9 @@
 define [
+    'models/login',
     'jquery',
     'backbone',
     'template'
-], ($, Backbone, $$) ->
-
-    class Model extends Backbone.Model
-        url: 'http://itswindtw.info:9001/api/users/sign_in'
-
+], (ModelLogin, $, Backbone, $$) ->
 
     class Box extends Backbone.View
 
@@ -60,7 +57,7 @@ define [
 
         initialize: ->
 
-            @account = new Model
+            @account = new ModelLogin
             @account.on 'change:success', (model, success) =>
                 if success
                     @renderLogout()
