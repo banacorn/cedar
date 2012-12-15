@@ -23,7 +23,7 @@ define [
             return @
 
         submit: ->
-            @model.signin $('#signin-username').val(), $('#signin-password').val()
+            Backbone.account.signin $('#signin-username').val(), $('#signin-password').val()
             
 
 
@@ -34,7 +34,10 @@ define [
 
         render: ->
             @$el.html(@template.render()).hide().fadeIn(200);
-            $('input', @$el)[0].focus()
+            
+            setTimeout -> 
+                $('#signin-username').focus()
+            , 0
 
 
             return @
@@ -45,24 +48,24 @@ define [
 
         initialize: ->
 
-            window.account = @account = new ModelAccount
-            @account.authorize()
+            Backbone.account = new ModelAccount
+            Backbone.account.authorize()
 
+            @listenTo Backbone.account, 'change', @render
 
-            @account.on 'change', =>
-                @render()
             @template = $$.account
             
             @box = new Box
                 model: @account
-            @account.on 'change:success', (model, success) =>
+
+            Backbone.account.on 'change:success', (model, success) =>
                 if success
                     @box.resume()
 
         render: ->
             @$el.html @template.render
-                authorized: @account.get 'authorized'
-                username: @account.get 'username'
+                authorized: Backbone.account.get 'authorized'
+                username: Backbone.account.get 'username'
 
             return @
 
@@ -80,13 +83,13 @@ define [
 
         signin: ->
 
-            if not @account.get 'authorized'
+            if not Backbone.account.get 'authorized'
                 $('#main').append('<div id="slot"></div>')
                 @assign @box, '#slot'
 
         signout: ->
-            if @account.get 'authorized'
-                @account.signout()
+            if Backbone.account.get 'authorized'
+                Backbone.account.signout()
                 @mouseout()
 
 

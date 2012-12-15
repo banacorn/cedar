@@ -13,9 +13,9 @@ define [
 
             @template = $$.home
 
-            # window.account.on 'authorzized', ->
-                # console.log window.account.attributes
-    
+            Backbone.on 'authorized', ->
+                console.log 'authorized'
+                console.log Backbone.authorized    
         render: ->
             @$el.html @template.render()
     

@@ -13,7 +13,9 @@ define [
 
         parse: (data) ->
             if data?
-                @trigger 'authorized'
+                @set 'authorized', true
+                Backbone.authorized = true
+                Backbone.trigger 'authorized'
                 if data.user?
                     _.extend data, data.user
                     delete data.user

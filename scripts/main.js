@@ -60,7 +60,7 @@
         var account;
         account = new ViewAccount;
         this.assign(account, '#account');
-        return $('#account').hide().fadeIn();
+        return $('#account').hide().fadeIn(200);
       };
 
       return App;

@@ -23,7 +23,9 @@
 
       Model.prototype.parse = function(data) {
         if (data != null) {
-          this.trigger('authorized');
+          this.set('authorized', true);
+          Backbone.authorized = true;
+          Backbone.trigger('authorized');
           if (data.user != null) {
             _.extend(data, data.user);
             delete data.user;

@@ -53,7 +53,7 @@ require [
         render: ->
             account = new ViewAccount
             @assign account, '#account'
-            $('#account').hide().fadeIn()
+            $('#account').hide().fadeIn(200)
 
 
     

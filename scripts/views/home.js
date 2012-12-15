@@ -16,7 +16,11 @@
       Home.prototype.el = $('#main');
 
       Home.prototype.initialize = function() {
-        return this.template = $$.home;
+        this.template = $$.home;
+        return Backbone.on('authorized', function() {
+          console.log('authorized');
+          return console.log(Backbone.authorized);
+        });
       };
 
       Home.prototype.render = function() {

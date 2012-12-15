@@ -30,7 +30,7 @@
       };
 
       Box.prototype.submit = function() {
-        return this.model.signin($('#signin-username').val(), $('#signin-password').val());
+        return Backbone.account.signin($('#signin-username').val(), $('#signin-password').val());
       };
 
       Box.prototype.resume = function() {
@@ -43,7 +43,9 @@
 
       Box.prototype.render = function() {
         this.$el.html(this.template.render()).hide().fadeIn(200);
-        $('input', this.$el)[0].focus();
+        setTimeout(function() {
+          return $('#signin-username').focus();
+        }, 0);
         return this;
       };
 
@@ -60,16 +62,14 @@
 
       Account.prototype.initialize = function() {
         var _this = this;
-        window.account = this.account = new ModelAccount;
-        this.account.authorize();
-        this.account.on('change', function() {
-          return _this.render();
-        });
+        Backbone.account = new ModelAccount;
+        Backbone.account.authorize();
+        this.listenTo(Backbone.account, 'change', this.render);
         this.template = $$.account;
         this.box = new Box({
           model: this.account
         });
-        return this.account.on('change:success', function(model, success) {
+        return Backbone.account.on('change:success', function(model, success) {
           if (success) {
             return _this.box.resume();
           }
@@ -78,8 +78,8 @@
 
       Account.prototype.render = function() {
         this.$el.html(this.template.render({
-          authorized: this.account.get('authorized'),
-          username: this.account.get('username')
+          authorized: Backbone.account.get('authorized'),
+          username: Backbone.account.get('username')
         }));
         return this;
       };
@@ -100,15 +100,15 @@
       };
 
       Account.prototype.signin = function() {
-        if (!this.account.get('authorized')) {
+        if (!Backbone.account.get('authorized')) {
           $('#main').append('<div id="slot"></div>');
           return this.assign(this.box, '#slot');
         }
       };
 
       Account.prototype.signout = function() {
-        if (this.account.get('authorized')) {
-          this.account.signout();
+        if (Backbone.account.get('authorized')) {
+          Backbone.account.signout();
           return this.mouseout();
         }
       };
