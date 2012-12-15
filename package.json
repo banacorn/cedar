@@ -17,5 +17,8 @@
     "requirejs": "~ 2.1.1",
     "nib": "~ 0.7.0",
     "requirejs-preprocessor": "git://github.com/banacorn/requirejs-preprocessor.git"
+  },
+  "jam": {
+    "packageDir": "scripts/jam"
   }
 }
