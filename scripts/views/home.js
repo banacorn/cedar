@@ -17,14 +17,13 @@
 
       Home.prototype.initialize = function() {
         this.template = $$.home;
-        return Backbone.on('authorized', function() {
-          console.log('authorized');
-          return console.log(Backbone.authorized);
-        });
+        return this.listenTo(Backbone, 'authorize', this.render);
       };
 
       Home.prototype.render = function() {
-        this.$el.html(this.template.render());
+        this.$el.html(this.template.render({
+          authorized: Backbone.authorized
+        }));
         return this;
       };
 

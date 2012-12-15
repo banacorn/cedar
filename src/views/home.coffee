@@ -13,10 +13,10 @@ define [
 
             @template = $$.home
 
-            Backbone.on 'authorized', ->
-                console.log 'authorized'
-                console.log Backbone.authorized    
+            @listenTo Backbone, 'authorize', @render
+
         render: ->
-            @$el.html @template.render()
+            @$el.html @template.render
+                authorized: Backbone.authorized
     
             return @

@@ -15,6 +15,14 @@
 
       Model.prototype.url = 'http://itswindtw.info:9001/api/users/sign_in';
 
+      Model.prototype.initialize = function() {
+        Backbone.authorized = false;
+        return this.on('change:authorized', function(model, result) {
+          Backbone.trigger('authorize', result);
+          return Backbone.authorized = result;
+        });
+      };
+
       Model.prototype.defaults = {
         'authorized': false,
         'username': void 0,
@@ -24,12 +32,12 @@
       Model.prototype.parse = function(data) {
         if (data != null) {
           this.set('authorized', true);
-          Backbone.authorized = true;
-          Backbone.trigger('authorized');
           if (data.user != null) {
             _.extend(data, data.user);
             delete data.user;
           }
+        } else {
+          this.set('authorize', false);
         }
         return data;
       };

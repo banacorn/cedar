@@ -6,6 +6,12 @@ define [
     class Model extends Backbone.Model
         url: 'http://itswindtw.info:9001/api/users/sign_in'
 
+        initialize: ->
+            Backbone.authorized = false
+            @on 'change:authorized', (model, result) ->
+                Backbone.trigger 'authorize', result
+                Backbone.authorized = result
+
         defaults:
             'authorized': false
             'username': undefined
@@ -14,11 +20,14 @@ define [
         parse: (data) ->
             if data?
                 @set 'authorized', true
-                Backbone.authorized = true
-                Backbone.trigger 'authorized'
+
+
                 if data.user?
                     _.extend data, data.user
                     delete data.user
+
+            else
+                @set 'authorize', false
             return data
 
         authorize: ->
