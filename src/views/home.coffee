@@ -13,7 +13,8 @@ define [
 
             @template = $$.home
 
-            
+            # window.account.on 'authorzized', ->
+                # console.log window.account.attributes
     
         render: ->
             @$el.html @template.render()

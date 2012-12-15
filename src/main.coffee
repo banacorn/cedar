@@ -18,6 +18,9 @@ require [
 
         # sync machanism
         Backbone.remoteSync = Backbone.sync
+        Backbone.sync = ->
+            Backbone.remoteSync.apply @, arguments
+            Storage.apply @, arguments
         
 
         Backbone.Collection::snatch = (callback) ->
@@ -42,10 +45,6 @@ require [
 
         Backbone.View::assign = (view, selector) ->
             view.setElement($(selector)).render()
-        
-        Backbone.sync = ->
-            Backbone.remoteSync.apply @, arguments
-            Storage.apply @, arguments
 
         class App extends Backbone.View
         

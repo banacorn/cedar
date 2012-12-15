@@ -17,6 +17,10 @@
   require(['router', 'storage', 'views/account', 'views/home', 'jquery', 'underscore', 'backbone'], function(Router, Storage, ViewAccount, ViewHome, $, _, Backbone) {
     var App;
     Backbone.remoteSync = Backbone.sync;
+    Backbone.sync = function() {
+      Backbone.remoteSync.apply(this, arguments);
+      return Storage.apply(this, arguments);
+    };
     Backbone.Collection.prototype.snatch = function(callback) {
       var cb,
         _this = this;
@@ -41,10 +45,6 @@
     };
     Backbone.View.prototype.assign = function(view, selector) {
       return view.setElement($(selector)).render();
-    };
-    Backbone.sync = function() {
-      Backbone.remoteSync.apply(this, arguments);
-      return Storage.apply(this, arguments);
     };
     App = (function(_super) {
 

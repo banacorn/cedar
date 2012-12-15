@@ -60,7 +60,7 @@
 
       Account.prototype.initialize = function() {
         var _this = this;
-        this.account = new ModelAccount;
+        window.account = this.account = new ModelAccount;
         this.account.authorize();
         this.account.on('change', function() {
           return _this.render();

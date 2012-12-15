@@ -16,12 +16,14 @@
       Model.prototype.url = 'http://itswindtw.info:9001/api/users/sign_in';
 
       Model.prototype.defaults = {
-        'authorized': false
+        'authorized': false,
+        'username': void 0,
+        'password': void 0
       };
 
       Model.prototype.parse = function(data) {
         if (data != null) {
-          data.authorized = true;
+          this.trigger('authorized');
           if (data.user != null) {
             _.extend(data, data.user);
             delete data.user;

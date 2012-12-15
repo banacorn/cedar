@@ -8,10 +8,12 @@ define [
 
         defaults:
             'authorized': false
+            'username': undefined
+            'password': undefined
 
         parse: (data) ->
             if data?
-                data.authorized = true
+                @trigger 'authorized'
                 if data.user?
                     _.extend data, data.user
                     delete data.user

@@ -45,7 +45,7 @@ define [
 
         initialize: ->
 
-            @account = new ModelAccount
+            window.account = @account = new ModelAccount
             @account.authorize()
 
 
