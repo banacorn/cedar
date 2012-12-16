@@ -21,19 +21,13 @@
       Backbone.remoteSync.apply(this, arguments);
       return Storage.apply(this, arguments);
     };
-    Backbone.Collection.prototype.snatch = function(callback) {
-      var cb,
-        _this = this;
-      cb = function() {
-        if (typeof callback === "function") {
-          callback();
-        }
-        return _this.off('reset', cb);
-      };
-      this.on('reset', cb);
+    Backbone.Collection.prototype.snatch = function(callback, params) {
+      if (callback != null) {
+        this.once('reset', callback);
+      }
       return this.fetch({
         silent: true,
-        success: function(collection, res) {
+        success: function(collection, response) {
           var cache, url;
           url = (typeof collection.url === "function" ? collection.url() : void 0) || collection.url;
           cache = localStorage[url];

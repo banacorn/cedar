@@ -25,25 +25,20 @@ require [
         Storage.apply @, arguments
     
 
-    Backbone.Collection::snatch = (callback) ->
+    Backbone.Collection::snatch = (callback, params) ->
 
-        cb = =>
-            callback?()
-            @off 'reset', cb
-    
-        @on 'reset', cb
+        if callback?
+            @once 'reset', callback
 
         @fetch
             silent: true
-            success: (collection, res) ->
+            success: (collection, response) ->
                 # invoke the callback only when data changed
                 url = collection.url?() || collection.url
                 cache = localStorage[url]
 
-
                 if not cache? or not _.isEqual collection.toJSON(), JSON.parse cache
                     collection.trigger 'reset'
-
 
     Backbone.View::assign = (view, selector) ->
         view.setElement($(selector)).render()
