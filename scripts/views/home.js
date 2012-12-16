@@ -16,14 +16,12 @@
       Home.prototype.el = $('#main');
 
       Home.prototype.initialize = function() {
-        this.template = $$.home;
-        return this.listenTo(Backbone, 'authorize', this.render);
+        return this.template = $$.home;
       };
 
       Home.prototype.render = function() {
-        this.$el.html(this.template.render({
-          authorized: Backbone.authorized
-        }));
+        console.log('render home');
+        this.$el.html(this.template.render());
         return this;
       };
 

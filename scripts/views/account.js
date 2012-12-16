@@ -62,8 +62,6 @@
 
       Account.prototype.initialize = function() {
         var _this = this;
-        Backbone.account = new ModelAccount;
-        Backbone.account.authorize();
         this.listenTo(Backbone.account, 'change', this.render);
         this.template = $$.account;
         this.box = new Box({
@@ -116,6 +114,8 @@
       return Account;
 
     })(Backbone.View);
+    Backbone.account = new ModelAccount;
+    Backbone.account.authorize();
     return Account;
   });
 

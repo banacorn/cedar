@@ -16,6 +16,8 @@ require [
     'backbone'
 ], (Router, Storage, ViewAccount, ViewHome, $, _, Backbone) ->
 
+
+
     # sync machanism
     Backbone.remoteSync = Backbone.sync
     Backbone.sync = ->
@@ -54,7 +56,6 @@ require [
             account = new ViewAccount
             @assign account, '#account'
             $('#account').hide().fadeIn(200)
-
 
     
     

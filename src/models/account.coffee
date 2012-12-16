@@ -7,15 +7,11 @@ define [
         url: 'http://itswindtw.info:9001/api/users/sign_in'
 
         initialize: ->
-            Backbone.authorized = false
             @on 'change:authorized', (model, result) ->
                 Backbone.trigger 'authorize', result
-                Backbone.authorized = result
 
         defaults:
             'authorized': false
-            'username': undefined
-            'password': undefined
 
         parse: (data) ->
             if data?
@@ -27,17 +23,20 @@ define [
                     delete data.user
 
             else
-                @set 'authorize', false
+                @set 'authorized', false
             return data
 
-        authorize: ->
-
+        authorize: (callback) ->
 
             @fetch
                 xhrFields: 
                     withCredentials: true
                 error: =>
                     @set 'authorized', false
+            
+            @on 'sync', (model, authorized) ->
+                if callback?
+                    callback authorized
 
         signin: (username, password) ->
             @fetch

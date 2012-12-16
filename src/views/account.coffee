@@ -48,9 +48,6 @@ define [
 
         initialize: ->
 
-            Backbone.account = new ModelAccount
-            Backbone.account.authorize()
-
             @listenTo Backbone.account, 'change', @render
 
             @template = $$.account
@@ -93,8 +90,8 @@ define [
                 @mouseout()
 
 
-
-
-
-
+    Backbone.account = new ModelAccount
+    Backbone.account.authorize()
     return Account
+
+    

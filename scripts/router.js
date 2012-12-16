@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['views/api', 'views/notfound', 'views/project/list', 'views/project', 'views/registration', 'views/settings', 'jquery', 'backbone'], function(ViewApi, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, ViewSettings, $, Backbone) {
+  define(['views/api', 'views/home', 'views/notfound', 'views/project/list', 'views/project', 'views/registration', 'views/settings', 'jquery', 'underscore', 'backbone'], function(ViewApi, ViewHome, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, ViewSettings, $, _, Backbone) {
     var Router;
     return new (Router = (function(_super) {
 
@@ -24,6 +24,12 @@
         '*all': 'otherwise'
       };
 
+      Router.prototype['home'] = function() {
+        var homePage;
+        homePage = new ViewHome;
+        return homePage.render();
+      };
+
       Router.prototype['registration'] = function() {
         var registrationPage;
         registrationPage = new ViewRegistration;
@@ -31,9 +37,16 @@
       };
 
       Router.prototype['settings'] = function() {
-        var settingsPage;
-        settingsPage = new ViewSettings;
-        return settingsPage.render();
+        var _this = this;
+        return Backbone.account.authorize(function(authorized) {
+          var settingsPage;
+          if (authorized) {
+            settingsPage = new ViewSettings;
+            return settingsPage.render();
+          } else {
+            return _this.redirect('home');
+          }
+        });
       };
 
       Router.prototype['project'] = function() {
@@ -63,6 +76,13 @@
         var notFound;
         notFound = new ViewNotfound;
         return notFound.render(path);
+      };
+
+      Router.prototype.redirect = function(page) {
+        var url;
+        url = _.invert(this.routes)[page];
+        this.navigate(url);
+        return typeof this[page] === "function" ? this[page]() : void 0;
       };
 
       return Router;

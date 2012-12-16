@@ -1,13 +1,16 @@
 define [
     'views/api',
+    'views/home',
     'views/notfound',
     'views/project/list',
     'views/project',
     'views/registration',
     'views/settings',
     'jquery',
+    'underscore',
     'backbone'
-], (ViewApi, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, ViewSettings, $, Backbone) ->
+], (ViewApi, ViewHome, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, ViewSettings, $, _, Backbone) ->
+    
     new class Router extends Backbone.Router
         
         routes:
@@ -20,14 +23,22 @@ define [
             'api_reference'                 : 'api'
             '*all'                          : 'otherwise'
 
+        'home': ->
+            homePage = new ViewHome
+            homePage.render()
+            
+
         'registration': ->
             registrationPage = new ViewRegistration
             registrationPage.render()
 
         'settings': ->
-            settingsPage = new ViewSettings
-            settingsPage.render()
-
+            Backbone.account.authorize (authorized) =>
+                if authorized
+                    settingsPage = new ViewSettings
+                    settingsPage.render()
+                else
+                    @redirect 'home'
         'project': ->
             projectList = new ViewProjectList
             projectList.render()
@@ -49,3 +60,8 @@ define [
         'otherwise': (path) ->
             notFound = new ViewNotfound
             notFound.render path
+
+        redirect: (page) ->
+            url = _.invert(@routes)[page]
+            @navigate url
+            @[page]?()

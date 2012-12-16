@@ -13,10 +13,9 @@ define [
 
             @template = $$.home
 
-            @listenTo Backbone, 'authorize', @render
 
         render: ->
-            @$el.html @template.render
-                authorized: Backbone.authorized
-    
+            console.log 'render home'
+
+            @$el.html @template.render()    
             return @
