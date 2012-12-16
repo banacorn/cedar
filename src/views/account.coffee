@@ -73,11 +73,10 @@ define [
             @box = new SignInBox
                 model: @account
 
-            Backbone.on 'authorize', (authorized) =>
-                if authorized
-                    @box.close()
-                else
-                    @box.fail()
+            Backbone.on 'authorized', => @box.close()
+            Backbone.on 'authorization failed', => @box.fail()
+
+
 
         render: ->
             @$el.html @template.render

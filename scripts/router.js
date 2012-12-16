@@ -37,15 +37,16 @@
       };
 
       Router.prototype['settings'] = function() {
-        var _this = this;
-        return Backbone.account.authorize(function(authorized) {
-          var settingsPage;
-          if (authorized) {
-            settingsPage = new ViewSettings;
-            return settingsPage.render();
-          } else {
-            return _this.redirect('home');
-          }
+        var settingsPage,
+          _this = this;
+        if (Backbone.account.get('authorized')) {
+          settingsPage = new ViewSettings;
+          settingsPage.render();
+        } else {
+          this.redirect('home');
+        }
+        return Backbone.on('unauthorized', function() {
+          return _this.redirect('home');
         });
       };
 

@@ -24,24 +24,17 @@ define [
                 @set 'authorized', false
             return data
 
-        authorize: (callback) ->
+        authorize: ->
+            @on 'sync', ->
+                authorized = @get 'authorized'
+                @set 'authorized', authorized
 
-            @snatch => 
-
-                authorized = @.get 'authorized'
-
-                if authorized # success
-                    Backbone.trigger 'authorize', true
-                    @set 'authorized', true
-                else # failed to authorize
-                    Backbone.trigger 'authorize', false
-                    @set 'authorized', false
-            ,
+            @fetch
                 xhrFields: 
                     withCredentials: true
                 error: =>
                     @set 'authorized', false
-            
+
         signin: (username, password) ->
             @fetch
                 data: JSON.stringify
@@ -54,13 +47,14 @@ define [
                     withCredentials: true
                 contentType: 'application/json; charset=utf-8'
                 success: =>
-                    console.log 'success'
                     @set 'authorized', true
-                    Backbone.trigger 'authorize', true
+                    Backbone.trigger 'authorized'
+
 
                 error: =>
                     @set 'authorized', false
-                    Backbone.trigger 'authorize', false
+                    Backbone.trigger 'authorization failed'
+
 
         signout: ->
             @fetch
@@ -71,10 +65,9 @@ define [
                 # contentType: 'application/json; charset=utf-8'
                 success: =>
                     @set 'authorized', false
-                    Backbone.trigger 'authorize', false
+                    Backbone.trigger 'unauthorized'
 
                 error: =>
                     @set 'authorized', false
-                    Backbone.trigger 'authorize', false
 
 

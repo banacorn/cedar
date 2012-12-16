@@ -14,14 +14,8 @@
           model.on('reset', function() {
             return localStorage[url] = JSON.stringify(model.toJSON());
           });
-          model.on('change', function() {
-            return localStorage[url] = JSON.stringify(model.toJSON());
-          });
           if ((typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] : void 0) != null) {
             data = JSON.parse(localStorage[url]);
-            if (model instanceof Backbone.Model) {
-              model.set(data);
-            }
             if (model instanceof Backbone.Collection) {
               return model.reset(data);
             }

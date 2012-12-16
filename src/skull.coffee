@@ -9,33 +9,39 @@ define [
     # sync machanism
     Backbone.remoteSync = Backbone.sync
     Backbone.sync = ->
-        Backbone.remoteSync.apply @, arguments
-        Storage.apply @, arguments
+        Backbone.remoteSync.apply @, arguments  # original
+        Storage.apply @, arguments  # additional (localStorage)
 
 
-    Backbone.Model::snatch = (callback, args) ->
+    # Backbone.Model::snatch = (callback, args) ->
+    #     console.log 'snatch'
 
-        if callback?
-            @once 'change', callback
-            
-        args = {} if not args?
+    #     if callback?
+    #         @once 'sync', callback
 
-
-        parameters = _.extend args, 
-            silent: true
-            success: (model, response) ->
-                # invoke the callback only when data changed
-                url = model.url?() || model.url
-                cache = localStorage[url]
+    #     args = {} if not args?
 
 
+    #     parameters = _.extend args, 
+    #         silent: true
+    #         success: (model, response) ->
 
-                if not cache? or not _.isEqual model.toJSON(), JSON.parse cache
-                    model.trigger 'change'
+    #             console.log 'fetched'
 
+    #             # invoke the callback only when data changed
+    #             url = model.url?() || model.url
+    #             cache = localStorage[url]
 
+    #             if not cache? or not _.isEqual model.toJSON(), JSON.parse cache
+    #                 console.log '========  snatch ================'
+    #                 console.log 'cache', JSON.parse cache
+    #                 console.log 'fetched', model.attributes
+    #                 console.log 'data fetched differs from cache, triggering event '
+    #                 model.trigger 'sync'
+    #             else
+    #                 console.log 'same as cache'
 
-        @fetch parameters
+    #     @fetch parameters
 
 
     Backbone.Collection::snatch = (callback) ->

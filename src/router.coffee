@@ -33,12 +33,16 @@ define [
             registrationPage.render()
 
         'settings': ->
-            Backbone.account.authorize (authorized) =>
-                if authorized
-                    settingsPage = new ViewSettings
-                    settingsPage.render()
-                else
-                    @redirect 'home'
+
+
+            if Backbone.account.get 'authorized'
+                settingsPage = new ViewSettings
+                settingsPage.render()
+            else 
+                @redirect 'home'
+
+            Backbone.on 'unauthorized', => @redirect 'home'
+
         'project': ->
             projectList = new ViewProjectList
             projectList.render()

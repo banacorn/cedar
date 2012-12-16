@@ -34,19 +34,14 @@
         return data;
       };
 
-      Model.prototype.authorize = function(callback) {
+      Model.prototype.authorize = function() {
         var _this = this;
-        return this.snatch(function() {
+        this.on('sync', function() {
           var authorized;
-          authorized = _this.get('authorized');
-          if (authorized) {
-            Backbone.trigger('authorize', true);
-            return _this.set('authorized', true);
-          } else {
-            Backbone.trigger('authorize', false);
-            return _this.set('authorized', false);
-          }
-        }, {
+          authorized = this.get('authorized');
+          return this.set('authorized', authorized);
+        });
+        return this.fetch({
           xhrFields: {
             withCredentials: true
           },
@@ -72,13 +67,12 @@
           },
           contentType: 'application/json; charset=utf-8',
           success: function() {
-            console.log('success');
             _this.set('authorized', true);
-            return Backbone.trigger('authorize', true);
+            return Backbone.trigger('authorized');
           },
           error: function() {
             _this.set('authorized', false);
-            return Backbone.trigger('authorize', false);
+            return Backbone.trigger('authorization failed');
           }
         });
       };
@@ -93,11 +87,10 @@
           },
           success: function() {
             _this.set('authorized', false);
-            return Backbone.trigger('authorize', false);
+            return Backbone.trigger('unauthorized');
           },
           error: function() {
-            _this.set('authorized', false);
-            return Backbone.trigger('authorize', false);
+            return _this.set('authorized', false);
           }
         });
       };

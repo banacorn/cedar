@@ -91,12 +91,11 @@
         this.box = new SignInBox({
           model: this.account
         });
-        return Backbone.on('authorize', function(authorized) {
-          if (authorized) {
-            return _this.box.close();
-          } else {
-            return _this.box.fail();
-          }
+        Backbone.on('authorized', function() {
+          return _this.box.close();
+        });
+        return Backbone.on('authorization failed', function() {
+          return _this.box.fail();
         });
       };
 
