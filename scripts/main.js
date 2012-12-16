@@ -14,32 +14,10 @@
     }
   });
 
-  require(['router', 'storage', 'views/account', 'views/home', 'jquery', 'underscore', 'backbone'], function(Router, Storage, ViewAccount, ViewHome, $, _, Backbone) {
+  require(['router', 'skull', 'views/account', 'views/home', 'jquery', 'backbone'], function(Router, Skull, ViewAccount, ViewHome, $, Backbone) {
+    Skull;
+
     var App;
-    Backbone.remoteSync = Backbone.sync;
-    Backbone.sync = function() {
-      Backbone.remoteSync.apply(this, arguments);
-      return Storage.apply(this, arguments);
-    };
-    Backbone.Collection.prototype.snatch = function(callback, params) {
-      if (callback != null) {
-        this.once('reset', callback);
-      }
-      return this.fetch({
-        silent: true,
-        success: function(collection, response) {
-          var cache, url;
-          url = (typeof collection.url === "function" ? collection.url() : void 0) || collection.url;
-          cache = localStorage[url];
-          if (!(cache != null) || !_.isEqual(collection.toJSON(), JSON.parse(cache))) {
-            return collection.trigger('reset');
-          }
-        }
-      });
-    };
-    Backbone.View.prototype.assign = function(view, selector) {
-      return view.setElement($(selector)).render();
-    };
     App = (function(_super) {
 
       __extends(App, _super);
