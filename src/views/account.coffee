@@ -86,14 +86,15 @@ define [
             return @
 
         events:
-            'click #account-panel'  : 'signin'
-            'click #account-signout': 'signout'
-            'mouseover'             : 'mouseover'
-            'mouseout'              : 'mouseout'
+            'click #account-panel'      : 'signin'
+            'click #account-settings'   : 'close'
+            'click #account-signout'    : 'signout'
+            'mouseover'                 : 'open'
+            'mouseout'                  : 'close'
 
-        mouseover: ->
+        open: ->
             @$el.addClass 'active'
-        mouseout: ->
+        close: ->
             @$el.removeClass 'active'
 
 
@@ -103,10 +104,14 @@ define [
                 $('#main').append('<div id="slot"></div>')
                 @assign @box, '#slot'
 
+            @close()
+
         signout: ->
             if Backbone.account.get 'authorized'
                 Backbone.account.signout()
-                @mouseout()
+            
+            @close()
+
 
 
     Backbone.account = new ModelAccount

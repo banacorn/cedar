@@ -109,31 +109,33 @@
 
       Account.prototype.events = {
         'click #account-panel': 'signin',
+        'click #account-settings': 'close',
         'click #account-signout': 'signout',
-        'mouseover': 'mouseover',
-        'mouseout': 'mouseout'
+        'mouseover': 'open',
+        'mouseout': 'close'
       };
 
-      Account.prototype.mouseover = function() {
+      Account.prototype.open = function() {
         return this.$el.addClass('active');
       };
 
-      Account.prototype.mouseout = function() {
+      Account.prototype.close = function() {
         return this.$el.removeClass('active');
       };
 
       Account.prototype.signin = function() {
         if (!Backbone.account.get('authorized')) {
           $('#main').append('<div id="slot"></div>');
-          return this.assign(this.box, '#slot');
+          this.assign(this.box, '#slot');
         }
+        return this.close();
       };
 
       Account.prototype.signout = function() {
         if (Backbone.account.get('authorized')) {
           Backbone.account.signout();
-          return this.mouseout();
         }
+        return this.close();
       };
 
       return Account;
