@@ -20,7 +20,6 @@
       };
 
       Home.prototype.render = function() {
-        console.log('render home');
         this.$el.html(this.template.render());
         return this;
       };

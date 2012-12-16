@@ -15,7 +15,5 @@ define [
 
 
         render: ->
-            console.log 'render home'
-
             @$el.html @template.render()    
             return @

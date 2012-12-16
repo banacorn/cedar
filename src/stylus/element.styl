@@ -51,15 +51,20 @@ button
     border-radius 5px
     color white
 
+    // background inherit
+    // box-shadow 1px 1px 5px rgba(0, 0, 0, 0.5)
+
+    cursor pointer
+
+
     &:hover
         background lighten($blue, 10%)
 
    
 
-    // background inherit
-    // box-shadow 1px 1px 5px rgba(0, 0, 0, 0.5)
-
-    cursor pointer
+    &.pending
+        background $base
+        cursor wait
 
 span
     &.hint

@@ -15,11 +15,7 @@
 
       Model.prototype.url = 'http://itswindtw.info:9001/api/users/sign_in';
 
-      Model.prototype.initialize = function() {
-        return this.on('change:authorized', function(model, result) {
-          return Backbone.trigger('authorize', result);
-        });
-      };
+      Model.prototype.initialize = function() {};
 
       Model.prototype.defaults = {
         'authorized': false
@@ -40,17 +36,22 @@
 
       Model.prototype.authorize = function(callback) {
         var _this = this;
-        this.fetch({
+        return this.snatch(function() {
+          var authorized;
+          authorized = _this.get('authorized');
+          if (authorized) {
+            Backbone.trigger('authorize', true);
+            return _this.set('authorized', true);
+          } else {
+            Backbone.trigger('authorize', false);
+            return _this.set('authorized', false);
+          }
+        }, {
           xhrFields: {
             withCredentials: true
           },
           error: function() {
             return _this.set('authorized', false);
-          }
-        });
-        return this.on('sync', function(model, authorized) {
-          if (callback != null) {
-            return callback(authorized);
           }
         });
       };
@@ -71,7 +72,13 @@
           },
           contentType: 'application/json; charset=utf-8',
           success: function() {
-            return _this.set('authorized', true);
+            console.log('success');
+            _this.set('authorized', true);
+            return Backbone.trigger('authorize', true);
+          },
+          error: function() {
+            _this.set('authorized', false);
+            return Backbone.trigger('authorize', false);
           }
         });
       };
@@ -85,10 +92,12 @@
             withCredentials: true
           },
           success: function() {
-            return _this.set('authorized', false);
+            _this.set('authorized', false);
+            return Backbone.trigger('authorize', false);
           },
           error: function() {
-            return _this.set('authorized', false);
+            _this.set('authorized', false);
+            return Backbone.trigger('authorize', false);
           }
         });
       };

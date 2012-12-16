@@ -905,6 +905,10 @@ button {
 button:hover {
   background: #41576c;
 }
+button.pending {
+  background: #3c3c3c;
+  cursor: wait;
+}
 span.hint {
   color: #787878;
 }
@@ -977,6 +981,10 @@ button {
 }
 button:hover {
   background: #41576c;
+}
+button.pending {
+  background: #3c3c3c;
+  cursor: wait;
 }
 span.hint {
   color: #787878;
@@ -1217,6 +1225,10 @@ button {
 button:hover {
   background: #41576c;
 }
+button.pending {
+  background: #3c3c3c;
+  cursor: wait;
+}
 span.hint {
   color: #787878;
 }
@@ -1319,6 +1331,10 @@ button {
 }
 button:hover {
   background: #41576c;
+}
+button.pending {
+  background: #3c3c3c;
+  cursor: wait;
 }
 span.hint {
   color: #787878;
@@ -1594,17 +1610,9 @@ h3 {
 #signin-box button {
   width: 400px;
   height: 50px;
-  color: #fff;
-  background: #345;
+  line-height: 40px;
   padding: 5px 10px;
   font-size: 150%;
-  line-height: 40px;
-}
-#signin-box button:hover {
-  background: #41576c;
-}
-#signin-box button:active {
-  background: #345;
 }
 .api {
   font-family: "Lucida Grande", "Lucida Grande Unicode", "Helvetica", sans-serif;

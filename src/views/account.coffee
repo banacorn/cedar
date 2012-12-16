@@ -6,16 +6,20 @@ define [
 ], (ModelAccount, $, Backbone, $$) ->
 
     
-    class Box extends Backbone.View
+    class SignInBox extends Backbone.View
 
         events:
-            'click': 'resume'
+            'click': 'close'
             'click #signin-box': 'click'
             'submit form': 'submit'
+            'focus input': 'focus'
             'click button': 'submit'
+            'keydown': 'keydown'
 
         initialize: ->
             @template = $$.signinbox
+
+            $('input').change -> console.log 'changed!!!'
 
         render: ->
             @$el.html @template.render()
@@ -24,10 +28,14 @@ define [
 
         submit: ->
             Backbone.account.signin $('#signin-username').val(), $('#signin-password').val()
-            
+            $('#signin-button').text('驗證中 ...').addClass('pending')
 
-
-        resume: ->
+        fail: ->
+            $('#signin-username').addClass('invalid').focus()
+            $('#signin-password').addClass('invalid')
+            $('#signin-button').text('帳號密碼錯誤').removeClass('pending')
+        
+        close: ->
             @remove()
 
         click: -> false
@@ -41,6 +49,16 @@ define [
 
 
             return @
+
+        focus: (event) -> 
+            setTimeout ->
+                event.target.select()
+            , 0
+
+        keydown: (event) ->
+            if event.keyCode is 27 # ESC
+                @close()
+
         
 
 
@@ -52,12 +70,14 @@ define [
 
             @template = $$.account
             
-            @box = new Box
+            @box = new SignInBox
                 model: @account
 
-            Backbone.account.on 'change:success', (model, success) =>
-                if success
-                    @box.resume()
+            Backbone.on 'authorize', (authorized) =>
+                if authorized
+                    @box.close()
+                else
+                    @box.fail()
 
         render: ->
             @$el.html @template.render
@@ -92,6 +112,7 @@ define [
 
     Backbone.account = new ModelAccount
     Backbone.account.authorize()
+
     return Account
 
     

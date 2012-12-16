@@ -7,6 +7,27 @@
       Backbone.remoteSync.apply(this, arguments);
       return Storage.apply(this, arguments);
     };
+    Backbone.Model.prototype.snatch = function(callback, args) {
+      var parameters;
+      if (callback != null) {
+        this.once('change', callback);
+      }
+      if (!(args != null)) {
+        args = {};
+      }
+      parameters = _.extend(args, {
+        silent: true,
+        success: function(model, response) {
+          var cache, url;
+          url = (typeof model.url === "function" ? model.url() : void 0) || model.url;
+          cache = localStorage[url];
+          if (!(cache != null) || !_.isEqual(model.toJSON(), JSON.parse(cache))) {
+            return model.trigger('change');
+          }
+        }
+      });
+      return this.fetch(parameters);
+    };
     Backbone.Collection.prototype.snatch = function(callback) {
       if (callback != null) {
         this.once('reset', callback);

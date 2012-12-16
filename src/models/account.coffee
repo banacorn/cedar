@@ -7,8 +7,6 @@ define [
         url: 'http://itswindtw.info:9001/api/users/sign_in'
 
         initialize: ->
-            @on 'change:authorized', (model, result) ->
-                Backbone.trigger 'authorize', result
 
         defaults:
             'authorized': false
@@ -28,16 +26,22 @@ define [
 
         authorize: (callback) ->
 
-            @fetch
+            @snatch => 
+
+                authorized = @.get 'authorized'
+
+                if authorized # success
+                    Backbone.trigger 'authorize', true
+                    @set 'authorized', true
+                else # failed to authorize
+                    Backbone.trigger 'authorize', false
+                    @set 'authorized', false
+            ,
                 xhrFields: 
                     withCredentials: true
                 error: =>
                     @set 'authorized', false
             
-            @on 'sync', (model, authorized) ->
-                if callback?
-                    callback authorized
-
         signin: (username, password) ->
             @fetch
                 data: JSON.stringify
@@ -50,7 +54,13 @@ define [
                     withCredentials: true
                 contentType: 'application/json; charset=utf-8'
                 success: =>
+                    console.log 'success'
                     @set 'authorized', true
+                    Backbone.trigger 'authorize', true
+
+                error: =>
+                    @set 'authorized', false
+                    Backbone.trigger 'authorize', false
 
         signout: ->
             @fetch
@@ -61,6 +71,10 @@ define [
                 # contentType: 'application/json; charset=utf-8'
                 success: =>
                     @set 'authorized', false
+                    Backbone.trigger 'authorize', false
+
                 error: =>
                     @set 'authorized', false
+                    Backbone.trigger 'authorize', false
+
 

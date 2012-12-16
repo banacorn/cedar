@@ -13,13 +13,29 @@ define [
         Storage.apply @, arguments
 
 
-    # Backbone.Model::snatch = (callback, args) ->
+    Backbone.Model::snatch = (callback, args) ->
 
-    #     if callback?
-    #         @once 'reset', callback
+        if callback?
+            @once 'change', callback
+            
+        args = {} if not args?
 
-    #     if args?
-    #         console.log params
+
+        parameters = _.extend args, 
+            silent: true
+            success: (model, response) ->
+                # invoke the callback only when data changed
+                url = model.url?() || model.url
+                cache = localStorage[url]
+
+
+
+                if not cache? or not _.isEqual model.toJSON(), JSON.parse cache
+                    model.trigger 'change'
+
+
+
+        @fetch parameters
 
 
     Backbone.Collection::snatch = (callback) ->

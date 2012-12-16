@@ -4,44 +4,56 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['models/account', 'jquery', 'backbone', 'template'], function(ModelAccount, $, Backbone, $$) {
-    var Account, Box;
-    Box = (function(_super) {
+    var Account, SignInBox;
+    SignInBox = (function(_super) {
 
-      __extends(Box, _super);
+      __extends(SignInBox, _super);
 
-      function Box() {
-        return Box.__super__.constructor.apply(this, arguments);
+      function SignInBox() {
+        return SignInBox.__super__.constructor.apply(this, arguments);
       }
 
-      Box.prototype.events = {
-        'click': 'resume',
+      SignInBox.prototype.events = {
+        'click': 'close',
         'click #signin-box': 'click',
         'submit form': 'submit',
-        'click button': 'submit'
+        'focus input': 'focus',
+        'click button': 'submit',
+        'keydown': 'keydown'
       };
 
-      Box.prototype.initialize = function() {
-        return this.template = $$.signinbox;
+      SignInBox.prototype.initialize = function() {
+        this.template = $$.signinbox;
+        return $('input').change(function() {
+          return console.log('changed!!!');
+        });
       };
 
-      Box.prototype.render = function() {
+      SignInBox.prototype.render = function() {
         this.$el.html(this.template.render());
         return this;
       };
 
-      Box.prototype.submit = function() {
-        return Backbone.account.signin($('#signin-username').val(), $('#signin-password').val());
+      SignInBox.prototype.submit = function() {
+        Backbone.account.signin($('#signin-username').val(), $('#signin-password').val());
+        return $('#signin-button').text('驗證中 ...').addClass('pending');
       };
 
-      Box.prototype.resume = function() {
+      SignInBox.prototype.fail = function() {
+        $('#signin-username').addClass('invalid').focus();
+        $('#signin-password').addClass('invalid');
+        return $('#signin-button').text('帳號密碼錯誤').removeClass('pending');
+      };
+
+      SignInBox.prototype.close = function() {
         return this.remove();
       };
 
-      Box.prototype.click = function() {
+      SignInBox.prototype.click = function() {
         return false;
       };
 
-      Box.prototype.render = function() {
+      SignInBox.prototype.render = function() {
         this.$el.html(this.template.render()).hide().fadeIn(200);
         setTimeout(function() {
           return $('#signin-username').focus();
@@ -49,7 +61,19 @@
         return this;
       };
 
-      return Box;
+      SignInBox.prototype.focus = function(event) {
+        return setTimeout(function() {
+          return event.target.select();
+        }, 0);
+      };
+
+      SignInBox.prototype.keydown = function(event) {
+        if (event.keyCode === 27) {
+          return this.close();
+        }
+      };
+
+      return SignInBox;
 
     })(Backbone.View);
     Account = (function(_super) {
@@ -64,12 +88,14 @@
         var _this = this;
         this.listenTo(Backbone.account, 'change', this.render);
         this.template = $$.account;
-        this.box = new Box({
+        this.box = new SignInBox({
           model: this.account
         });
-        return Backbone.account.on('change:success', function(model, success) {
-          if (success) {
-            return _this.box.resume();
+        return Backbone.on('authorize', function(authorized) {
+          if (authorized) {
+            return _this.box.close();
+          } else {
+            return _this.box.fail();
           }
         });
       };
