@@ -1,41 +1,71 @@
 @import "element"
 @import "param"
 
-#settings
-    form
+.asidenav
 
-        margin 20px
+    .asidenav-nav
+        width 160px
+        float left
+
+        margin-top 40px
 
         li
-            height 60px
-            line-height 60px
-
-        label
-            width 80px
-            height 60px
-            line-height 60px
-            display inline-block
-            float left
-            text-align right
-            padding 0 10px
-
-        button
-            width 210px
             height 40px
             line-height 40px
-            margin 10px 
-            font-size 120%
+            text-align right
+
+            padding 0 20px
+
+            cursor pointer
+
+            &.active
+                background $blue
+                color white
+            &:hover
+                background $bluel
+                color white
+
+    .asidenav-main
+        width 800px
+        float left
+
+        background white
+
+    #settings
+        form
+
+            margin 20px
+
+            li
+                height 60px
+                line-height 60px
+
+            label
+                width 80px
+                height 60px
+                line-height 60px
+                display inline-block
+                float left
+                text-align right
+                padding 0 10px
+
+            button
+                width 210px
+                height 40px
+                line-height 40px
+                margin 10px 
+                font-size 120%
 
 
-        input
-            
-            height 30px
-            line-height 30px
+            input
+                
+                height 30px
+                line-height 30px
 
-            margin 10px
+                margin 10px
 
-            float left
-            width 200px
+                float left
+                width 200px
 
 
 

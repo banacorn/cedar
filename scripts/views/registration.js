@@ -36,12 +36,10 @@
         var _this = this;
         this.resetError();
         this.model = new ModelRegistration({
-          user: {
-            username: $('#username').val(),
-            email: $('#email').val(),
-            password: $('#password').val(),
-            passwordConfirmation: $('#password-confirmation').val()
-          }
+          username: $('#username').val(),
+          email: $('#email').val(),
+          password: $('#password').val(),
+          passwordConfirmation: $('#password-confirmation').val()
         });
         this.model.on('error', function(model, error) {
           switch (error) {

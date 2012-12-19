@@ -1,7 +1,6 @@
 define [
-    'underscore',
     'backbone'
-], (_, Backbone) ->
+], (Backbone) ->
     
     class Model extends Backbone.Model
         url: 'http://itswindtw.info:9001/api/users/sign_in'
@@ -9,25 +8,33 @@ define [
         initialize: ->
 
         defaults:
-            'authorized': false
+            'authorized': undefined
 
         parse: (data) ->
+            console.log data
             if data?
                 @set 'authorized', true
-
-
-                if data.user?
-                    _.extend data, data.user
-                    delete data.user
-
             else
                 @set 'authorized', false
             return data
 
-        authorize: ->
+        authorize: (callback) ->
+
+            if callback?
+                authorized = Backbone.account.get 'authorized'
+
+                if authorized?
+                    callback authorized
+                else
+                    console.log 'undecided'
+                    Backbone.once 'authorized', -> callback true
+                    Backbone.once 'unauthorized', -> callback false
+
+
             @on 'sync', ->
                 authorized = @get 'authorized'
                 @set 'authorized', authorized
+                Backbone.trigger 'authorized'
 
             @fetch
                 xhrFields: 
@@ -38,15 +45,15 @@ define [
         signin: (username, password) ->
             @fetch
                 data: JSON.stringify
-                    user:
-                        login: username
-                        password: password
-                        remember_me: 0
+                    login: username
+                    password: password
+                    remember_me: 0
                 type: 'POST'
                 xhrFields: 
                     withCredentials: true
                 contentType: 'application/json; charset=utf-8'
                 success: =>
+                    console.log arguments
                     @set 'authorized', true
                     Backbone.trigger 'authorized'
 

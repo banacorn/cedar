@@ -37,11 +37,10 @@ define [
             @resetError()
 
             @model = new ModelRegistration
-                user:
-                    username: $('#username').val()
-                    email: $('#email').val()
-                    password: $('#password').val()
-                    passwordConfirmation: $('#password-confirmation').val()
+                username: $('#username').val()
+                email: $('#email').val()
+                password: $('#password').val()
+                passwordConfirmation: $('#password-confirmation').val()
 
             @model.on 'error', (model, error) =>
                 switch error

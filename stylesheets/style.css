@@ -867,7 +867,7 @@ html {
   height: 100%;
 }
 body {
-  color: #282828;
+  color: #383838;
   background: url("/images/light_noise_diagonal.png");
   font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
   height: 100%;
@@ -929,8 +929,10 @@ h2 {
   font-size: 200%;
   font-weight: bold;
   color: #345;
-  margin: 40px 0;
-  padding: 0 20px;
+  line-height: 2em;
+  height: 2em;
+  margin: 20px 0;
+  padding: 0 40px;
 }
 h3 {
   font-size: 150%;
@@ -944,7 +946,7 @@ html {
   height: 100%;
 }
 body {
-  color: #282828;
+  color: #383838;
   background: url("/images/light_noise_diagonal.png");
   font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
   height: 100%;
@@ -1006,8 +1008,10 @@ h2 {
   font-size: 200%;
   font-weight: bold;
   color: #345;
-  margin: 40px 0;
-  padding: 0 20px;
+  line-height: 2em;
+  height: 2em;
+  margin: 20px 0;
+  padding: 0 40px;
 }
 h3 {
   font-size: 150%;
@@ -1187,7 +1191,7 @@ html {
   height: 100%;
 }
 body {
-  color: #282828;
+  color: #383838;
   background: url("/images/light_noise_diagonal.png");
   font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
   height: 100%;
@@ -1249,8 +1253,10 @@ h2 {
   font-size: 200%;
   font-weight: bold;
   color: #345;
-  margin: 40px 0;
-  padding: 0 20px;
+  line-height: 2em;
+  height: 2em;
+  margin: 20px 0;
+  padding: 0 40px;
 }
 h3 {
   font-size: 150%;
@@ -1294,7 +1300,7 @@ html {
   height: 100%;
 }
 body {
-  color: #282828;
+  color: #383838;
   background: url("/images/light_noise_diagonal.png");
   font-family: "Droid Sans", Helvetica, "LiHei Pro", "微軟正黑體", Arial, sans-serif;
   height: 100%;
@@ -1356,8 +1362,10 @@ h2 {
   font-size: 200%;
   font-weight: bold;
   color: #345;
-  margin: 40px 0;
-  padding: 0 20px;
+  line-height: 2em;
+  height: 2em;
+  margin: 20px 0;
+  padding: 0 40px;
 }
 h3 {
   font-size: 150%;
@@ -1366,14 +1374,39 @@ h3 {
   margin: 20px 0;
   padding: 0 20px;
 }
-#settings form {
+.asidenav .asidenav-nav {
+  width: 160px;
+  float: left;
+  margin-top: 40px;
+}
+.asidenav .asidenav-nav li {
+  height: 40px;
+  line-height: 40px;
+  text-align: right;
+  padding: 0 20px;
+  cursor: pointer;
+}
+.asidenav .asidenav-nav li.active {
+  background: #345;
+  color: #fff;
+}
+.asidenav .asidenav-nav li:hover {
+  background: #41576c;
+  color: #fff;
+}
+.asidenav .asidenav-main {
+  width: 800px;
+  float: left;
+  background: #fff;
+}
+.asidenav #settings form {
   margin: 20px;
 }
-#settings form li {
+.asidenav #settings form li {
   height: 60px;
   line-height: 60px;
 }
-#settings form label {
+.asidenav #settings form label {
   width: 80px;
   height: 60px;
   line-height: 60px;
@@ -1382,14 +1415,14 @@ h3 {
   text-align: right;
   padding: 0 10px;
 }
-#settings form button {
+.asidenav #settings form button {
   width: 210px;
   height: 40px;
   line-height: 40px;
   margin: 10px;
   font-size: 120%;
 }
-#settings form input {
+.asidenav #settings form input {
   height: 30px;
   line-height: 30px;
   margin: 10px;
@@ -1550,7 +1583,7 @@ h3 {
   background: #293644;
 }
 #account-menu {
-  float: left;
+  position: fixed;
   display: none;
   margin-top: -1px;
 }

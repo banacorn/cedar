@@ -34,12 +34,13 @@ define [
 
         'settings': ->
 
-
-            if Backbone.account.get 'authorized'
-                settingsPage = new ViewSettings
-                settingsPage.render()
-            else 
-                @redirect 'home'
+            Backbone.account.authorize (authorized) =>
+                console.log authorized
+                if authorized
+                    settingsPage = new ViewSettings
+                    settingsPage.render()
+                else 
+                    @redirect 'home'
 
             Backbone.on 'unauthorized', => @redirect 'home'
 

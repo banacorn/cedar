@@ -15,12 +15,12 @@
 
       Home.prototype.el = $('#main');
 
-      Home.prototype.initialize = function() {
-        return this.template = $$.settings;
-      };
+      Home.prototype.initialize = function() {};
 
       Home.prototype.render = function() {
-        this.$el.html(this.template.render());
+        var content;
+        content = $$.settings;
+        this.$el.html(content.render());
         return this;
       };
 

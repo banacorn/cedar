@@ -8,15 +8,12 @@ define [
         url: 'http://itswindtw.info:9001/api/users'
 
         defaults:
-            user:
-                username: undefined
-                email: undefined
-                password: undefined
-                passwordConfirmation: 'fuck you'
+            username: undefined
+            email: undefined
+            password: undefined
+            passwordConfirmation: 'fuck you'
 
-        validate: (attr) ->
-
-            user = attr.user
+        validate: (user) ->
 
             if user.username.length < 3
                 return "username too short"

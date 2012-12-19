@@ -16,17 +16,13 @@
       Model.prototype.url = 'http://itswindtw.info:9001/api/users';
 
       Model.prototype.defaults = {
-        user: {
-          username: void 0,
-          email: void 0,
-          password: void 0,
-          passwordConfirmation: 'fuck you'
-        }
+        username: void 0,
+        email: void 0,
+        password: void 0,
+        passwordConfirmation: 'fuck you'
       };
 
-      Model.prototype.validate = function(attr) {
-        var user;
-        user = attr.user;
+      Model.prototype.validate = function(user) {
         if (user.username.length < 3) {
           return "username too short";
         }

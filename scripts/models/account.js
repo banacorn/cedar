@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['underscore', 'backbone'], function(_, Backbone) {
+  define(['backbone'], function(Backbone) {
     var Model;
     return Model = (function(_super) {
 
@@ -18,28 +18,40 @@
       Model.prototype.initialize = function() {};
 
       Model.prototype.defaults = {
-        'authorized': false
+        'authorized': void 0
       };
 
       Model.prototype.parse = function(data) {
+        console.log(data);
         if (data != null) {
           this.set('authorized', true);
-          if (data.user != null) {
-            _.extend(data, data.user);
-            delete data.user;
-          }
         } else {
           this.set('authorized', false);
         }
         return data;
       };
 
-      Model.prototype.authorize = function() {
-        var _this = this;
+      Model.prototype.authorize = function(callback) {
+        var authorized,
+          _this = this;
+        if (callback != null) {
+          authorized = Backbone.account.get('authorized');
+          if (authorized != null) {
+            callback(authorized);
+          } else {
+            console.log('undecided');
+            Backbone.once('authorized', function() {
+              return callback(true);
+            });
+            Backbone.once('unauthorized', function() {
+              return callback(false);
+            });
+          }
+        }
         this.on('sync', function() {
-          var authorized;
           authorized = this.get('authorized');
-          return this.set('authorized', authorized);
+          this.set('authorized', authorized);
+          return Backbone.trigger('authorized');
         });
         return this.fetch({
           xhrFields: {
@@ -55,11 +67,9 @@
         var _this = this;
         return this.fetch({
           data: JSON.stringify({
-            user: {
-              login: username,
-              password: password,
-              remember_me: 0
-            }
+            login: username,
+            password: password,
+            remember_me: 0
           }),
           type: 'POST',
           xhrFields: {
@@ -67,6 +77,7 @@
           },
           contentType: 'application/json; charset=utf-8',
           success: function() {
+            console.log(arguments);
             _this.set('authorized', true);
             return Backbone.trigger('authorized');
           },

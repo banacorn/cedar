@@ -11,11 +11,11 @@ define [
         
         initialize: ->        
 
-            @template = $$.settings
-
             
     
         render: ->
-            @$el.html @template.render()
-    
+
+            content = $$.settings
+            @$el.html content.render()
+
             return @
