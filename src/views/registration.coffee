@@ -47,6 +47,7 @@ define [
                     when 'password confirmation mismatched' then @errorPasswordMismatched()
                     when 'password too short' then @errorPasswordTooShort()
                     when 'username too short' then @errorUsernameTooShort()
+                    when 'username too long' then @errorUsernameTooLong()
                     when 'username taken' then @errorUsernameTaken()
                     when 'email taken' then @errorEmailTaken()
 
@@ -75,6 +76,9 @@ define [
 
         errorUsernameTooShort: ->
             $('#username').addClass('invalid').next().text('帳號需長於三個字')
+
+        errorUsernameTooLong: ->
+            $('#username').addClass('invalid').next().text('帳號需短於二十個字')
 
         errorUsernameTaken: ->
             $('#username').addClass('invalid').next().text('帳號名稱已被使用')

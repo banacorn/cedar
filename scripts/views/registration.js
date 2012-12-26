@@ -49,6 +49,8 @@
               return _this.errorPasswordTooShort();
             case 'username too short':
               return _this.errorUsernameTooShort();
+            case 'username too long':
+              return _this.errorUsernameTooLong();
             case 'username taken':
               return _this.errorUsernameTaken();
             case 'email taken':
@@ -80,6 +82,10 @@
 
       View.prototype.errorUsernameTooShort = function() {
         return $('#username').addClass('invalid').next().text('帳號需長於三個字');
+      };
+
+      View.prototype.errorUsernameTooLong = function() {
+        return $('#username').addClass('invalid').next().text('帳號需短於二十個字');
       };
 
       View.prototype.errorUsernameTaken = function() {
