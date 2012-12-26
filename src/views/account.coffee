@@ -12,7 +12,7 @@ define [
             'click': 'close'
             'click #signin-box': 'click'
             'submit form': 'submit'
-            'focus input': 'focus'
+            'focus input': 'select'
             'click button': 'submit'
             'keydown': 'keydown'
 
@@ -50,7 +50,7 @@ define [
 
             return @
 
-        focus: (event) -> 
+        select: (event) -> 
             setTimeout ->
                 event.target.select()
             , 0

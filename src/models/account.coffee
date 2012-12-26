@@ -11,7 +11,6 @@ define [
             'authorized': undefined
 
         parse: (data) ->
-            console.log data
             if data?
                 @set 'authorized', true
             else
@@ -26,7 +25,6 @@ define [
                 if authorized?
                     callback authorized
                 else
-                    console.log 'undecided'
                     Backbone.once 'authorized', -> callback true
                     Backbone.once 'unauthorized', -> callback false
 

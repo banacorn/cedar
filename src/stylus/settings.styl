@@ -3,11 +3,19 @@
 
 .asidenav
 
+    width 960px
+    height 100%
+
+    overflow hidden
+
     .asidenav-nav
         width 160px
+        height 100%
         float left
 
-        margin-top 40px
+        padding-top 40px
+
+        background rgba(255, 255, 255, 0.7)
 
         li
             height 40px
@@ -18,11 +26,11 @@
 
             cursor pointer
 
+            &:hover
+                // background $bluel
+                color $blue
             &.active
                 background $blue
-                color white
-            &:hover
-                background $bluel
                 color white
 
     .asidenav-main
@@ -30,6 +38,7 @@
         float left
 
         background white
+
 
     #settings
         form

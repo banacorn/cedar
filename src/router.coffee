@@ -35,7 +35,6 @@ define [
         'settings': ->
 
             Backbone.account.authorize (authorized) =>
-                console.log authorized
                 if authorized
                     settingsPage = new ViewSettings
                     settingsPage.render()

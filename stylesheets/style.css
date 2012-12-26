@@ -1033,14 +1033,20 @@ h3 {
 #project-header:after {
   clear: both;
 }
-#project-header h2 {
+#project-header #project-info {
+  width: 860px;
+  height: 80px;
+  line-height: 80px;
+  float: left;
+}
+#project-header #project-info h2 {
   float: left;
   font-size: 200%;
   margin: 0;
   line-height: 80px;
   text-shadow: #fff 2px 2px 2px;
 }
-#project-header .sub {
+#project-header #project-info .sub {
   float: left;
   height: 80px;
   margin: 0;
@@ -1048,6 +1054,16 @@ h3 {
   color: #3c3c3c;
   font-size: 125%;
   line-height: 90px;
+}
+#project-header #project-translate {
+  height: 80px;
+  line-height: 80px;
+  width: 100px;
+  float: left;
+}
+#project-header #project-translate button {
+  font-size: 100%;
+  padding: 10px 15px;
 }
 #project-breadcrumb {
   height: 40px;
@@ -1374,10 +1390,17 @@ h3 {
   margin: 20px 0;
   padding: 0 20px;
 }
+.asidenav {
+  width: 960px;
+  height: 100%;
+  overflow: hidden;
+}
 .asidenav .asidenav-nav {
   width: 160px;
+  height: 100%;
   float: left;
-  margin-top: 40px;
+  padding-top: 40px;
+  background: rgba(255,255,255,0.7);
 }
 .asidenav .asidenav-nav li {
   height: 40px;
@@ -1386,12 +1409,11 @@ h3 {
   padding: 0 20px;
   cursor: pointer;
 }
+.asidenav .asidenav-nav li:hover {
+  color: #345;
+}
 .asidenav .asidenav-nav li.active {
   background: #345;
-  color: #fff;
-}
-.asidenav .asidenav-nav li:hover {
-  background: #41576c;
   color: #fff;
 }
 .asidenav .asidenav-main {
@@ -1463,10 +1485,12 @@ h3 {
   font-family: "Hammersmith One";
 }
 #main-container {
+  height: 100%;
   margin: 0 auto;
   padding-bottom: 60px;
 }
 #main {
+  height: 100%;
   width: 960px;
   margin: 0 auto;
 }

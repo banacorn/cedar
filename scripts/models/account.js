@@ -22,7 +22,6 @@
       };
 
       Model.prototype.parse = function(data) {
-        console.log(data);
         if (data != null) {
           this.set('authorized', true);
         } else {
@@ -39,7 +38,6 @@
           if (authorized != null) {
             callback(authorized);
           } else {
-            console.log('undecided');
             Backbone.once('authorized', function() {
               return callback(true);
             });

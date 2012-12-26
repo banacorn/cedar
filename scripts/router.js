@@ -40,7 +40,6 @@
         var _this = this;
         Backbone.account.authorize(function(authorized) {
           var settingsPage;
-          console.log(authorized);
           if (authorized) {
             settingsPage = new ViewSettings;
             return settingsPage.render();

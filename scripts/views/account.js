@@ -17,7 +17,7 @@
         'click': 'close',
         'click #signin-box': 'click',
         'submit form': 'submit',
-        'focus input': 'focus',
+        'focus input': 'select',
         'click button': 'submit',
         'keydown': 'keydown'
       };
@@ -61,7 +61,7 @@
         return this;
       };
 
-      SignInBox.prototype.focus = function(event) {
+      SignInBox.prototype.select = function(event) {
         return setTimeout(function() {
           return event.target.select();
         }, 0);
