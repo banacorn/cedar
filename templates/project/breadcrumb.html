@@ -1,12 +1,14 @@
 <ol>
-    <li>
-        <a href="#project/{{projectName}}/file/{{filepath}}">
+    <a href="#project/{{projectName}}/file/{{filepath}}">
+        <li>
             <i class="icon-book"></i>
-        </a>
-    </li>
+        </li>
+    </a>
     {{#crumbs}}
-    <li>
-        <a href="#project/{{projectName}}/file/{{segment}}">{{pathname}}</a>
-    </li>        
+    <a href="#project/{{projectName}}/file/{{segment}}">
+        <li>
+        {{pathname}}
+        </li>        
+    </a>
     {{/crumbs}}
 </ol>

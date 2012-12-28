@@ -1021,17 +1021,7 @@ h3 {
   padding: 0 20px;
 }
 #project-header {
-  width: 100%;
   height: 80px;
-  zoom: 1;
-}
-#project-header:before,
-#project-header:after {
-  content: "";
-  display: table;
-}
-#project-header:after {
-  clear: both;
 }
 #project-header #project-info {
   width: 860px;
@@ -1066,24 +1056,101 @@ h3 {
   padding: 10px 15px;
 }
 #project-breadcrumb {
+  width: 960px;
   height: 40px;
   background: #345;
   color: #fff;
+  overflow: hidden;
 }
 #project-breadcrumb ol {
-  padding-left: 20px;
+  width: 969px;
+  height: 40px;
 }
-#project-breadcrumb li {
+#project-breadcrumb a {
+  display: block;
   float: left;
   height: 40px;
   line-height: 40px;
-  padding: 0 10px;
+  padding: 0 10px 0 25px;
+  background: #345;
+  position: relative;
+  border-left: 4px solid #fff;
 }
-#project-breadcrumb li i {
+#project-breadcrumb a:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 10px solid #345;
+  position: absolute;
+  margin-top: -40px;
+  left: 100%;
+  z-index: 2;
+}
+#project-breadcrumb a:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 10px solid #fff;
+  position: absolute;
+  left: 0%;
+  z-index: 1;
+}
+#project-breadcrumb a:hover {
+  background: #41576c;
+}
+#project-breadcrumb a:hover:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 10px solid #41576c;
+  position: absolute;
+  margin-top: -40px;
+  left: 100%;
+  z-index: 2;
+}
+#project-breadcrumb a:last-of-type:hover {
+  background: #345;
+}
+#project-breadcrumb a:last-of-type:hover:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 10px solid #345;
+  position: absolute;
+  margin-top: -40px;
+  left: 100%;
+  z-index: 2;
+}
+#project-breadcrumb a:first-of-type {
+  padding-left: 10px;
+  border-left: 0px solid #345;
+}
+#project-breadcrumb a:first-of-type:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-bottom: 0px solid transparent;
+  border-left: 0px solid #345;
+  position: absolute;
+  left: 0%;
+  z-index: 1;
+}
+#project-breadcrumb a i {
   width: 20px;
-}
-#project-breadcrumb li:after {
-  content: "/";
 }
 .project-item {
   margin: 10px 0;
