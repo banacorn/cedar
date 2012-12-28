@@ -17,10 +17,6 @@
         expand: false
       };
 
-      Entry.prototype.toggle = function() {
-        return this.set('expand', !this.get('expand'));
-      };
-
       return Entry;
 
     })(Backbone.Model);

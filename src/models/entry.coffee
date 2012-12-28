@@ -5,5 +5,5 @@ define [
     class Entry extends Backbone.Model
         defaults:
             expand: false
-        toggle: ->
-            @set 'expand', not @get('expand')
+        # toggle: ->
+            # @set 'expand', not @get('expand')

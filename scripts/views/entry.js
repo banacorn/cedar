@@ -13,43 +13,17 @@
         return EntryView.__super__.constructor.apply(this, arguments);
       }
 
-      EntryView.prototype.events = {
-        'click .entry-chevron': 'toggle'
-      };
-
       EntryView.prototype.initialize = function() {
-        var _this = this;
         this.template = $$.entry;
-        this.status = new ModelEntry;
-        return this.status.on('change:expand', function(model, expanded) {
-          if (expanded) {
-            return _this.$el.addClass('expand');
-          } else {
-            return _this.$el.removeClass('expand');
-          }
-        });
-      };
-
-      EntryView.prototype.toggle = function() {
-        console.log(this.model.toJSON());
-        return this.status.toggle();
+        return this.status = new ModelEntry;
       };
 
       EntryView.prototype.render = function() {
-        var model, _ref, _ref1, _ref2, _ref3, _ref4;
+        var model;
         model = this.model.toJSON();
         return this.$el.html(this.template.render({
           translation: model.translation,
-          context: model.context,
-          id: model.id,
-          flag: (_ref = model.flag) != null ? _ref.toString() : void 0,
-          msgctxt: (_ref1 = model.msgctxt) != null ? _ref1.toString() : void 0,
-          msgid: (_ref2 = model.msgid) != null ? _ref2.toString() : void 0,
-          msgid_plural: (_ref3 = model.msgid_plural) != null ? _ref3.toString() : void 0,
-          msgstr: (_ref4 = model.msgstr) != null ? _ref4.toString() : void 0,
-          created_at: model.created_at,
-          updated_at: model.updated_at,
-          extracted_comments: model.extracted_comments
+          context: model.context
         }));
       };
 
