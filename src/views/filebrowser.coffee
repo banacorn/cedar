@@ -20,22 +20,20 @@ define [
             @collection.on 'reset', => @render()
             @view = 
                 Entries: ViewEntry
+
+
         render: ->
 
-            @template = $$.filebrowser
+            template = $$.filebrowser
 
             isFile = @collection.node()?.folder is false
-            @$el.html @template.render
-                isFile: isFile
-                files: @collection.children()
-                root: @collection.root()
-                projectName: @collection.name
-
+            
             projectID = @collection.id
             fileID = @collection.node()
 
 
             if isFile
+
                 # get project-locale id
                 locales = new CollectionLocale
                 locales.id = projectID
@@ -59,6 +57,14 @@ define [
                         @assign entriesView, '#project-file'
 
                         entries.snatch()
+
+            else # is folder
+
+                @$el.html template.render
+                    isFile: isFile
+                    files: @collection.children()
+                    root: @collection.root()
+                    projectName: @collection.name
 
 
             return @

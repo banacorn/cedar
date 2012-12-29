@@ -26,16 +26,10 @@
       };
 
       ProjectBreadcrumb.prototype.render = function() {
-        var fileID, isFile, locales, projectID, _ref,
+        var fileID, isFile, locales, projectID, template, _ref,
           _this = this;
-        this.template = $$.filebrowser;
+        template = $$.filebrowser;
         isFile = ((_ref = this.collection.node()) != null ? _ref.folder : void 0) === false;
-        this.$el.html(this.template.render({
-          isFile: isFile,
-          files: this.collection.children(),
-          root: this.collection.root(),
-          projectName: this.collection.name
-        }));
         projectID = this.collection.id;
         fileID = this.collection.node();
         if (isFile) {
@@ -63,6 +57,13 @@
               return entries.snatch();
             });
           });
+        } else {
+          this.$el.html(template.render({
+            isFile: isFile,
+            files: this.collection.children(),
+            root: this.collection.root(),
+            projectName: this.collection.name
+          }));
         }
         return this;
       };
