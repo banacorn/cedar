@@ -22,8 +22,10 @@
         var model;
         model = this.model.toJSON();
         return this.$el.html(this.template.render({
+          urn: Backbone.history.fragment,
           translation: model.translation,
-          context: model.context
+          context: model.context,
+          id: model.id
         }));
       };
 

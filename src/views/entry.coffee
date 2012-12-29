@@ -27,9 +27,10 @@ define [
         render: ->
             model = @model.toJSON()
             @$el.html @template.render
+                urn: Backbone.history.fragment
                 translation: model.translation
                 context: model.context
-                # id: model.id
+                id: model.id
                 # flag: model.flag?.toString()
                 # msgctxt:  model.msgctxt?.toString()
                 # msgid: model.msgid?.toString()

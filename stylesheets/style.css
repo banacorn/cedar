@@ -1182,32 +1182,32 @@ h3 {
 #project-file {
   background: #fff;
 }
-#project-file > ol > li {
+#project-file > ol > li > a {
+  display: block;
   background: #f8f8f8;
-  line-height: 60px;
-  padding: 0 20px;
   color: #3c3c3c;
   font-size: 150%;
   overflow: hidden;
+  line-height: 60px;
+  padding: 0 20px;
 }
-#project-file > ol > li a {
-  display: block;
-}
-#project-file > ol > li:hover {
+#project-file > ol > li > a:hover {
   background: #fff;
 }
 #project-file #project-nofile {
   text-align: center;
   color: #a0a0a0;
+  line-height: 60px;
+  padding: 0 20px;
 }
 .entry > li {
-  padding: 20px !important;
   border-bottom: 1px solid #f8f8f8;
   border-top: 1px solid #e8e8e8;
-  line-height: 40px;
 }
-.entry > li.expand {
-  background: #fff !important;
+.entry > li a {
+  display: block;
+  padding: 20px !important;
+  line-height: 40px;
 }
 .entry-context {
   float: left;
@@ -1219,55 +1219,7 @@ h3 {
   float: left;
   width: 380px;
   padding: 0 20px;
-  cursor: text;
   line-height: 40px;
-}
-.entry-chevron {
-  float: left;
-  width: 80px;
-  height: 40px;
-  line-height: 40px;
-  color: #ddd;
-  text-align: center;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.expand .entry-chevron,
-.entry-chevron:hover {
-  color: #a0a0a0;
-}
-.entry-detail-outer {
-  clear: both;
-  display: none;
-  padding-top: 20px;
-}
-.expand .entry-detail-outer {
-  display: block;
-}
-.entry-detail {
-  display: none;
-  width: 880px;
-  padding: 0 20px;
-  background: #3c3c3c;
-  color: #fff;
-  font-size: 75%;
-}
-.expand .entry-detail {
-  display: block;
-}
-.entry-detail ul {
-  overflow: hidden;
-}
-.entry-detail li {
-  float: left;
-  width: 440px;
-}
-.entry-detail li .entry-key {
-  font-weight: bold;
-  color: #889;
 }
 html {
   overflow-y: scroll;
@@ -1552,14 +1504,13 @@ h3 {
   font-family: "Hammersmith One";
 }
 #main-container {
-  height: 100%;
   margin: 0 auto;
   padding-bottom: 60px;
 }
 #main {
-  height: 100%;
   width: 960px;
   margin: 0 auto;
+  margin-bottom: 40px;
 }
 .hero {
   background: #f8f8f8;

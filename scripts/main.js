@@ -51,7 +51,9 @@
         return false;
       });
       $('a').live('click', function(e) {
-        Router.navigate($(this).attr('href'), true);
+        var urn;
+        urn = $(this).attr('href');
+        Router.navigate(urn, true);
         return false;
       });
       return Backbone.history.start({

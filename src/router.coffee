@@ -23,6 +23,7 @@ define [
             'api_reference'                 : 'api'
             '*all'                          : 'otherwise'
 
+
         'home': ->
             homePage = new ViewHome
             homePage.render()

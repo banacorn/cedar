@@ -65,9 +65,12 @@ require [
 
         # disable a:click
         $('a').live 'click', (e) ->
-            Router.navigate $(@).attr('href'), true
+            urn = $(@).attr('href')
+            Router.navigate urn, true
             return false
             
+
             
         Backbone.history.start
             pushState: true
+

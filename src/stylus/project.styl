@@ -163,20 +163,18 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
 
 
 #project-file
+
     background white
-    > ol > li
-        //height 60px
-        background #F8F8F8
+
+    > ol > li > a
+        display block
         
-        line-height 60px
-        padding 0 20px
+        background #F8F8F8
         color $base
         font-size 150%
         overflow hidden
-
-
-        a
-            display block
+        line-height 60px
+        padding 0 20px
 
         &:hover
             background white
@@ -184,6 +182,9 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
     #project-nofile
         text-align center
         color $light
+
+        line-height 60px
+        padding 0 20px
 
 
 
@@ -195,15 +196,14 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
 
 .entry
     > li
-        padding 20px !important
         border-bottom 1px solid $ghost
         border-top 1px solid #E8E8E8
 
-        line-height 40px
 
-
-        &.expand
-            background white !important
+        a 
+            display block
+            padding 20px !important
+            line-height 40px
 
 
 .entry-context
@@ -218,47 +218,47 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
     float left
     width 380px
     padding 0 20px
-    cursor text    
+    // cursor text    
     line-height 40px
 
-.entry-chevron
-    float left
-    width 80px
-    height 40px
-    line-height 40px
-    color #DDD
-    text-align center
-    cursor pointer
-    user-select none
+// .entry-chevron
+//     float left
+//     width 80px
+//     height 40px
+//     line-height 40px
+//     color #DDD
+//     text-align center
+//     cursor pointer
+//     user-select none
 
-    .expand &
-    &:hover
-        color $light    
+//     .expand &
+//     &:hover
+//         color $light    
 
-.entry-detail-outer
-    clear both
-    display none
-    padding-top 20px
-    .expand &
-        display block
+// .entry-detail-outer
+//     clear both
+//     display none
+//     padding-top 20px
+//     .expand &
+//         display block
 
-.entry-detail
-    display none
-    width 880px
-    padding 0 20px
-    background $base    
-    color white
-    font-size 75%
+// .entry-detail
+//     display none
+//     width 880px
+//     padding 0 20px
+//     background $base    
+//     color white
+//     font-size 75%
 
-    .expand &
-        display block
+//     .expand &
+//         display block
 
-    ul
-        overflow hidden
-    li
-        float left
-        width 440px
+//     ul
+//         overflow hidden
+//     li
+//         float left
+//         width 440px
 
-        .entry-key
-            font-weight bold
-            color #889
+//         .entry-key
+//             font-weight bold
+//             color #889
