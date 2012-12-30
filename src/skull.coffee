@@ -8,8 +8,21 @@ define [
 
     # sync machanism
     Backbone.remoteSync = Backbone.sync
-    Backbone.sync = ->
-        Backbone.remoteSync.apply @, arguments  # original
+    Backbone.sync = (method, model, options) ->
+
+        # get url
+        if typeof model.url is 'function'
+            url = model.url()
+        else
+            url = model.url
+        # see if local
+        local = /^local\/.+/.test url
+        
+        # don't call remote sync if local
+        if not local
+            Backbone.remoteSync.apply @, arguments  # original
+        
+
         Storage.apply @, arguments  # additional (localStorage)
 
 

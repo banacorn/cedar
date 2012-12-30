@@ -4,6 +4,7 @@
   define(['backbone'], function(Backbone) {
     return function(method, model, options) {
       var data, url;
+      console.log(method, model.toJSON());
       if (typeof model.url === 'function') {
         url = model.url();
       } else {
@@ -17,9 +18,17 @@
           if ((typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] : void 0) != null) {
             data = JSON.parse(localStorage[url]);
             if (model instanceof Backbone.Collection) {
-              return model.reset(data);
+              model.reset(data);
+            }
+            if (model instanceof Backbone.Model) {
+              return model.set(data);
             }
           }
+          break;
+        case 'create':
+          return typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] = JSON.stringify(model.toJSON()) : void 0;
+        case 'update':
+          return typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] = JSON.stringify(model.toJSON()) : void 0;
       }
     };
   });

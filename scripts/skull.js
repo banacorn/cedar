@@ -3,8 +3,17 @@
 
   define(['storage', 'jquery', 'underscore', 'backbone'], function(Storage, $, _, Backbone) {
     Backbone.remoteSync = Backbone.sync;
-    Backbone.sync = function() {
-      Backbone.remoteSync.apply(this, arguments);
+    Backbone.sync = function(method, model, options) {
+      var local, url;
+      if (typeof model.url === 'function') {
+        url = model.url();
+      } else {
+        url = model.url;
+      }
+      local = /^local\/.+/.test(url);
+      if (!local) {
+        Backbone.remoteSync.apply(this, arguments);
+      }
       return Storage.apply(this, arguments);
     };
     Backbone.Collection.prototype.snatch = function(callback) {
