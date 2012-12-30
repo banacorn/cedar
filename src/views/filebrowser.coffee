@@ -12,7 +12,7 @@ define [
     
     
 
-    class ProjectBreadcrumb extends Backbone.View
+    class FileBrowser extends Backbone.View
         
 
         tagName: 'ol'
@@ -24,6 +24,16 @@ define [
             @view = 
                 Entries: ViewEntry
 
+            @listenTo Backbone.settings, 'change:fileOrdering', @eventFileOrdering
+
+        eventFileOrdering: ->
+            ordering = Backbone.settings.get 'fileOrdering'
+            switch ordering
+                when 'list'
+                    @$el.removeClass('icon-ordering').addClass('list-ordering')
+                when 'icon'
+                    console.log 'icon'
+                    @$el.removeClass('list-ordering').addClass('icon-ordering')
 
         render: ->
 
@@ -68,6 +78,5 @@ define [
                     files: @collection.children()
                     root: @collection.root()
                     projectName: @collection.name
-
-
+                @eventFileOrdering() # init trigger
             return @

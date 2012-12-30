@@ -4,29 +4,42 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['collections/entry', 'collections/locale', 'collections/localetree', 'models/filebrowser', 'views/entry', 'jquery', 'backbone', 'template'], function(CollectionEntry, CollectionLocale, CollectionLocaletree, ModelFilebrowser, ViewEntry, $, Backbone, $$) {
-    var ProjectBreadcrumb;
-    return ProjectBreadcrumb = (function(_super) {
+    var FileBrowser;
+    return FileBrowser = (function(_super) {
 
-      __extends(ProjectBreadcrumb, _super);
+      __extends(FileBrowser, _super);
 
-      function ProjectBreadcrumb() {
-        return ProjectBreadcrumb.__super__.constructor.apply(this, arguments);
+      function FileBrowser() {
+        return FileBrowser.__super__.constructor.apply(this, arguments);
       }
 
-      ProjectBreadcrumb.prototype.tagName = 'ol';
+      FileBrowser.prototype.tagName = 'ol';
 
-      ProjectBreadcrumb.prototype.initialize = function() {
+      FileBrowser.prototype.initialize = function() {
         var _this = this;
         this.collection.on('reset', function() {
           return _this.render();
         });
         this.model = new ModelFilebrowser;
-        return this.view = {
+        this.view = {
           Entries: ViewEntry
         };
+        return this.listenTo(Backbone.settings, 'change:fileOrdering', this.eventFileOrdering);
       };
 
-      ProjectBreadcrumb.prototype.render = function() {
+      FileBrowser.prototype.eventFileOrdering = function() {
+        var ordering;
+        ordering = Backbone.settings.get('fileOrdering');
+        switch (ordering) {
+          case 'list':
+            return this.$el.removeClass('icon-ordering').addClass('list-ordering');
+          case 'icon':
+            console.log('icon');
+            return this.$el.removeClass('list-ordering').addClass('icon-ordering');
+        }
+      };
+
+      FileBrowser.prototype.render = function() {
         var fileID, isFile, locales, projectID, template, _ref,
           _this = this;
         template = $$.filebrowser;
@@ -65,11 +78,12 @@
             root: this.collection.root(),
             projectName: this.collection.name
           }));
+          this.eventFileOrdering();
         }
         return this;
       };
 
-      return ProjectBreadcrumb;
+      return FileBrowser;
 
     })(Backbone.View);
   });

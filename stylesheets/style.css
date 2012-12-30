@@ -1204,25 +1204,54 @@ h3 {
   background: #fff;
 }
 #project-file {
-  background: #fff;
-}
-#project-file > ol > li > a {
-  display: block;
+  overflow: hidden;
   background: #f8f8f8;
+}
+#project-file.list-ordering > ol > li > a {
+  display: block;
   color: #3c3c3c;
   font-size: 150%;
   overflow: hidden;
   line-height: 60px;
   padding: 0 20px;
 }
-#project-file > ol > li > a:hover {
+#project-file.list-ordering > ol > li > a:hover {
   background: #fff;
+}
+#project-file.icon-ordering > ol > li {
+  float: left;
+  width: 140px;
+  height: 140px;
+  margin: 20px;
+  padding: 10px;
+  font-size: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+#project-file.icon-ordering > ol > li i {
+  display: block;
+  width: 140px;
+  height: 110px;
+  line-height: 120px;
+  font-size: 500%;
+  text-align: center;
+}
+#project-file.icon-ordering > ol > li:hover {
+  background: #fff;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 #project-file #project-nofile {
   text-align: center;
-  color: #a0a0a0;
+  width: 920px;
+  height: 60px;
   line-height: 60px;
   padding: 0 20px;
+  margin: 0 !important;
+  display: block;
+  color: #3c3c3c;
+  font-size: 150%;
+  overflow: hidden;
 }
 .entry > li {
   border-bottom: 1px solid #f8f8f8;
