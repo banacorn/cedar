@@ -28,6 +28,7 @@ define [
         render: (name, path) ->
 
             @projectList.snatch =>
+
                 # get project
                 project = @projectList.where({name: name})[0]
                 @$el.html @template.render
@@ -43,7 +44,7 @@ define [
                 @fileTree.id = project.id
                 @fileTree.path = path
                 @fileTree.name = name
-                @assign @BrowserView, '#project-file'
+                @assign @BrowserView, '#project-browser'
 
                 @fileTree.snatch()
 

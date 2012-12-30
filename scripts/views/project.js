@@ -45,7 +45,7 @@
           _this.fileTree.id = project.id;
           _this.fileTree.path = path;
           _this.fileTree.name = name;
-          _this.assign(_this.BrowserView, '#project-file');
+          _this.assign(_this.BrowserView, '#project-browser');
           return _this.fileTree.snatch();
         });
         return this;

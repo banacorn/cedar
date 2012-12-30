@@ -4,18 +4,18 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['collections/entry', 'collections/locale', 'collections/localetree', 'models/project/browser', 'views/entry', 'jquery', 'backbone', 'template'], function(CollectionEntry, CollectionLocale, CollectionLocaletree, ModelProjectBrowser, ViewEntry, $, Backbone, $$) {
-    var FileBrowser;
-    return FileBrowser = (function(_super) {
+    var Browser;
+    return Browser = (function(_super) {
 
-      __extends(FileBrowser, _super);
+      __extends(Browser, _super);
 
-      function FileBrowser() {
-        return FileBrowser.__super__.constructor.apply(this, arguments);
+      function Browser() {
+        return Browser.__super__.constructor.apply(this, arguments);
       }
 
-      FileBrowser.prototype.tagName = 'ol';
+      Browser.prototype.tagName = 'ol';
 
-      FileBrowser.prototype.initialize = function() {
+      Browser.prototype.initialize = function() {
         var _this = this;
         this.collection.on('reset', function() {
           return _this.render();
@@ -27,7 +27,7 @@
         return this.listenTo(Backbone.settings, 'change:fileOrdering', this.eventFileOrdering);
       };
 
-      FileBrowser.prototype.eventFileOrdering = function() {
+      Browser.prototype.eventFileOrdering = function() {
         var ordering;
         ordering = Backbone.settings.get('fileOrdering');
         switch (ordering) {
@@ -38,7 +38,7 @@
         }
       };
 
-      FileBrowser.prototype.render = function() {
+      Browser.prototype.render = function() {
         var fileID, isFile, locales, projectID, template, _ref,
           _this = this;
         template = $$.projectBrowser;
@@ -82,7 +82,7 @@
         return this;
       };
 
-      return FileBrowser;
+      return Browser;
 
     })(Backbone.View);
   });

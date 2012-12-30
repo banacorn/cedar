@@ -12,7 +12,7 @@ define [
     
     
 
-    class FileBrowser extends Backbone.View
+    class Browser extends Backbone.View
         
 
         tagName: 'ol'
