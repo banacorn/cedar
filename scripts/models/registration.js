@@ -13,7 +13,7 @@
         return Model.__super__.constructor.apply(this, arguments);
       }
 
-      Model.prototype.url = 'http://itswindtw.info:9001/api/users';
+      Model.prototype.url = '/api/users';
 
       Model.prototype.initialize = function() {
         var _this = this;

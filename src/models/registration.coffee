@@ -5,7 +5,7 @@ define [
     
     class Model extends Backbone.Model
 
-        url: 'http://itswindtw.info:9001/api/users'
+        url: '/api/users'
 
         initialize: ->
 
