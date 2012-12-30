@@ -3,12 +3,12 @@ define [
     'collections/entry',
     'collections/locale',
     'collections/localetree',
-    'models/filebrowser',
+    'models/project/browser',
     'views/entry',
     'jquery',
     'backbone',
     'template'
-], (CollectionEntry, CollectionLocale, CollectionLocaletree, ModelFilebrowser, ViewEntry, $, Backbone, $$) ->
+], (CollectionEntry, CollectionLocale, CollectionLocaletree, ModelProjectBrowser, ViewEntry, $, Backbone, $$) ->
     
     
 
@@ -20,7 +20,7 @@ define [
 
         initialize: ->
             @collection.on 'reset', => @render()
-            @model = new ModelFilebrowser
+            @model = new ModelProjectBrowser
             @view = 
                 Entries: ViewEntry
 
@@ -32,12 +32,11 @@ define [
                 when 'list'
                     @$el.removeClass('icon-ordering').addClass('list-ordering')
                 when 'icon'
-                    console.log 'icon'
                     @$el.removeClass('list-ordering').addClass('icon-ordering')
 
         render: ->
 
-            template = $$.filebrowser
+            template = $$.projectBrowser
 
             isFile = @collection.node()?.folder is false
             

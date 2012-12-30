@@ -1,8 +1,9 @@
 define [
     'jquery',
+    'underscore',
     'backbone',
     'template'
-], ($, Backbone, $$) ->
+], ($, _, Backbone, $$) ->
     
         
 

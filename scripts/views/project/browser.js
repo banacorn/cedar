@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['collections/entry', 'collections/locale', 'collections/localetree', 'models/filebrowser', 'views/entry', 'jquery', 'backbone', 'template'], function(CollectionEntry, CollectionLocale, CollectionLocaletree, ModelFilebrowser, ViewEntry, $, Backbone, $$) {
+  define(['collections/entry', 'collections/locale', 'collections/localetree', 'models/project/browser', 'views/entry', 'jquery', 'backbone', 'template'], function(CollectionEntry, CollectionLocale, CollectionLocaletree, ModelProjectBrowser, ViewEntry, $, Backbone, $$) {
     var FileBrowser;
     return FileBrowser = (function(_super) {
 
@@ -20,7 +20,7 @@
         this.collection.on('reset', function() {
           return _this.render();
         });
-        this.model = new ModelFilebrowser;
+        this.model = new ModelProjectBrowser;
         this.view = {
           Entries: ViewEntry
         };
@@ -34,7 +34,6 @@
           case 'list':
             return this.$el.removeClass('icon-ordering').addClass('list-ordering');
           case 'icon':
-            console.log('icon');
             return this.$el.removeClass('list-ordering').addClass('icon-ordering');
         }
       };
@@ -42,7 +41,7 @@
       FileBrowser.prototype.render = function() {
         var fileID, isFile, locales, projectID, template, _ref,
           _this = this;
-        template = $$.filebrowser;
+        template = $$.projectBrowser;
         isFile = ((_ref = this.collection.node()) != null ? _ref.folder : void 0) === false;
         projectID = this.collection.id;
         fileID = this.collection.node();

@@ -2,12 +2,12 @@ define [
     'collections/filetree',
     'collections/project',
     'models/project/breadcrumb',
-    'views/filebrowser',
     'views/project/breadcrumb',
+    'views/project/browser',
     'jquery',
     'backbone',
     'template'
-], (CollectionFiletree, CollectionProject, ModelProjectBreadcrumb, ViewFilebrowser, ViewProjectBreadcrumb, $, Backbone, $$) ->
+], (CollectionFiletree, CollectionProject, ModelProjectBreadcrumb, ViewProjectBreadcrumb, ViewProjectBrowser, $, Backbone, $$) ->
     
 
     class Project extends Backbone.View
@@ -22,7 +22,7 @@ define [
                 model: @breadcrumb
 
             @fileTree       = new CollectionFiletree
-            @fileBrowserView = new ViewFilebrowser
+            @BrowserView = new ViewProjectBrowser
                 collection: @fileTree
             
         render: (name, path) ->
@@ -43,7 +43,7 @@ define [
                 @fileTree.id = project.id
                 @fileTree.path = path
                 @fileTree.name = name
-                @assign @fileBrowserView, '#project-file'
+                @assign @BrowserView, '#project-file'
 
                 @fileTree.snatch()
 

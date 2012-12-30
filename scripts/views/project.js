@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['collections/filetree', 'collections/project', 'models/project/breadcrumb', 'views/filebrowser', 'views/project/breadcrumb', 'jquery', 'backbone', 'template'], function(CollectionFiletree, CollectionProject, ModelProjectBreadcrumb, ViewFilebrowser, ViewProjectBreadcrumb, $, Backbone, $$) {
+  define(['collections/filetree', 'collections/project', 'models/project/breadcrumb', 'views/project/breadcrumb', 'views/project/browser', 'jquery', 'backbone', 'template'], function(CollectionFiletree, CollectionProject, ModelProjectBreadcrumb, ViewProjectBreadcrumb, ViewProjectBrowser, $, Backbone, $$) {
     var Project;
     return Project = (function(_super) {
 
@@ -23,7 +23,7 @@
           model: this.breadcrumb
         });
         this.fileTree = new CollectionFiletree;
-        return this.fileBrowserView = new ViewFilebrowser({
+        return this.BrowserView = new ViewProjectBrowser({
           collection: this.fileTree
         });
       };
@@ -45,7 +45,7 @@
           _this.fileTree.id = project.id;
           _this.fileTree.path = path;
           _this.fileTree.name = name;
-          _this.assign(_this.fileBrowserView, '#project-file');
+          _this.assign(_this.BrowserView, '#project-file');
           return _this.fileTree.snatch();
         });
         return this;
