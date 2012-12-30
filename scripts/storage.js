@@ -4,7 +4,6 @@
   define(['backbone'], function(Backbone) {
     return function(method, model, options) {
       var data, url;
-      console.log(method, model.toJSON());
       if (typeof model.url === 'function') {
         url = model.url();
       } else {

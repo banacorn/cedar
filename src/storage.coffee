@@ -3,8 +3,6 @@ define [
 ], (Backbone) ->
     (method, model, options) -> 
     
-        console.log method, model.toJSON()
-
         # get url, could be a value or a function
         if typeof model.url is 'function'
             url = model.url()
