@@ -1062,9 +1062,33 @@ h3 {
   color: #fff;
   overflow: hidden;
 }
-#project-breadcrumb ol {
-  width: 969px;
+#project-breadcrumb #breadcrumb-crumbs {
+  float: left;
+  width: 880px;
   height: 40px;
+}
+#project-breadcrumb #breadcrumb-panel {
+  float: left;
+  width: 60px;
+  height: 30px;
+  padding: 5px 10px;
+}
+#project-breadcrumb #breadcrumb-panel i {
+  display: inline-block;
+  float: left;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 120%;
+  cursor: pointer;
+  color: #4f6984;
+}
+#project-breadcrumb #breadcrumb-panel i.active {
+  color: #fff;
+}
+#project-breadcrumb #breadcrumb-panel i:hover {
+  color: #f8f8f8;
 }
 #project-breadcrumb a {
   display: block;

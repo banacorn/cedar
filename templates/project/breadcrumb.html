@@ -1,4 +1,4 @@
-<ol>
+<ol id="breadcrumb-crumbs">
     <a href="#project/{{projectName}}/file/{{filepath}}">
         <li>
             <i class="icon-book"></i>
@@ -12,3 +12,7 @@
     </a>
     {{/crumbs}}
 </ol>
+<div id="breadcrumb-panel">
+    <i id="button-list-ordering" class="icon-reorder {{#listOrdering}}active{{/listOrdering}}"></i>
+    <i id="button-icon-ordering" class="icon-th {{^listOrdering}}active{{/listOrdering}}"></i>
+</div>

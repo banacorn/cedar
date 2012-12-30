@@ -7,13 +7,14 @@ require.config
         router      : 'router'
         template    : 'template'
 require [
+    'models/settings',
     'router',
     'skull',
     'views/account',
     'views/home',
     'jquery',
     'backbone'
-], (Router, Skull, ViewAccount, ViewHome, $, Backbone) ->
+], (ModelSettings, Router, Skull, ViewAccount, ViewHome, $, Backbone) ->
 
     # some Backbone tweaks
     Skull
@@ -29,10 +30,14 @@ require [
             $('#account').hide().fadeIn(200)
 
     
-    
+    Backbone.settings = new ModelSettings
+
     $ ->
               
+
                     
+
+
         app = new App        
         app.render()            
         
@@ -55,8 +60,6 @@ require [
         # , 0
 
         Router.on 'route:home', ->
-        
-            
             home = new ViewHome
             home.render()
             

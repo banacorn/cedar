@@ -3,11 +3,12 @@ define [
     'collections/entry',
     'collections/locale',
     'collections/localetree',
+    'models/filebrowser',
     'views/entry',
     'jquery',
     'backbone',
     'template'
-], (CollectionEntry, CollectionLocale, CollectionLocaletree, ViewEntry, $, Backbone, $$) ->
+], (CollectionEntry, CollectionLocale, CollectionLocaletree, ModelFilebrowser, ViewEntry, $, Backbone, $$) ->
     
     
 
@@ -16,8 +17,10 @@ define [
 
         tagName: 'ol'
 
+
         initialize: ->
             @collection.on 'reset', => @render()
+            @model = new ModelFilebrowser
             @view = 
                 Entries: ViewEntry
 

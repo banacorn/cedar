@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['collections/entry', 'collections/locale', 'collections/localetree', 'views/entry', 'jquery', 'backbone', 'template'], function(CollectionEntry, CollectionLocale, CollectionLocaletree, ViewEntry, $, Backbone, $$) {
+  define(['collections/entry', 'collections/locale', 'collections/localetree', 'models/filebrowser', 'views/entry', 'jquery', 'backbone', 'template'], function(CollectionEntry, CollectionLocale, CollectionLocaletree, ModelFilebrowser, ViewEntry, $, Backbone, $$) {
     var ProjectBreadcrumb;
     return ProjectBreadcrumb = (function(_super) {
 
@@ -20,6 +20,7 @@
         this.collection.on('reset', function() {
           return _this.render();
         });
+        this.model = new ModelFilebrowser;
         return this.view = {
           Entries: ViewEntry
         };

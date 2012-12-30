@@ -103,9 +103,35 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
 
     overflow hidden
 
-    ol
-        width 969px
+    #breadcrumb-crumbs
+        float left
+        width 880px
         height 40px
+
+    #breadcrumb-panel
+        float left
+        width 60px
+        height 30px
+        padding 5px 10px
+
+        // the icon buttons
+        i
+            display inline-block
+            float left
+            width 30px
+            height 30px
+            line-height 30px
+            text-align center
+            font-size 120%
+
+            cursor pointer
+
+            color $bluell
+
+            &.active
+                color white
+            &:hover
+                color $ghost
 
     a
         display block

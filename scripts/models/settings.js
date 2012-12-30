@@ -13,6 +13,19 @@
         return Model.__super__.constructor.apply(this, arguments);
       }
 
+      Model.prototype.url = 'local/settings';
+
+      Model.prototype.defaults = {
+        'fileOrdering': 'list'
+      };
+
+      Model.prototype.initialize = function() {
+        this.fetch();
+        return this.on('change', function(model) {
+          return model.save();
+        });
+      };
+
       return Model;
 
     })(Backbone.Model);
