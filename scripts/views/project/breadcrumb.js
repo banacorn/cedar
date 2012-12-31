@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'underscore', 'backbone', 'template'], function($, _, Backbone, $$) {
+  define(['models/project/breadcrumb', 'jquery', 'underscore', 'backbone', 'template'], function(ModelProjectBreadcrumb, $, _, Backbone, $$) {
     var ProjectBreadcrumb;
     return ProjectBreadcrumb = (function(_super) {
 
@@ -20,8 +20,12 @@
 
       ProjectBreadcrumb.prototype.tagName = 'ol';
 
-      ProjectBreadcrumb.prototype.initialize = function() {
+      ProjectBreadcrumb.prototype.initialize = function(params) {
         var _this = this;
+        this.model = new ModelProjectBreadcrumb({
+          projectName: params.projectName
+        });
+        this.model.path(params.path);
         this.model.on('change', function() {
           return _this.render();
         });

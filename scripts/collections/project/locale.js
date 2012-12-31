@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['models/locale', 'backbone'], function(ModelLocale, Backbone) {
+  define(['models/project/locale', 'backbone'], function(ModelProjectLocale, Backbone) {
     var Collection;
     return Collection = (function(_super) {
 
@@ -13,9 +13,11 @@
         return Collection.__super__.constructor.apply(this, arguments);
       }
 
-      Collection.prototype.model = ModelLocale;
+      Collection.prototype.model = ModelProjectLocale;
 
-      Collection.prototype.url = "/api/locales";
+      Collection.prototype.url = function() {
+        return "/api/projects/" + this.id + "/locales";
+      };
 
       return Collection;
 

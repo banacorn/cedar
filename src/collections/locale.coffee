@@ -7,15 +7,4 @@ define [
 
         model: ModelLocale
 
-        url: -> "/api/projects/#{ @id }/locales"
-
-        parse: (data) -> data.map (locale) ->
-            id: locale.id
-            localeID: locale.locale.id
-            localeName: locale.locale.name
-
-
-
-
-
-
+        url: "/api/locales"

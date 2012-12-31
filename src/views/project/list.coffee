@@ -10,17 +10,11 @@ define [
 
         el: $('#main')
         
-        initialize: ->        
-
-            @template = $$.projectList
-            @projects = new CollectionProject
-
-            
-    
         render: ->
 
-            @projects.snatch =>  
-                @$el.html @template.render
-                    projects: @projects.toJSON()
+            projects = new CollectionProject
+            projects.snatch =>  
+                @$el.html $$.projectList.render
+                    projects: projects.toJSON()
 
             return @

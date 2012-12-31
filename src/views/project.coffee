@@ -15,42 +15,45 @@ define [
         el: $('#main')
     
         initialize: ->
-            @template       = $$.project
-            @projectList    = new CollectionProject
-            @breadcrumb     = new ModelProjectBreadcrumb            
-            @breadcrumbView = new ViewProjectBreadcrumb
-                model: @breadcrumb
+            # @template       = $$.project
+            # @projectList    = new CollectionProject
+            # @breadcrumb     = new ModelProjectBreadcrumb            
+            # @breadcrumbView = new ViewProjectBreadcrumb
+            #     model: @breadcrumb
 
-            @fileTree       = new CollectionFiletree
-            @BrowserView = new ViewProjectBrowser
-                collection: @fileTree
+            # @fileTree       = new CollectionFiletree
+            # @BrowserView = new ViewProjectBrowser
+            #     collection: @fileTree
             
         render: (name, path) ->
 
-            @projectList.snatch =>
+            projects = new CollectionProject
+            projects.snatch =>
+                project = projects.where({name: name})[0]
+                project.explore()
 
-                # get project
-                project = @projectList.where({name: name})[0]
-                @$el.html @template.render
+                @$el.html $$.project.render
                     projectName: project.get 'name'
                     projectInfo: project.get 'info'
 
+
                 # breadcrumb
-                @breadcrumb.path path
-                @breadcrumb.set 'projectName', name
-                @assign @breadcrumbView, '#project-breadcrumb'
+                breadcrumb = new ViewProjectBreadcrumb
+                    path: path
+                    projectName: name
+                @assign breadcrumb, '#project-breadcrumb'
 
-                # filebrowser                    
-                @fileTree.id = project.id
-                @fileTree.path = path
-                @fileTree.name = name
-                @assign @BrowserView, '#project-browser'
+            #     # filebrowser                    
+            #     @fileTree.id = project.id
+            #     @fileTree.path = path
+            #     @fileTree.name = name
+            #     @assign @BrowserView, '#project-browser'
 
-                @fileTree.snatch()
-
-
+            #     @fileTree.snatch()
 
 
-            return @
+
+
+            # return @
     
     

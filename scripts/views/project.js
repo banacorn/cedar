@@ -15,40 +15,28 @@
 
       Project.prototype.el = $('#main');
 
-      Project.prototype.initialize = function() {
-        this.template = $$.project;
-        this.projectList = new CollectionProject;
-        this.breadcrumb = new ModelProjectBreadcrumb;
-        this.breadcrumbView = new ViewProjectBreadcrumb({
-          model: this.breadcrumb
-        });
-        this.fileTree = new CollectionFiletree;
-        return this.BrowserView = new ViewProjectBrowser({
-          collection: this.fileTree
-        });
-      };
+      Project.prototype.initialize = function() {};
 
       Project.prototype.render = function(name, path) {
-        var _this = this;
-        this.projectList.snatch(function() {
-          var project;
-          project = _this.projectList.where({
+        var projects,
+          _this = this;
+        projects = new CollectionProject;
+        return projects.snatch(function() {
+          var breadcrumb, project;
+          project = projects.where({
             name: name
           })[0];
-          _this.$el.html(_this.template.render({
+          project.explore();
+          _this.$el.html($$.project.render({
             projectName: project.get('name'),
             projectInfo: project.get('info')
           }));
-          _this.breadcrumb.path(path);
-          _this.breadcrumb.set('projectName', name);
-          _this.assign(_this.breadcrumbView, '#project-breadcrumb');
-          _this.fileTree.id = project.id;
-          _this.fileTree.path = path;
-          _this.fileTree.name = name;
-          _this.assign(_this.BrowserView, '#project-browser');
-          return _this.fileTree.snatch();
+          breadcrumb = new ViewProjectBreadcrumb({
+            path: path,
+            projectName: name
+          });
+          return _this.assign(breadcrumb, '#project-breadcrumb');
         });
-        return this;
       };
 
       return Project;

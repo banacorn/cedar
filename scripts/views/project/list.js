@@ -15,16 +15,13 @@
 
       ProjectList.prototype.el = $('#main');
 
-      ProjectList.prototype.initialize = function() {
-        this.template = $$.projectList;
-        return this.projects = new CollectionProject;
-      };
-
       ProjectList.prototype.render = function() {
-        var _this = this;
-        this.projects.snatch(function() {
-          return _this.$el.html(_this.template.render({
-            projects: _this.projects.toJSON()
+        var projects,
+          _this = this;
+        projects = new CollectionProject;
+        projects.snatch(function() {
+          return _this.$el.html($$.projectList.render({
+            projects: projects.toJSON()
           }));
         });
         return this;

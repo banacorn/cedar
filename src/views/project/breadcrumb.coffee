@@ -1,9 +1,10 @@
 define [
+    'models/project/breadcrumb',
     'jquery',
     'underscore',
     'backbone',
     'template'
-], ($, _, Backbone, $$) ->
+], (ModelProjectBreadcrumb, $, _, Backbone, $$) ->
     
         
 
@@ -15,7 +16,12 @@ define [
 
         tagName: 'ol'
 
-        initialize: ->
+        initialize: (params) ->
+
+            @model = new ModelProjectBreadcrumb
+                projectName: params.projectName
+            @model.path params.path
+
             @model.on 'change', => @render()
             @listenTo Backbone.settings, 'change:fileOrdering', @updateFileOrdering
 
