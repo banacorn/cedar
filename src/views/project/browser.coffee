@@ -68,7 +68,6 @@ define [
                         # match it with current page
                         projectFileID = @collection.node().id
                         fileID = localeTree.where({'project_file_id': projectFileID})?[0]?.get 'id'
-                        console.log 'fileID', fileID
                         entries = new CollectionEntry
                         entries.id = fileID
                         entriesView = new ViewEntry

@@ -61,7 +61,6 @@
               fileID = (_ref2 = localeTree.where({
                 'project_file_id': projectFileID
               })) != null ? (_ref3 = _ref2[0]) != null ? _ref3.get('id') : void 0 : void 0;
-              console.log('fileID', fileID);
               entries = new CollectionEntry;
               entries.id = fileID;
               entriesView = new ViewEntry({
