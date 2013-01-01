@@ -1020,6 +1020,53 @@ h3 {
   margin: 20px 0;
   padding: 0 20px;
 }
+.project-item {
+  margin: 10px 0;
+  padding: 10px;
+  height: 80px;
+  background: #f8f8f8;
+  color: #787878;
+  cursor: pointer;
+  overflow: hidden;
+}
+.project-item h3 {
+  float: left;
+  width: 500px;
+  height: 40px;
+  line-height: 40px;
+  color: #345;
+  font-size: 200%;
+}
+.project-item h3 i {
+  height: 40px;
+  line-height: 40px;
+  padding-right: 20px;
+  color: #c8c8c8;
+}
+.project-item h3 span {
+  padding: 0 20px;
+  font-size: 50%;
+  color: #a0a0a0;
+}
+.project-item:hover {
+  background: #fff;
+}
+.stat-panel {
+  float: left;
+  width: 400px;
+  height: 80px;
+  color: #a0a0a0;
+}
+.stat-panel .number-of-files {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 200%;
+  color: #787878;
+}
+.stat-panel .number-of-files i {
+  color: #a0a0a0;
+}
 #project-header {
   height: 80px;
 }
@@ -1175,33 +1222,6 @@ h3 {
 }
 #project-breadcrumb a i {
   width: 20px;
-}
-.project-item {
-  margin: 10px 0;
-  padding: 10px;
-  background: #f8f8f8;
-  color: #787878;
-  cursor: pointer;
-}
-.project-item h3 {
-  height: 40px;
-  line-height: 40px;
-  color: #345;
-  font-size: 200%;
-}
-.project-item h3 i {
-  height: 40px;
-  line-height: 40px;
-  padding-right: 20px;
-  color: #c8c8c8;
-}
-.project-item h3 span {
-  padding: 0 20px;
-  font-size: 50%;
-  color: #a0a0a0;
-}
-.project-item:hover {
-  background: #fff;
 }
 #project-browser {
   overflow: hidden;

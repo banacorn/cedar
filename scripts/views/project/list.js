@@ -23,6 +23,10 @@
       ProjectList.prototype.render = function() {
         var _this = this;
         this.projects.snatch(function() {
+          _this.projects.each(function(project) {
+            project.numberOfFiles();
+            return console.log(project.toJSON());
+          });
           return _this.$el.html(_this.template.render({
             projects: _this.projects.toJSON()
           }));

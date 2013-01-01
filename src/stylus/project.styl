@@ -2,6 +2,58 @@
 @import "param"
 
 
+
+//
+//  List
+//
+
+.project-item
+    margin 10px 0
+    padding 10px
+    height 80px
+    background $ghost
+    color #787878
+    cursor pointer
+    overflow hidden
+    h3  
+        float left
+        width 500px
+        height 40px
+        line-height 40px
+        color #334455
+        font-size 200%
+        i  
+            height 40px
+            line-height 40px
+            padding-right 20px
+            color #c8c8c8
+         
+        span  
+            padding 0 20px
+            font-size 50%
+            color #a0a0a0
+        
+    &:hover
+        background white
+
+.stat-panel
+    float left
+    width 400px
+    height 80px
+
+    color $light
+
+    .number-of-files
+        width 80px
+        height 80px
+        line-height 80px
+
+        i
+            color $light
+
+        font-size 200%
+        color $dim
+
 //
 //  Header
 //
@@ -169,32 +221,6 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
 //
 //  Browser
 //
-
-.project-item
-    margin 10px 0
-    padding 10px
-    background $ghost
-    color #787878
-    cursor pointer
-    h3  
-        height 40px
-        line-height 40px
-        color #334455
-        font-size 200%
-        i  
-            height 40px
-            line-height 40px
-            padding-right 20px
-            color #c8c8c8
-         
-        span  
-            padding 0 20px
-            font-size 50%
-            color #a0a0a0
-        
-    &:hover
-        background white
-
 
 #project-browser
 

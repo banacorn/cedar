@@ -15,18 +15,6 @@
 
       Collection.prototype.model = ModelEntrylist;
 
-      Collection.prototype.url = function() {
-        return "/api/po_files/" + this.id + "/entry_ids";
-      };
-
-      Collection.prototype.parse = function(data) {
-        return data.map(function(entryID) {
-          return {
-            id: entryID
-          };
-        });
-      };
-
       return Collection;
 
     })(Backbone.Collection);

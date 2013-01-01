@@ -13,6 +13,12 @@
         return Model.__super__.constructor.apply(this, arguments);
       }
 
+      Model.prototype.numberOfFiles = function() {
+        var yggdrasil;
+        yggdrasil = Backbone.Stat.get("yggdrasil-" + this.id);
+        return this.set('numberOfFiles', yggdrasil.numberOfFiles);
+      };
+
       return Model;
 
     })(Backbone.Model);

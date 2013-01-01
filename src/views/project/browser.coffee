@@ -26,12 +26,6 @@ define [
 
             @listenTo Backbone.settings, 'change:fileOrdering', @eventFileOrdering
 
-            # for i in [1...1000]
-            #     $.get "/api/po_files?project_locale_id=#{ i }", (data) => 
-            #         if data.length isnt 0
-            #             console.log i
-            #             console.log data
-
 
         eventFileOrdering: ->
             ordering = Backbone.settings.get 'fileOrdering'

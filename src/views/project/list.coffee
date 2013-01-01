@@ -19,7 +19,10 @@ define [
     
         render: ->
 
-            @projects.snatch =>  
+            @projects.snatch =>
+                @projects.each (project) ->
+                    project.numberOfFiles()
+                    console.log project.toJSON()
                 @$el.html @template.render
                     projects: @projects.toJSON()
 

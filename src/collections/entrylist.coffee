@@ -6,9 +6,9 @@ define [
     class Collection extends Backbone.Collection
         model: ModelEntrylist
 
-        url: -> "/api/po_files/#{ @id }/entry_ids"
+        # url: -> "/api/po_files/#{ @id }/entry_ids"
 
-        parse: (data) -> data.map (entryID) -> id: entryID
+        # parse: (data) -> data.map (entryID) -> id: entryID
 
 
 

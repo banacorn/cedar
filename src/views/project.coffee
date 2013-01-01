@@ -22,7 +22,7 @@ define [
                 model: @breadcrumb
 
             @fileTree       = new CollectionFiletree
-            @BrowserView = new ViewProjectBrowser
+            @BrowserView    = new ViewProjectBrowser
                 collection: @fileTree
             
         render: (name, path) ->

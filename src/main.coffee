@@ -36,7 +36,7 @@ require [
     $ ->
               
         # stat
-        stat = new ModelStat
+        Backbone.Stat = new ModelStat
         
 
         app = new App        

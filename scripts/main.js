@@ -40,8 +40,8 @@
     })(Backbone.View);
     Backbone.settings = new ModelSettings;
     return $(function() {
-      var app, stat;
-      stat = new ModelStat;
+      var app;
+      Backbone.Stat = new ModelStat;
       app = new App;
       app.render();
       Router.on('route:home', function() {
