@@ -14,7 +14,7 @@
     }
   });
 
-  require(['models/settings', 'router', 'skull', 'views/account', 'views/home', 'jquery', 'backbone'], function(ModelSettings, Router, Skull, ViewAccount, ViewHome, $, Backbone) {
+  require(['models/settings', 'models/stat', 'router', 'skull', 'views/account', 'views/home', 'jquery', 'backbone'], function(ModelSettings, ModelStat, Router, Skull, ViewAccount, ViewHome, $, Backbone) {
     Skull;
 
     var App;
@@ -40,7 +40,8 @@
     })(Backbone.View);
     Backbone.settings = new ModelSettings;
     return $(function() {
-      var app;
+      var app, stat;
+      stat = new ModelStat;
       app = new App;
       app.render();
       Router.on('route:home', function() {

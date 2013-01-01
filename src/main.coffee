@@ -8,13 +8,14 @@ require.config
         template    : 'template'
 require [
     'models/settings',
+    'models/stat',
     'router',
     'skull',
     'views/account',
     'views/home',
     'jquery',
     'backbone'
-], (ModelSettings, Router, Skull, ViewAccount, ViewHome, $, Backbone) ->
+], (ModelSettings, ModelStat, Router, Skull, ViewAccount, ViewHome, $, Backbone) ->
 
     # some Backbone tweaks
     Skull
@@ -34,9 +35,9 @@ require [
 
     $ ->
               
-
-                    
-
+        # stat
+        stat = new ModelStat
+        
 
         app = new App        
         app.render()            
