@@ -202,43 +202,58 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
 
     background #F8F8F8
 
-
-
     &.list-ordering > ol > li > a
+
+        .browser-item-icon
+            width 80px
+            float left
+            i
+                width 80px
+                text-align center
+
+        .browser-item-name
+            float left
+            text-overflow ellipsis
+
         display block
         color $base
-        font-size 150%
+        font-size 200%
         overflow hidden
-        line-height 60px
-        padding 0 20px
+        line-height 80px
 
         &:hover
             background white
 
-    &.icon-ordering > ol > li
+    &.icon-ordering > ol > li > a
 
         float left
 
-        width 140px
-        height 140px
+        width 160px
+        height 160px
         margin 20px
-        padding 10px
+        padding 20px
 
 
-
-
-        i
-            display block
-            width 140px
-            height 110px
+        .browser-item-icon
+            width 160px
+            height 120px
             line-height 120px
-            font-size 500%
+            font-size 600%
+            i
+                width 160px
+                text-align center
+
+        .browser-item-name
+            height 40px
+            line-height 40px
+            font-size 100%
             text-align center
+            font-weight bold
+            text-overflow ellipsis
+            overflow hidden
 
-        font-size 100%
 
-        text-align center
-        overflow hidden
+        // overflow hidden
 
         &:hover
             background white
@@ -247,10 +262,9 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
     #project-nofile
         text-align center
 
-        width 920px
-        height 60px
-        line-height 60px
-        padding 0 20px
+        width 960px
+        height 80px
+        line-height 80px
         margin 0 !important
         display block
         color $base

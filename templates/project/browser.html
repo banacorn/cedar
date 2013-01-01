@@ -4,10 +4,20 @@
         <li>
             <a href="#project/{{projectName}}/file/{{root}}{{name}}">
                 {{#folder}}
-                    <i class="icon-folder-close"></i> {{name}}
+                <div class="browser-item-icon">
+                    <i class="icon-folder-close"></i>
+                </div>
+                <div class="browser-item-name">
+                    {{name}}
+                </div>
                 {{/folder}}
-                {{^folder}}            
-                    <i class="icon-file"></i> {{name}}
+                {{^folder}}
+                <div class="browser-item-icon">
+                    <i class="icon-file"></i>
+                </div>
+                <div class="browser-item-name">
+                    {{name}}
+                </div>          
                 {{/folder}}
             </a>
         </li>

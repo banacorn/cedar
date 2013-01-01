@@ -1210,43 +1210,61 @@ h3 {
 #project-browser.list-ordering > ol > li > a {
   display: block;
   color: #3c3c3c;
-  font-size: 150%;
+  font-size: 200%;
   overflow: hidden;
-  line-height: 60px;
-  padding: 0 20px;
+  line-height: 80px;
+}
+#project-browser.list-ordering > ol > li > a .browser-item-icon {
+  width: 80px;
+  float: left;
+}
+#project-browser.list-ordering > ol > li > a .browser-item-icon i {
+  width: 80px;
+  text-align: center;
+}
+#project-browser.list-ordering > ol > li > a .browser-item-name {
+  float: left;
+  text-overflow: ellipsis;
 }
 #project-browser.list-ordering > ol > li > a:hover {
   background: #fff;
 }
-#project-browser.icon-ordering > ol > li {
+#project-browser.icon-ordering > ol > li > a {
   float: left;
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
   margin: 20px;
-  padding: 10px;
+  padding: 20px;
+}
+#project-browser.icon-ordering > ol > li > a .browser-item-icon {
+  width: 160px;
+  height: 120px;
+  line-height: 120px;
+  font-size: 600%;
+}
+#project-browser.icon-ordering > ol > li > a .browser-item-icon i {
+  width: 160px;
+  text-align: center;
+}
+#project-browser.icon-ordering > ol > li > a .browser-item-name {
+  height: 40px;
+  line-height: 40px;
   font-size: 100%;
   text-align: center;
+  font-weight: bold;
+  text-overflow: ellipsis;
   overflow: hidden;
 }
-#project-browser.icon-ordering > ol > li i {
-  display: block;
-  width: 140px;
-  height: 110px;
-  line-height: 120px;
-  font-size: 500%;
-  text-align: center;
-}
-#project-browser.icon-ordering > ol > li:hover {
+#project-browser.icon-ordering > ol > li > a:hover {
   background: #fff;
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
 #project-browser #project-nofile {
   text-align: center;
-  width: 920px;
-  height: 60px;
-  line-height: 60px;
-  padding: 0 20px;
+  width: 960px;
+  height: 80px;
+  line-height: 80px;
   margin: 0 !important;
   display: block;
   color: #3c3c3c;
