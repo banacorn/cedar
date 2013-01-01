@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['models/locale', 'backbone'], function(ModelLocale, Backbone) {
+  define(['models/locale', 'underscore', 'backbone'], function(ModelLocale, _, Backbone) {
     var Collection;
     return Collection = (function(_super) {
 
@@ -16,17 +16,21 @@
       Collection.prototype.model = ModelLocale;
 
       Collection.prototype.url = function() {
-        return "/api/projects/" + this.id + "/locales";
+        return "/api/project_locales/" + this.id;
       };
 
       Collection.prototype.parse = function(data) {
-        return data.map(function(locale) {
-          return {
-            id: locale.id,
-            localeID: locale.locale.id,
-            localeName: locale.locale.name
-          };
-        });
+        if (_.isArray(data)) {
+          return data.map(function(locale) {
+            return {
+              id: locale.id,
+              localeID: locale.locale.id,
+              localeName: locale.locale.name
+            };
+          });
+        } else {
+          return [];
+        }
       };
 
       return Collection;

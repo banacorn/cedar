@@ -1,20 +1,23 @@
 define [
     'models/locale',
+    'underscore',
     'backbone'
-], (ModelLocale, Backbone) ->
+], (ModelLocale, _, Backbone) ->
     
     class Collection extends Backbone.Collection
 
         model: ModelLocale
 
-        url: -> "/api/projects/#{ @id }/locales"
+        url: -> "/api/project_locales/#{ @id }"
 
-        parse: (data) -> data.map (locale) ->
-            id: locale.id
-            localeID: locale.locale.id
-            localeName: locale.locale.name
-
-
+        parse: (data) -> 
+            if _.isArray data
+                return data.map (locale) ->
+                    id: locale.id
+                    localeID: locale.locale.id
+                    localeName: locale.locale.name
+            else 
+                return []
 
 
 

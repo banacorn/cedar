@@ -16,7 +16,7 @@
       Collection.prototype.model = ModelFiletree;
 
       Collection.prototype.url = function() {
-        return "/api/projects/" + this.id + "/files";
+        return "/api/project_files/?project_id=" + this.id;
       };
 
       Collection.prototype.parse = function(data) {

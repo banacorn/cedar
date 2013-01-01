@@ -7,7 +7,7 @@ define [
         
     class Collection extends Backbone.Collection
         model: ModelFiletree
-        url: -> "/api/projects/#{ @id }/files"
+        url: -> "/api/project_files/?project_id=#{ @id }"
 
         parse: (data) ->
             data ?= []
@@ -25,6 +25,7 @@ define [
                     node.path = node.filepath.substr(prefix) + '/' + node.name
                     node.path = node.path.replace /^\//, ''
                     delete node.filepath
+
 
                     if node.children.length isnt 0
                         fold node.children, level + 1, prefix
