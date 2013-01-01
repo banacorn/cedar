@@ -16,12 +16,12 @@
       Collection.prototype.model = ModelLocale;
 
       Collection.prototype.url = function() {
-        return "/api/project_locales/" + this.id;
+        return "/api/project_locales/?project_id=" + this.id;
       };
 
       Collection.prototype.parse = function(data) {
         if (_.isArray(data)) {
-          return data.map(function(locale) {
+          return data = data.map(function(locale) {
             return {
               id: locale.id,
               localeID: locale.locale.id,
@@ -29,7 +29,7 @@
             };
           });
         } else {
-          return [];
+          return data = [];
         }
       };
 

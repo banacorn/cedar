@@ -56,20 +56,24 @@
             localeTree = new CollectionLocaletree;
             localeTree.id = projectLocaleID;
             return localeTree.snatch(function() {
-              var entries, entriesView, projectFileID, _ref2;
+              var entries, entriesView, projectFileID, _ref2, _ref3;
               projectFileID = _this.collection.node().id;
               fileID = (_ref2 = localeTree.where({
                 'project_file_id': projectFileID
-              })) != null ? _ref2[0].get('id') : void 0;
+              })) != null ? (_ref3 = _ref2[0]) != null ? _ref3.get('id') : void 0 : void 0;
+              console.log('fileID', fileID);
               entries = new CollectionEntry;
               entries.id = fileID;
               entriesView = new ViewEntry({
                 collection: entries
               });
-              _this.assign(entriesView, '#project-file');
+              _this.assign(entriesView, '#project-editor');
               return entries.snatch();
             });
           });
+          this.$el.html(template.render({
+            isFile: isFile
+          }));
         } else {
           this.$el.html(template.render({
             isFile: isFile,

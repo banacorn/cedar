@@ -1,5 +1,5 @@
-<ol>
-    {{^isFile}}
+{{^isFile}}
+    <ol>
         {{#files}}
         <li>
             <a href="#project/{{projectName}}/file/{{root}}{{name}}">
@@ -27,5 +27,5 @@
             沒有檔案
         </li>
         {{/files}}
-    {{/isFile}}
-</ol>
+    </ol>
+{{/isFile}}

@@ -7,7 +7,7 @@ define [
         
     class Collection extends Backbone.Collection
 
-        url: -> "/api/po_files/#{ @id }/entries/page/0"
+        url: -> "/api/entries?po_file_id=#{ @id }&page=0"
 
 
 

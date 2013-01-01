@@ -16,7 +16,7 @@
       Collection.prototype.model = ModelLocaletree;
 
       Collection.prototype.url = function() {
-        return "/api/project_locales/" + this.id + "/po_files";
+        return "/api/po_files?project_locale_id=" + this.id;
       };
 
       Collection.prototype.parse = function(data) {

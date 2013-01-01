@@ -14,7 +14,7 @@
       }
 
       Collection.prototype.url = function() {
-        return "/api/po_files/" + this.id + "/entries/page/0";
+        return "/api/entries?po_file_id=" + this.id + "&page=0";
       };
 
       return Collection;

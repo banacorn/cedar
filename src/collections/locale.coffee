@@ -8,16 +8,16 @@ define [
 
         model: ModelLocale
 
-        url: -> "/api/project_locales/#{ @id }"
+        url: -> "/api/project_locales/?project_id=#{ @id }"
 
         parse: (data) -> 
             if _.isArray data
-                return data.map (locale) ->
+                data = data.map (locale) ->
                     id: locale.id
                     localeID: locale.locale.id
                     localeName: locale.locale.name
             else 
-                return []
+                data = []
 
 
 

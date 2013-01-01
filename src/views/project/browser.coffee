@@ -26,6 +26,13 @@ define [
 
             @listenTo Backbone.settings, 'change:fileOrdering', @eventFileOrdering
 
+            # for i in [1...1000]
+            #     $.get "/api/po_files?project_locale_id=#{ i }", (data) => 
+            #         if data.length isnt 0
+            #             console.log i
+            #             console.log data
+
+
         eventFileOrdering: ->
             ordering = Backbone.settings.get 'fileOrdering'
             switch ordering
@@ -53,22 +60,27 @@ define [
 
                     # get zh-tw
                     projectLocaleID = locales.where({localeID: 1})?[0].get 'id'
-                    
+                
                     # get locale-tree
                     localeTree = new CollectionLocaletree
                     localeTree.id = projectLocaleID
                     localeTree.snatch =>
                         # match it with current page
                         projectFileID = @collection.node().id
-                        fileID = localeTree.where({'project_file_id': projectFileID})?[0].get 'id'
-
+                        fileID = localeTree.where({'project_file_id': projectFileID})?[0]?.get 'id'
+                        console.log 'fileID', fileID
                         entries = new CollectionEntry
                         entries.id = fileID
                         entriesView = new ViewEntry
                             collection: entries
-                        @assign entriesView, '#project-file'
+                        @assign entriesView, '#project-editor'
 
                         entries.snatch()
+
+
+                @$el.html template.render
+                    isFile: isFile
+
 
             else # is folder
 
@@ -77,5 +89,6 @@ define [
                     files: @collection.children()
                     root: @collection.root()
                     projectName: @collection.name
+
                 @eventFileOrdering() # init trigger
             return @

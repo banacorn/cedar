@@ -7,11 +7,9 @@ define [
     class Collection extends Backbone.Collection
         model: ModelLocaletree
 
-        url: -> "/api/project_locales/#{ @id }/po_files"
-
+        url: -> "/api/po_files?project_locale_id=#{ @id }"
         parse: (data) -> 
-        	data
-
+            data
 
 
 

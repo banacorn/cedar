@@ -1271,26 +1271,28 @@ h3 {
   font-size: 150%;
   overflow: hidden;
 }
-.entry > li {
+#project-editor li {
+  background: #f8f8f8;
+  height: 80px;
+  font-size: 150%;
+}
+#project-editor .entry > li {
   border-bottom: 1px solid #f8f8f8;
   border-top: 1px solid #e8e8e8;
 }
-.entry > li a {
-  display: block;
-  padding: 20px !important;
-  line-height: 40px;
+#project-editor .entry-context {
+  float: left;
+  width: 380px;
+  height: 80px;
+  line-height: 80px;
+  padding: 0 20px;
 }
-.entry-context {
+#project-editor .entry-translation {
   float: left;
   width: 380px;
   padding: 0 20px;
-  line-height: 40px;
-}
-.entry-translation {
-  float: left;
-  width: 380px;
-  padding: 0 20px;
-  line-height: 40px;
+  height: 80px;
+  line-height: 80px;
 }
 html {
   overflow-y: scroll;
