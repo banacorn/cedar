@@ -44,9 +44,27 @@ define [
             #   level 'a/a' = 2
 
             level = _.compact(@path.replace(/\/$/, '').split('/')).length
-            return @where({ level: level }).map (model) -> model.toJSON()
+            
+
+            model = @where({ level: level }).map((model) -> model.toJSON())
+            if model[0]?.id
+                yggdrasil = Backbone.Stat.get "yggdrasil-#{@id}"
+                result = null
+                Backbone.Stat.fold yggdrasil, (tree, poop) ->
+                    if tree.id is model[0].id
+                        result = tree
+                model[0].numberOfFiles = result.numberOfFiles
+                model[0].numberOfEntries = result.numberOfEntries
+                           
+
+
+            return model
 
         node: -> @where({ path: @path })[0]?.toJSON()
+
+        numberOfFiles: ->
+            yggdrasil.numberOfFiles
+
 
         root: ->
             if @path isnt ''

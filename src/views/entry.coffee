@@ -7,8 +7,32 @@ define [
 
     class EntryView extends Backbone.View
 
-        # events: 
-            # 'click .entry-chevron': 'toggle'
+        events: 
+            'click .entry-translation': 'edit'
+            'blur .entry-input input': 'blur'
+            'submit .entry-input form': 'submit'
+
+        submit: ->
+            val = $('.entry-input input', @el).val()
+            console.log 'submit', val
+            $('.entry-translation', @el).text(val)
+            @blur()
+            false
+
+        edit: ->
+            $('.entry-translation', @el).hide()
+            $('.entry-input', @el).show()
+
+            setTimeout ->
+                $('.entry-input input', @el).focus().select()
+            , 0
+
+        blur: ->
+            $('.entry-translation', @el).show()
+            $('.entry-input', @el).hide()
+
+
+            # $('<input type="text" class=".entry-input">').appendTo(@$el)
 
         initialize: ->
             @template = $$.entry

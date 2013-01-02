@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['collections/project', 'jquery', 'backbone', 'template'], function(CollectionProject, $, Backbone, $$) {
+  define(['collections/project', 'views/stat', 'jquery', 'backbone', 'template'], function(CollectionProject, ViewStat, $, Backbone, $$) {
     var ProjectList;
     return ProjectList = (function(_super) {
 
@@ -24,8 +24,10 @@
         var _this = this;
         this.projects.snatch(function() {
           _this.projects.each(function(project) {
-            project.numberOfFiles();
-            return console.log(project.toJSON());
+            var numberOfFiles, stat;
+            numberOfFiles = project.numberOfFiles();
+            stat = new ViewStat;
+            return stat.render(project.id, numberOfFiles);
           });
           return _this.$el.html(_this.template.render({
             projects: _this.projects.toJSON()

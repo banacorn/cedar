@@ -13,6 +13,34 @@
         return EntryView.__super__.constructor.apply(this, arguments);
       }
 
+      EntryView.prototype.events = {
+        'click .entry-translation': 'edit',
+        'blur .entry-input input': 'blur',
+        'submit .entry-input form': 'submit'
+      };
+
+      EntryView.prototype.submit = function() {
+        var val;
+        val = $('.entry-input input', this.el).val();
+        console.log('submit', val);
+        $('.entry-translation', this.el).text(val);
+        this.blur();
+        return false;
+      };
+
+      EntryView.prototype.edit = function() {
+        $('.entry-translation', this.el).hide();
+        $('.entry-input', this.el).show();
+        return setTimeout(function() {
+          return $('.entry-input input', this.el).focus().select();
+        }, 0);
+      };
+
+      EntryView.prototype.blur = function() {
+        $('.entry-translation', this.el).show();
+        return $('.entry-input', this.el).hide();
+      };
+
       EntryView.prototype.initialize = function() {
         this.template = $$.entry;
         return this.status = new ModelEntry;

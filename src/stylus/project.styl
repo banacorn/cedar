@@ -37,7 +37,7 @@
         background white
 
 .stat-panel
-    float left
+    float right
     width 400px
     height 80px
 
@@ -48,11 +48,22 @@
         height 80px
         line-height 80px
 
-        i
-            color $light
+        float right
 
-        font-size 200%
-        color $dim
+        i
+            display block
+            float left
+            width 40px
+            height 80px
+            text-align center
+
+        span
+            display block
+            float left
+            width 40px
+            height 80px
+
+        font-size 24px
 
 //
 //  Header
@@ -331,6 +342,17 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
         height 80px
         line-height 80px
 
+    .entry-input
+        float left
+        display none
+        width 380px
+        padding 0 20px
+
+        height 80px
+        line-height 80px
+
+        input
+            font-size 100%
 // .entry-chevron
 //     float left
 //     width 80px

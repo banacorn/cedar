@@ -1,9 +1,10 @@
 define [
     'collections/project',
+    'views/stat',
     'jquery',
     'backbone',
     'template'
-], (CollectionProject, $, Backbone, $$) ->
+], (CollectionProject, ViewStat, $, Backbone, $$) ->
 
     class ProjectList extends Backbone.View
         
@@ -20,10 +21,12 @@ define [
         render: ->
 
             @projects.snatch =>
+                
                 @projects.each (project) ->
-                    project.numberOfFiles()
-                    console.log project.toJSON()
+                    numberOfFiles = project.numberOfFiles()
+                    stat = new ViewStat
+                    stat.render(project.id, numberOfFiles)
+
                 @$el.html @template.render
                     projects: @projects.toJSON()
-
             return @

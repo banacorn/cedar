@@ -16,7 +16,8 @@
       Model.prototype.numberOfFiles = function() {
         var yggdrasil;
         yggdrasil = Backbone.Stat.get("yggdrasil-" + this.id);
-        return this.set('numberOfFiles', yggdrasil.numberOfFiles);
+        this.set('numberOfFiles', yggdrasil.numberOfFiles);
+        return yggdrasil.numberOfFiles;
       };
 
       return Model;

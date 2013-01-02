@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['collections/entry', 'collections/locale', 'collections/localetree', 'models/project/browser', 'views/entry', 'jquery', 'backbone', 'template'], function(CollectionEntry, CollectionLocale, CollectionLocaletree, ModelProjectBrowser, ViewEntry, $, Backbone, $$) {
+  define(['collections/entry', 'collections/locale', 'collections/localetree', 'models/project/browser', 'views/entry', 'views/stat', 'jquery', 'backbone', 'template'], function(CollectionEntry, CollectionLocale, CollectionLocaletree, ModelProjectBrowser, ViewEntry, ViewStat, $, Backbone, $$) {
     var Browser;
     return Browser = (function(_super) {
 
@@ -74,6 +74,11 @@
             isFile: isFile
           }));
         } else {
+          this.collection.children().forEach(function(file) {
+            var stat;
+            stat = new ViewStat;
+            return stat.render(file.id, file.numberOfFiles);
+          });
           this.$el.html(template.render({
             isFile: isFile,
             files: this.collection.children(),

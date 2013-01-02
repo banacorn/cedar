@@ -46,6 +46,21 @@
         });
       };
 
+      Model.prototype.fold = function(tree, func, id) {
+        var poop,
+          _this = this;
+        if (tree != null) {
+          poop = tree.children.map(function(child) {
+            return _this.fold(child, func, id);
+          }).reduce((function(a, b) {
+            return a + b;
+          }), 0);
+          return func(tree, poop, id) + poop;
+        } else {
+          return 0;
+        }
+      };
+
       Model.prototype.getAllProjects = function() {
         var allProjects, countEntries, fold, insertPoFileID, numberOfFileFunc, snatchEntries,
           _this = this;

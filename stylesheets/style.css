@@ -1052,7 +1052,7 @@ h3 {
   background: #fff;
 }
 .stat-panel {
-  float: left;
+  float: right;
   width: 400px;
   height: 80px;
   color: #a0a0a0;
@@ -1061,11 +1061,21 @@ h3 {
   width: 80px;
   height: 80px;
   line-height: 80px;
-  font-size: 200%;
-  color: #787878;
+  float: right;
+  font-size: 24px;
 }
 .stat-panel .number-of-files i {
-  color: #a0a0a0;
+  display: block;
+  float: left;
+  width: 40px;
+  height: 80px;
+  text-align: center;
+}
+.stat-panel .number-of-files span {
+  display: block;
+  float: left;
+  width: 40px;
+  height: 80px;
 }
 #project-header {
   height: 80px;
@@ -1313,6 +1323,17 @@ h3 {
   padding: 0 20px;
   height: 80px;
   line-height: 80px;
+}
+#project-editor .entry-input {
+  float: left;
+  display: none;
+  width: 380px;
+  padding: 0 20px;
+  height: 80px;
+  line-height: 80px;
+}
+#project-editor .entry-input input {
+  font-size: 100%;
 }
 html {
   overflow-y: scroll;

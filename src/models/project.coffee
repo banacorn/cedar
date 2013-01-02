@@ -7,3 +7,4 @@ define [
         numberOfFiles: ->
             yggdrasil = Backbone.Stat.get "yggdrasil-#{@id}"
             @set 'numberOfFiles', yggdrasil.numberOfFiles
+            yggdrasil.numberOfFiles

@@ -51,13 +51,25 @@
       };
 
       Collection.prototype.children = function() {
-        var level;
+        var level, model, result, yggdrasil, _ref;
         level = _.compact(this.path.replace(/\/$/, '').split('/')).length;
-        return this.where({
+        model = this.where({
           level: level
         }).map(function(model) {
           return model.toJSON();
         });
+        if ((_ref = model[0]) != null ? _ref.id : void 0) {
+          yggdrasil = Backbone.Stat.get("yggdrasil-" + this.id);
+          result = null;
+          Backbone.Stat.fold(yggdrasil, function(tree, poop) {
+            if (tree.id === model[0].id) {
+              return result = tree;
+            }
+          });
+          model[0].numberOfFiles = result.numberOfFiles;
+          model[0].numberOfEntries = result.numberOfEntries;
+        }
+        return model;
       };
 
       Collection.prototype.node = function() {
@@ -65,6 +77,10 @@
         return (_ref = this.where({
           path: this.path
         })[0]) != null ? _ref.toJSON() : void 0;
+      };
+
+      Collection.prototype.numberOfFiles = function() {
+        return yggdrasil.numberOfFiles;
       };
 
       Collection.prototype.root = function() {

@@ -39,6 +39,19 @@ define [
                 for key, value of @attributes
                     localStorage[prefix + key] = JSON.stringify value
 
+
+        fold: (tree, func, id) ->
+
+            if tree?
+                poop = tree.children
+                    .map((child) => @fold(child, func, id))
+                    .reduce(((a, b) -> a + b), 0)
+
+                func(tree, poop, id) + poop
+            else
+                0     
+
+
         getAllProjects: ->
 
             @entriesLeft = {}

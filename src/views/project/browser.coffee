@@ -5,11 +5,11 @@ define [
     'collections/localetree',
     'models/project/browser',
     'views/entry',
+    'views/stat',
     'jquery',
     'backbone',
     'template'
-], (CollectionEntry, CollectionLocale, CollectionLocaletree, ModelProjectBrowser, ViewEntry, $, Backbone, $$) ->
-    
+], (CollectionEntry, CollectionLocale, CollectionLocaletree, ModelProjectBrowser, ViewEntry, ViewStat, $, Backbone, $$) ->
     
 
     class Browser extends Backbone.View
@@ -76,6 +76,14 @@ define [
 
 
             else # is folder
+
+
+
+                @collection.children().forEach (file) ->
+                    # numberOfFiles = file.numberOfFiles()
+                    # console.log numberOfFiles
+                    stat = new ViewStat
+                    stat.render(file.id, file.numberOfFiles)
 
                 @$el.html template.render
                     isFile: isFile
