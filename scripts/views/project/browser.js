@@ -49,18 +49,18 @@
           locales = new CollectionLocale;
           locales.id = projectID;
           locales.snatch(function() {
-            var localeTree, projectLocaleID, _ref1;
+            var localeTree, projectLocaleID, _ref1, _ref2;
             projectLocaleID = (_ref1 = locales.where({
               localeID: 1
-            })) != null ? _ref1[0].get('id') : void 0;
+            })) != null ? (_ref2 = _ref1[0]) != null ? _ref2.get('id') : void 0 : void 0;
             localeTree = new CollectionLocaletree;
             localeTree.id = projectLocaleID;
             return localeTree.snatch(function() {
-              var entries, entriesView, projectFileID, _ref2, _ref3;
+              var entries, entriesView, projectFileID, _ref3, _ref4;
               projectFileID = _this.collection.node().id;
-              fileID = (_ref2 = localeTree.where({
+              fileID = (_ref3 = localeTree.where({
                 'project_file_id': projectFileID
-              })) != null ? (_ref3 = _ref2[0]) != null ? _ref3.get('id') : void 0 : void 0;
+              })) != null ? (_ref4 = _ref3[0]) != null ? _ref4.get('id') : void 0 : void 0;
               entries = new CollectionEntry;
               entries.id = fileID;
               entriesView = new ViewEntry({

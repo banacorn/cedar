@@ -53,7 +53,7 @@ define [
                 locales.snatch =>
 
                     # get zh-tw
-                    projectLocaleID = locales.where({localeID: 1})?[0].get 'id'
+                    projectLocaleID = locales.where({localeID: 1})?[0]?.get 'id'
                 
                     # get locale-tree
                     localeTree = new CollectionLocaletree

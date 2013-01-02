@@ -316,19 +316,20 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
 
     li
         background #F8F8F8
-        height 80px
+        // height 80px
         font-size 150%
 
 
     .entry
         > li
+            // overflow hidden
             border-bottom 1px solid $ghost
             border-top 1px solid #E8E8E8
 
     .entry-context
         float left
         width 380px
-        height 80px
+        min-height 80px
         line-height 80px
         padding 0 20px
 
@@ -339,7 +340,7 @@ arrowbutt(height, color, borderWidth = 1px, width = height / 2)
         padding 0 20px
         // cursor text    
 
-        height 80px
+        min-height 80px
         line-height 80px
 
     .entry-input

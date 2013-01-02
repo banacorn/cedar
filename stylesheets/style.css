@@ -1303,7 +1303,6 @@ h3 {
 }
 #project-editor li {
   background: #f8f8f8;
-  height: 80px;
   font-size: 150%;
 }
 #project-editor .entry > li {
@@ -1313,7 +1312,7 @@ h3 {
 #project-editor .entry-context {
   float: left;
   width: 380px;
-  height: 80px;
+  min-height: 80px;
   line-height: 80px;
   padding: 0 20px;
 }
@@ -1321,7 +1320,7 @@ h3 {
   float: left;
   width: 380px;
   padding: 0 20px;
-  height: 80px;
+  min-height: 80px;
   line-height: 80px;
 }
 #project-editor .entry-input {
