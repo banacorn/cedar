@@ -2048,6 +2048,11 @@ var jam = {
             "main": "backbone.js"
         },
         {
+            "name": "Backbone.Marionette",
+            "location": "scripts/jam/Backbone.Marionette",
+            "main": "lib/amd/backbone.marionette.js"
+        },
+        {
             "name": "hogan",
             "location": "scripts/jam/hogan",
             "main": "hogan.js"
@@ -2094,6 +2099,11 @@ if (typeof require !== "undefined" && require.config) {
             "main": "backbone.js"
         },
         {
+            "name": "Backbone.Marionette",
+            "location": "scripts/jam/Backbone.Marionette",
+            "main": "lib/amd/backbone.marionette.js"
+        },
+        {
             "name": "hogan",
             "location": "scripts/jam/hogan",
             "main": "hogan.js"
@@ -2137,6 +2147,11 @@ else {
             "name": "backbone",
             "location": "scripts/jam/backbone",
             "main": "backbone.js"
+        },
+        {
+            "name": "Backbone.Marionette",
+            "location": "scripts/jam/Backbone.Marionette",
+            "main": "lib/amd/backbone.marionette.js"
         },
         {
             "name": "hogan",
