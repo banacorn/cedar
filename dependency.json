@@ -8,6 +8,7 @@
         "$"             : "jquery",
         "_"             : "underscore",
         "Backbone"      : "backbone",
+        "Backbone.Marionette"      : "backbone.marionette",
         "Hogan"         : "hogan"
     },
     "rewrite": {
