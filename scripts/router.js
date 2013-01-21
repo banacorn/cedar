@@ -3,9 +3,9 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['views/api', 'views/home', 'views/notfound', 'views/project/list', 'views/project', 'views/registration', 'views/settings', 'jquery', 'underscore', 'backbone'], function(ViewApi, ViewHome, ViewNotfound, ViewProjectList, ViewProject, ViewRegistration, ViewSettings, $, _, Backbone) {
+  define(['views/home', 'views/project/list', 'jquery', 'backbone'], function(ViewHome, ViewProjectList, $, Backbone) {
     var Router;
-    return new (Router = (function(_super) {
+    Router = (function(_super) {
 
       __extends(Router, _super);
 
@@ -15,82 +15,25 @@
 
       Router.prototype.routes = {
         '': 'home',
-        'registration': 'registration',
-        'settings': 'settings',
-        'project': 'project',
-        'project/:name/file': 'project:file',
-        'project/:name/file/*path': 'project:file',
-        'api_reference': 'api',
-        '*all': 'otherwise'
+        'project': 'project'
       };
 
-      Router.prototype['home'] = function() {
-        var homePage;
-        homePage = new ViewHome;
-        return homePage.render();
+      Router.prototype.home = function() {
+        var homeView;
+        homeView = new ViewHome;
+        return $('body').html(homeView.render());
       };
 
-      Router.prototype['registration'] = function() {
-        var registrationPage;
-        registrationPage = new ViewRegistration;
-        return registrationPage.render();
-      };
-
-      Router.prototype['settings'] = function() {
-        var _this = this;
-        Backbone.account.authorize(function(authorized) {
-          var settingsPage;
-          if (authorized) {
-            settingsPage = new ViewSettings;
-            return settingsPage.render();
-          } else {
-            return _this.redirect('home');
-          }
-        });
-        return Backbone.on('unauthorized', function() {
-          return _this.redirect('home');
-        });
-      };
-
-      Router.prototype['project'] = function() {
-        var projectList;
-        projectList = new ViewProjectList;
-        return projectList.render();
-      };
-
-      Router.prototype['project:file'] = function(name, path) {
-        var project;
-        project = new ViewProject;
-        if (path != null) {
-          path = path.replace(/\/$/, '');
-        } else {
-          path = '';
-        }
-        return project.render(name, path);
-      };
-
-      Router.prototype['api'] = function() {
-        var api;
-        api = new ViewApi;
-        return api.render();
-      };
-
-      Router.prototype['otherwise'] = function(path) {
-        var notFound;
-        notFound = new ViewNotfound;
-        return notFound.render(path);
-      };
-
-      Router.prototype.redirect = function(page) {
-        var url;
-        url = _.invert(this.routes)[page];
-        this.navigate(url);
-        return typeof this[page] === "function" ? this[page]() : void 0;
+      Router.prototype.project = function() {
+        var projectListView;
+        projectListView = new ViewProjectList;
+        return $('body').html(projectListView.render());
       };
 
       return Router;
 
-    })(Backbone.Router));
+    })(Backbone.Router);
+    return new Router;
   });
 
 }).call(this);

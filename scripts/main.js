@@ -8,18 +8,14 @@
       jquery: 'jam/jquery/jquery',
       underscore: 'jam/underscore/underscore',
       backbone: 'jam/backbone/backbone',
-      'backbone.marionette': 'jam/Backbone.Marionette/lib/amd/backbone.marionette',
       hogan: 'jam/hogan/hogan',
       router: 'router',
       template: 'template'
     }
   });
 
-  require(['models/settings', 'router', 'skull', 'views/account', 'views/home', 'jquery', 'backbone', 'backbone.marionette'], function(ModelSettings, Router, Skull, ViewAccount, ViewHome, $, Backbone) {
-    var App;
-    console.log(Backbone.Marionette);
-    Skull;
-
+  require(['router', 'jquery', 'backbone'], function(Router, $, Backbone) {
+    var App, app;
     App = (function(_super) {
 
       __extends(App, _super);
@@ -28,40 +24,28 @@
         return App.__super__.constructor.apply(this, arguments);
       }
 
-      App.prototype.el = 'body';
+      App.prototype.enablePushState = function() {
+        return Backbone.history.start({
+          pushState: true
+        });
+      };
 
-      App.prototype.render = function() {
-        var account;
-        account = new ViewAccount;
-        this.assign(account, '#account');
-        return $('#account').hide().fadeIn(200);
+      App.prototype.disableAnchor = function() {
+        return $('a').live('click', function() {
+          var urn;
+          urn = $(this).attr('href');
+          Router.navigate(urn, true);
+          return false;
+        });
       };
 
       return App;
 
     })(Backbone.View);
-    Backbone.settings = new ModelSettings;
+    app = new App;
     return $(function() {
-      var app;
-      app = new App;
-      app.render();
-      Router.on('route:home', function() {
-        var home;
-        home = new ViewHome;
-        return home.render();
-      });
-      $('form').live('submit', function() {
-        return false;
-      });
-      $('a').live('click', function(e) {
-        var urn;
-        urn = $(this).attr('href');
-        Router.navigate(urn, true);
-        return false;
-      });
-      return Backbone.history.start({
-        pushState: true
-      });
+      app.enablePushState();
+      return app.disableAnchor();
     });
   });
 

@@ -13,15 +13,10 @@
         return Home.__super__.constructor.apply(this, arguments);
       }
 
-      Home.prototype.el = $('#main');
-
-      Home.prototype.initialize = function() {
-        return this.template = $$.home;
-      };
+      Home.prototype.template = $$.home;
 
       Home.prototype.render = function() {
-        this.$el.html(this.template.render());
-        return this;
+        return this.template.render();
       };
 
       return Home;
