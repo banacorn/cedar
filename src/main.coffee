@@ -3,6 +3,7 @@ require.config
         jquery      : 'jam/jquery/jquery'
         underscore  : 'jam/underscore/underscore'
         backbone    : 'jam/backbone/backbone'
+        'backbone.marionette'    : 'jam/Backbone.Marionette/lib/amd/backbone.marionette'
         hogan       : 'jam/hogan/hogan'        
         router      : 'router'
         template    : 'template'
@@ -13,8 +14,12 @@ require [
     'views/account',
     'views/home',
     'jquery',
-    'backbone'
+    'backbone',
+    'backbone.marionette'
 ], (ModelSettings, Router, Skull, ViewAccount, ViewHome, $, Backbone) ->
+
+
+    console.log Backbone.Marionette
 
     # some Backbone tweaks
     Skull

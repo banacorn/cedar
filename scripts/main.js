@@ -8,16 +8,18 @@
       jquery: 'jam/jquery/jquery',
       underscore: 'jam/underscore/underscore',
       backbone: 'jam/backbone/backbone',
+      'backbone.marionette': 'jam/Backbone.Marionette/lib/amd/backbone.marionette',
       hogan: 'jam/hogan/hogan',
       router: 'router',
       template: 'template'
     }
   });
 
-  require(['models/settings', 'router', 'skull', 'views/account', 'views/home', 'jquery', 'backbone'], function(ModelSettings, Router, Skull, ViewAccount, ViewHome, $, Backbone) {
+  require(['models/settings', 'router', 'skull', 'views/account', 'views/home', 'jquery', 'backbone', 'backbone.marionette'], function(ModelSettings, Router, Skull, ViewAccount, ViewHome, $, Backbone) {
+    var App;
+    console.log(Backbone.Marionette);
     Skull;
 
-    var App;
     App = (function(_super) {
 
       __extends(App, _super);
