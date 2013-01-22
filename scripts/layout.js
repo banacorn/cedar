@@ -5,6 +5,41 @@
 
   define(['jquery', 'backbone', 'template', 'backbone.marionette'], function($, Backbone, $$) {
     var Layout, layout;
+    Backbone.remoteSync = Backbone.sync;
+    Backbone.sync = function(method, model, option) {
+      var data, url;
+      if (typeof model.url === 'function') {
+        url = model.url();
+      } else {
+        url = model.url;
+      }
+      switch (method) {
+        case 'read':
+          model.on('reset', function() {
+            return localStorage[url] = JSON.stringify(model.toJSON());
+          });
+          if ((typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] : void 0) != null) {
+            data = JSON.parse(localStorage[url]);
+            if (model instanceof Backbone.Collection) {
+              model.reset(data);
+            }
+            if (model instanceof Backbone.Model) {
+              model.set(data);
+            }
+          }
+          break;
+        case 'create':
+          if (typeof localStorage !== "undefined" && localStorage !== null) {
+            localStorage[url] = JSON.stringify(model.toJSON());
+          }
+          break;
+        case 'update':
+          if (typeof localStorage !== "undefined" && localStorage !== null) {
+            localStorage[url] = JSON.stringify(model.toJSON());
+          }
+      }
+      return Backbone.remoteSync.apply(this, arguments);
+    };
     Backbone.Marionette.Renderer.render = function(template, data) {
       return template.render(data);
     };
