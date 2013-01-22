@@ -1,25 +1,37 @@
 define [
+    'layout',
+    'regions/main',
     'views/home',
     'views/project/list',
     'jquery',
     'backbone'
-], (ViewHome, ViewProjectList, $, Backbone) ->
+], (Layout, RegionMain, ViewHome, ViewProjectList, $, Backbone) ->
+
     class Router extends Backbone.Router
 
-        routes:
-            ''          : 'home'
-            'project'   : 'project'
+        initialize: ->
+            console.log 'rendering layout at the router'
+            Layout.render()
+            $('body').html $(Layout.el).children()
 
-        # /
+        routes:
+            ''              : 'home'
+            'project'       : 'projectList'
+            'project/:id'   : 'project'
+
+        # 
         home: ->
             homeView = new ViewHome
-            $('body').html homeView.render()
+            RegionMain.show homeView
 
-        # /project
-        project: ->
+        # project
+        projectList: ->
             projectListView = new ViewProjectList
-            $('body').html projectListView.render()
+            RegionMain.show projectListView
 
+        # project/:id
+        project: (id) ->
+            console.log id
 
 
     return new Router

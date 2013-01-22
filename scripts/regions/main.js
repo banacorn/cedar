@@ -3,21 +3,20 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'backbone', 'template', 'backbone.marionette'], function($, Backbone, $$) {
-    var Home;
-    return Home = (function(_super) {
+  define(['main', 'backbone', 'backbone.marionette'], function(Main, Backbone) {
+    return new (Main = (function(_super) {
 
-      __extends(Home, _super);
+      __extends(Main, _super);
 
-      function Home() {
-        return Home.__super__.constructor.apply(this, arguments);
+      function Main() {
+        return Main.__super__.constructor.apply(this, arguments);
       }
 
-      Home.prototype.template = $$.home;
+      Main.prototype.el = '#main';
 
-      return Home;
+      return Main;
 
-    })(Backbone.Marionette.ItemView);
+    })(Backbone.Marionette.Region));
   });
 
 }).call(this);

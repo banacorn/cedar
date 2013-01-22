@@ -1,9 +1,9 @@
 define [
     'jquery',
     'backbone',
-    'template'
+    'template',
+    'backbone.marionette'
 ], ($, Backbone, $$) ->
 
-    class ProjectList extends Backbone.View
+    class ProjectList extends Backbone.Marionette.ItemView
         template: $$.projectList
-        render: -> @template.render()

@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['views/home', 'views/project/list', 'jquery', 'backbone'], function(ViewHome, ViewProjectList, $, Backbone) {
+  define(['layout', 'regions/main', 'views/home', 'views/project/list', 'jquery', 'backbone'], function(Layout, RegionMain, ViewHome, ViewProjectList, $, Backbone) {
     var Router;
     Router = (function(_super) {
 
@@ -13,21 +13,32 @@
         return Router.__super__.constructor.apply(this, arguments);
       }
 
+      Router.prototype.initialize = function() {
+        console.log('rendering layout at the router');
+        Layout.render();
+        return $('body').html($(Layout.el).children());
+      };
+
       Router.prototype.routes = {
         '': 'home',
-        'project': 'project'
+        'project': 'projectList',
+        'project/:id': 'project'
       };
 
       Router.prototype.home = function() {
         var homeView;
         homeView = new ViewHome;
-        return $('body').html(homeView.render());
+        return RegionMain.show(homeView);
       };
 
-      Router.prototype.project = function() {
+      Router.prototype.projectList = function() {
         var projectListView;
         projectListView = new ViewProjectList;
-        return $('body').html(projectListView.render());
+        return RegionMain.show(projectListView);
+      };
+
+      Router.prototype.project = function(id) {
+        return console.log(id);
       };
 
       return Router;

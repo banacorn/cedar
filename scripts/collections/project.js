@@ -4,20 +4,20 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['models/project', 'backbone'], function(ModelProject, Backbone) {
-    var Collection;
-    return Collection = (function(_super) {
+    var Project;
+    return Project = (function(_super) {
 
-      __extends(Collection, _super);
+      __extends(Project, _super);
 
-      function Collection() {
-        return Collection.__super__.constructor.apply(this, arguments);
+      function Project() {
+        return Project.__super__.constructor.apply(this, arguments);
       }
 
-      Collection.prototype.model = ModelProject;
+      Project.prototype.model = ModelProject;
 
-      Collection.prototype.url = '/api/projects';
+      Project.prototype.url = '/api/projects';
 
-      Collection.prototype.parse = function(data) {
+      Project.prototype.parse = function(data) {
         var fold, models;
         models = [];
         fold = function(tree) {
@@ -37,7 +37,7 @@
         return models;
       };
 
-      return Collection;
+      return Project;
 
     })(Backbone.Collection);
   });
