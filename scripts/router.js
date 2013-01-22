@@ -14,7 +14,6 @@
       }
 
       Router.prototype.initialize = function() {
-        console.log('rendering layout at the router');
         Layout.render();
         return $('body').html($(Layout.el).children());
       };

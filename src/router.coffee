@@ -10,7 +10,6 @@ define [
     class Router extends Backbone.Router
 
         initialize: ->
-            console.log 'rendering layout at the router'
             Layout.render()
             $('body').html $(Layout.el).children()
 
