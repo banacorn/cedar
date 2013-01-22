@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'backbone', 'template'], function($, Backbone, $$) {
+  define(['jquery', 'backbone', 'template', 'backbone.marionette'], function($, Backbone, $$) {
     var ProjectListItem;
     return ProjectListItem = (function(_super) {
 
@@ -13,15 +13,15 @@
         return ProjectListItem.__super__.constructor.apply(this, arguments);
       }
 
-      ProjectListItem.prototype.template = $$.projectListitem;
+      ProjectListItem.prototype.tagName = 'li';
 
-      ProjectListItem.prototype.render = function() {
-        return this.template.render();
-      };
+      ProjectListItem.prototype.className = 'project-list-item';
+
+      ProjectListItem.prototype.template = $$.projectListitem;
 
       return ProjectListItem;
 
-    })(Backbone.View);
+    })(Backbone.Marionette.ItemView);
   });
 
 }).call(this);

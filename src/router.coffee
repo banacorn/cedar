@@ -1,11 +1,12 @@
 define [
+    'collections/project',
     'layout',
     'regions/main',
     'views/home',
     'views/project/list',
     'jquery',
     'backbone'
-], (Layout, RegionMain, ViewHome, ViewProjectList, $, Backbone) ->
+], (CollectionProject, Layout, RegionMain, ViewHome, ViewProjectList, $, Backbone) ->
 
     class Router extends Backbone.Router
 
@@ -25,12 +26,17 @@ define [
 
         # project
         projectList: ->
+
+            projectList = new CollectionProject
             projectListView = new ViewProjectList
+                collection: projectList
             RegionMain.show projectListView
+            projectList.fetch()
 
         # project/:id
         project: (id) ->
             console.log id
+
 
 
     return new Router

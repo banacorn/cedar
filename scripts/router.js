@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['layout', 'regions/main', 'views/home', 'views/project/list', 'jquery', 'backbone'], function(Layout, RegionMain, ViewHome, ViewProjectList, $, Backbone) {
+  define(['collections/project', 'layout', 'regions/main', 'views/home', 'views/project/list', 'jquery', 'backbone'], function(CollectionProject, Layout, RegionMain, ViewHome, ViewProjectList, $, Backbone) {
     var Router;
     Router = (function(_super) {
 
@@ -31,9 +31,13 @@
       };
 
       Router.prototype.projectList = function() {
-        var projectListView;
-        projectListView = new ViewProjectList;
-        return RegionMain.show(projectListView);
+        var projectList, projectListView;
+        projectList = new CollectionProject;
+        projectListView = new ViewProjectList({
+          collection: projectList
+        });
+        RegionMain.show(projectListView);
+        return projectList.fetch();
       };
 
       Router.prototype.project = function(id) {

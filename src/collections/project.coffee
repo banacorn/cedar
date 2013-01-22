@@ -6,7 +6,6 @@ define [
     class Project extends Backbone.Collection
         model: ModelProject
         url: '/api/projects'
-
         # temperally flatten the tree of projects
         parse: (data) ->
             models = []
