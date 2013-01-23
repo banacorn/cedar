@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['collections/project', 'layout', 'regions/main', 'views/home', 'views/project/list', 'jquery', 'backbone'], function(CollectionProject, Layout, RegionMain, ViewHome, ViewProjectList, $, Backbone) {
+  define(['collections/file', 'collections/project', 'layout', 'models/project', 'regions/main', 'views/home', 'views/project/list', 'views/project', 'jquery', 'backbone'], function(CollectionFile, CollectionProject, Layout, ModelProject, RegionMain, ViewHome, ViewProjectList, ViewProject, $, Backbone) {
     var Router;
     Router = (function(_super) {
 
@@ -37,11 +37,28 @@
           collection: projectList
         });
         RegionMain.show(projectListView);
-        return projectList.fetch();
+        projectList.fetch();
+        return projectList.on('reset', function() {
+          return console.log(projectList.toJSON());
+        });
       };
 
       Router.prototype.project = function(id) {
-        return console.log(id);
+        var files, project, projectView;
+        project = new ModelProject({
+          id: id
+        });
+        files = new CollectionFile({
+          projectID: id,
+          localeID: 1
+        });
+        projectView = new ViewProject({
+          model: project,
+          collection: files
+        });
+        RegionMain.show(projectView);
+        project.fetch();
+        return files.fetch();
       };
 
       return Router;

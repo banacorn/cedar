@@ -1,12 +1,15 @@
 define [
+    'collections/file',
     'collections/project',
     'layout',
+    'models/project',
     'regions/main',
     'views/home',
     'views/project/list',
+    'views/project',
     'jquery',
     'backbone'
-], (CollectionProject, Layout, RegionMain, ViewHome, ViewProjectList, $, Backbone) ->
+], (CollectionFile, CollectionProject, Layout, ModelProject, RegionMain, ViewHome, ViewProjectList, ViewProject, $, Backbone) ->
 
     class Router extends Backbone.Router
 
@@ -32,10 +35,28 @@ define [
                 collection: projectList
             RegionMain.show projectListView
             projectList.fetch()
+            projectList.on 'reset', ->
+                console.log projectList.toJSON( )
 
         # project/:id
         project: (id) ->
-            console.log id
+
+            project = new ModelProject
+                id: id
+
+            files = new CollectionFile
+                projectID: id
+                localeID: 1 # zh-tw
+
+            projectView = new ViewProject
+                model: project
+                collection: files                
+
+            RegionMain.show projectView
+            project.fetch()
+            files.fetch()
+
+
 
 
 
