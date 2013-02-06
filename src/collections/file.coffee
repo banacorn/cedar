@@ -1,12 +1,22 @@
 define [
+    'underscore',
     'backbone'
-], (Backbone) ->
+], (_, Backbone) ->
+
 
     class ProjectLocale extends Backbone.Model
-        url: -> "/api/project_locales/#{ @id }"
+        url: -> "/api/project_locales/?project_id=#{ @id }"
+        parse: (locales) ->
+            trees = {}
+            _(locales).forEach (locale) ->
+                trees[locale.tlocale.id] = 
+                    treeID: locale.id
+                    localeName: locale.tlocale.name
+            return trees
+
 
     class Files extends Backbone.Collection
-        url: -> "/api/po_files/#{ @projectID }"
+        url: -> "/api/po_files/?project_id=#{ @treeID }"
 
         initialize: (option) ->
 
@@ -17,9 +27,14 @@ define [
             projectLocale = new ProjectLocale
                 id: @projectID
 
-            projectLocale.fetch()
-            projectLocale.on 'sync', ->
-
-                console.log projectLocale.toJSON()
 
 
+            # projectLocale.fetch()
+            projectLocale.on 'sync', =>
+                @treeID = projectLocale.toJSON()[@localeID].treeID
+
+                @fetch()
+
+                @on 'sync', =>
+                    console.log 'fuck'
+                    console.log @toJSON()

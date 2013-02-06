@@ -1,6 +1,6 @@
 build: build.js
 	node build.js
-	stylus --include src/stylus --include node_modules/nib/lib --compress --out stylesheets src/stylus/style.styl
+	stylus -c --include src/stylus --include node_modules/nib/lib --compress --out stylesheets src/stylus/style.styl
 	
 compile: node_modules/requirejs/bin/r.js
 	coffee --compile --output scripts/ src/

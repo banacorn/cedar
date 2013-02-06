@@ -2053,6 +2053,10 @@ var jam = {
             "main": "lib/amd/backbone.marionette.js"
         },
         {
+            "name": "bootstrap",
+            "location": "scripts/jam/bootstrap"
+        },
+        {
             "name": "hogan",
             "location": "scripts/jam/hogan",
             "main": "hogan.js"
@@ -2104,6 +2108,10 @@ if (typeof require !== "undefined" && require.config) {
             "main": "lib/amd/backbone.marionette.js"
         },
         {
+            "name": "bootstrap",
+            "location": "scripts/jam/bootstrap"
+        },
+        {
             "name": "hogan",
             "location": "scripts/jam/hogan",
             "main": "hogan.js"
@@ -2152,6 +2160,10 @@ else {
             "name": "Backbone.Marionette",
             "location": "scripts/jam/Backbone.Marionette",
             "main": "lib/amd/backbone.marionette.js"
+        },
+        {
+            "name": "bootstrap",
+            "location": "scripts/jam/bootstrap"
         },
         {
             "name": "hogan",

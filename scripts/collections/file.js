@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['backbone'], function(Backbone) {
+  define(['underscore', 'backbone'], function(_, Backbone) {
     var Files, ProjectLocale;
     ProjectLocale = (function(_super) {
 
@@ -14,7 +14,19 @@
       }
 
       ProjectLocale.prototype.url = function() {
-        return "/api/project_locales/" + this.id;
+        return "/api/project_locales/?project_id=" + this.id;
+      };
+
+      ProjectLocale.prototype.parse = function(locales) {
+        var trees;
+        trees = {};
+        _(locales).forEach(function(locale) {
+          return trees[locale.tlocale.id] = {
+            treeID: locale.id,
+            localeName: locale.tlocale.name
+          };
+        });
+        return trees;
       };
 
       return ProjectLocale;
@@ -29,19 +41,24 @@
       }
 
       Files.prototype.url = function() {
-        return "/api/po_files/" + this.projectID;
+        return "/api/po_files/?project_id=" + this.treeID;
       };
 
       Files.prototype.initialize = function(option) {
-        var projectLocale;
+        var projectLocale,
+          _this = this;
         this.projectID = option.projectID;
         this.localeID = option.localeID;
         projectLocale = new ProjectLocale({
           id: this.projectID
         });
-        projectLocale.fetch();
         return projectLocale.on('sync', function() {
-          return console.log(projectLocale.toJSON());
+          _this.treeID = projectLocale.toJSON()[_this.localeID].treeID;
+          _this.fetch();
+          return _this.on('sync', function() {
+            console.log('fuck');
+            return console.log(_this.toJSON());
+          });
         });
       };
 
