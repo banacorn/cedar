@@ -19,8 +19,13 @@
 
       Home.prototype.template = $$.home;
 
+      Home.prototype.initialize = function() {
+        return this.render();
+      };
+
       Home.prototype.render = function() {
-        return this.$el.html(this.template.render());
+        this.$el.html(this.template.render());
+        return this;
       };
 
       return Home;

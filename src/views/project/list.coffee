@@ -1,16 +1,13 @@
 define [
-    'views/project/listitem',
     'jquery',
     'backbone',
-    'template',
-    'backbone.marionette'
-], (ViewProjectListitem, $, Backbone, $$) ->
+    'template'
+], ($, Backbone, $$) ->
 
-    class ProjectList extends Backbone.Marionette.CompositeView
-        tagName: 'article'
+    class ProjectList extends Backbone.View
+        tagName: 'section'
         id: 'project-list'
         template: $$.projectList
 
-        itemView: ViewProjectListitem
-        itemViewContainer: 'ol'
-
+        initialize: -> @render()
+        render: -> @$el.html @template.render()

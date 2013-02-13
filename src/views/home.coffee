@@ -8,4 +8,7 @@ define [
         tagName: 'article'
         id: 'home'
         template: $$.home
-        render: -> @$el.html @template.render()
+        initialize: -> @render()
+        render: -> 
+            @$el.html @template.render()
+            return @

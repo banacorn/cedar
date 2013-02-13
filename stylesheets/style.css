@@ -1,1 +1,5 @@
 @import "bootstrap.css";
+body {
+  padding-top: 40px;
+  background: url("/images/light_noise_diagonal.png");
+}

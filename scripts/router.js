@@ -3,8 +3,43 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['collections/file', 'collections/project', 'layout', 'models/project', 'regions/main', 'views/home', 'views/project/list', 'views/project', 'jquery', 'backbone'], function(CollectionFile, CollectionProject, Layout, ModelProject, RegionMain, ViewHome, ViewProjectList, ViewProject, $, Backbone) {
+  define(['views/home', 'views/project/list', 'jquery', 'backbone'], function(ViewHome, ViewProjectList, $, Backbone) {
     var Router;
+    Backbone.remoteSync = Backbone.sync;
+    Backbone.sync = function(method, model, option) {
+      var data, url;
+      if (typeof model.url === 'function') {
+        url = model.url();
+      } else {
+        url = model.url;
+      }
+      switch (method) {
+        case 'read':
+          model.on('reset', function() {
+            return localStorage[url] = JSON.stringify(model.toJSON());
+          });
+          if ((typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] : void 0) != null) {
+            data = JSON.parse(localStorage[url]);
+            if (model instanceof Backbone.Collection) {
+              model.reset(data);
+            }
+            if (model instanceof Backbone.Model) {
+              model.set(data);
+            }
+          }
+          break;
+        case 'create':
+          if (typeof localStorage !== "undefined" && localStorage !== null) {
+            localStorage[url] = JSON.stringify(model.toJSON());
+          }
+          break;
+        case 'update':
+          if (typeof localStorage !== "undefined" && localStorage !== null) {
+            localStorage[url] = JSON.stringify(model.toJSON());
+          }
+      }
+      return Backbone.remoteSync.apply(this, arguments);
+    };
     Router = (function(_super) {
 
       __extends(Router, _super);
@@ -13,52 +48,21 @@
         return Router.__super__.constructor.apply(this, arguments);
       }
 
-      Router.prototype.initialize = function() {
-        Layout.render();
-        return $('body').html($(Layout.el).children());
-      };
-
       Router.prototype.routes = {
         '': 'home',
-        'project': 'projectList',
-        'project/:id': 'project'
+        'project': 'projectList'
       };
 
       Router.prototype.home = function() {
         var homeView;
         homeView = new ViewHome;
-        return RegionMain.show(homeView);
+        return $('#main').html(homeView.el);
       };
 
       Router.prototype.projectList = function() {
-        var projectList, projectListView;
-        projectList = new CollectionProject;
-        projectListView = new ViewProjectList({
-          collection: projectList
-        });
-        RegionMain.show(projectListView);
-        projectList.fetch();
-        return projectList.on('reset', function() {
-          return console.log(projectList.toJSON());
-        });
-      };
-
-      Router.prototype.project = function(id) {
-        var files, project, projectView;
-        project = new ModelProject({
-          id: id
-        });
-        files = new CollectionFile({
-          projectID: id,
-          localeID: 1
-        });
-        projectView = new ViewProject({
-          model: project,
-          collection: files
-        });
-        RegionMain.show(projectView);
-        project.fetch();
-        return files.fetch();
+        var projectListView;
+        projectListView = new ViewProjectList;
+        return $('#main').html(projectListView.el);
       };
 
       return Router;
