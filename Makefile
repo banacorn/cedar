@@ -10,7 +10,7 @@ compile: node_modules/requirejs/bin/r.js
 watch: 
 	make -j beobachten
 
-beobachten: coffee stylus preprocessorwatch
+beobachten: coffee stylus preprocessorwatch rinde
 
 coffee:
 	coffee --watch --compile --output scripts/ src/ 
@@ -18,6 +18,8 @@ coffee:
 stylus:
 	stylus --include src/stylus --include node_modules/nib/lib --out stylesheets --watch src/stylus/style.styl
 
+rinde: ./../rinde/Makefile
+	make watch -C ./../rinde
 
 preprocessorwatch:
 	node node_modules/requirejs-preprocessor/main.js --watch 
