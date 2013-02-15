@@ -1,9 +1,10 @@
 define [
     'views/home',
     'views/project/list',
+    'views/registration',
     'jquery',
     'backbone'
-], (ViewHome, ViewProjectList, $, Backbone) ->
+], (ViewHome, ViewProjectList, ViewRegistration, $, Backbone) ->
 
 
     # save the original Backbone.Sync here
@@ -47,14 +48,25 @@ define [
 
         routes:
             ''              : 'home'
+            'registration'  : 'registration'
             'project'       : 'projectList'
-            # 'project/:id'   : 'project'
 
-        # 
+        initialize: ->
+
+            # remove the class 'container' if the page is "wide"
+            @on 'all', (path) ->
+                if /^route:home$/.test path
+                    $('#main').removeClass 'container'
+                else
+                    $('#main').addClass 'container'
         home: ->
             homeView = new ViewHome
             $('#main').html homeView.el
 
+
+        registration: ->
+            registrationView = new ViewRegistration
+            $('#main').html registrationView.el
 
         projectList: ->
             projectListView = new ViewProjectList

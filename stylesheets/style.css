@@ -1,5 +1,36 @@
 @import "bootstrap.css";
+.blue {
+  color: #345 !important;
+}
+.container section {
+  margin: 40px 0;
+}
+.thumbnail {
+  height: 200px;
+  background: #345;
+  border: none;
+}
+#home section {
+  padding: 40px 0;
+}
+#home section.gold {
+  background: #ffd700;
+}
+#home section.gold h2 {
+  color: #345;
+}
+#home section.blueLight {
+  background: #41576c;
+}
+#home section.blueLight h2 {
+  color: #eee;
+}
+#home section.blue {
+  background: #345;
+}
+#home section.blue h2 {
+  color: #eee;
+}
 body {
   padding-top: 40px;
-  background: url("/images/light_noise_diagonal.png");
 }

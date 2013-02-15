@@ -1,7 +1,47 @@
 @import "bootstrap.css"
 
+$gray           =       #555;
+$grayLight      =       #999;
+$grayLighter    =       #eee;
+$blue           = #334455
+$blueLight      = lighten($blue, 10%)
+
+.blue
+    color: $blue !important
+
+.container
+    section
+        margin: 40px 0
+
+// home
+.thumbnail
+    height: 200px
+    background: $blue
+    border: none
+
+#home
+    section 
+        padding: 40px 0
+
+        &.gold
+            background: gold
+
+            h2
+                color: $blue
+
+        &.blueLight
+            background: $blueLight
+            h2
+                color: $grayLighter
+
+        &.blue
+            background: $blue
+            h2
+                color: $grayLighter
+
+
 body
     // for the fixed navbar
     padding-top: 40px
 
-    background: url('/images/light_noise_diagonal.png')
+    // background: url('/images/light_noise_diagonal.png')

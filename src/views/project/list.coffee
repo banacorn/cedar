@@ -5,6 +5,7 @@ define [
 ], ($, Backbone, $$) ->
 
     class ProjectList extends Backbone.View
+
         tagName: 'section'
         id: 'project-list'
         template: $$.projectList

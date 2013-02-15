@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['views/home', 'views/project/list', 'jquery', 'backbone'], function(ViewHome, ViewProjectList, $, Backbone) {
+  define(['views/home', 'views/project/list', 'views/registration', 'jquery', 'backbone'], function(ViewHome, ViewProjectList, ViewRegistration, $, Backbone) {
     var Router;
     Backbone.remoteSync = Backbone.sync;
     Backbone.sync = function(method, model, option) {
@@ -50,13 +50,30 @@
 
       Router.prototype.routes = {
         '': 'home',
+        'registration': 'registration',
         'project': 'projectList'
+      };
+
+      Router.prototype.initialize = function() {
+        return this.on('all', function(path) {
+          if (/^route:home$/.test(path)) {
+            return $('#main').removeClass('container');
+          } else {
+            return $('#main').addClass('container');
+          }
+        });
       };
 
       Router.prototype.home = function() {
         var homeView;
         homeView = new ViewHome;
         return $('#main').html(homeView.el);
+      };
+
+      Router.prototype.registration = function() {
+        var registrationView;
+        registrationView = new ViewRegistration;
+        return $('#main').html(registrationView.el);
       };
 
       Router.prototype.projectList = function() {
