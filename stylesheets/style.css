@@ -10,6 +10,17 @@
   background: #345;
   border: none;
 }
+#home #home-hero {
+  text-align: center;
+}
+#home #home-iconset {
+  font-size: 600%;
+  color: #eee;
+  padding: 20px;
+}
+#home #home-registration h3 {
+  text-align: center;
+}
 #home section {
   padding: 40px 0;
 }

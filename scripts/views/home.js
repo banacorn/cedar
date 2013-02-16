@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'backbone', 'template'], function($, Backbone, $$) {
+  define(['models/registration', 'jquery', 'backbone', 'template'], function(ModelRegistration, $, Backbone, $$) {
     var Home;
     return Home = (function(_super) {
 
@@ -26,6 +26,29 @@
       Home.prototype.render = function() {
         this.$el.html(this.template.render());
         return this;
+      };
+
+      Home.prototype.events = {
+        'submit #registration': 'submit'
+      };
+
+      Home.prototype.submit = function() {
+        var registrationModel,
+          _this = this;
+        registrationModel = new ModelRegistration({
+          username: $('#inputUsername').val(),
+          email: $('#inputEmail').val(),
+          password: $('#inputPassword').val(),
+          passwordConfirmation: $('#inputPasswordConfirmation').val()
+        });
+        registrationModel.on('error', function(model, error) {
+          return console.log(error);
+        });
+        registrationModel.on('success', function() {
+          return console.log('success');
+        });
+        registrationModel.save();
+        return false;
       };
 
       return Home;

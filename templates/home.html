@@ -1,13 +1,47 @@
 
 <section >
     <div class="container">
-        <h1 class="blue">Tryneeds 是什麼?</h1>
         <div class="row">
-            <div class="span6">
-                <h2 class="lead">自由軟體中文化的翻譯平台<br>快加入自由軟體中文化的行列吧！</h2>
+            <div id="home-hero" class="span6">
+                <h1 class="blue">Tryneeds 是什麼?</h1>
+                <div id="home-iconset">
+                    <i class="icon-file-alt"></i> <i class="icon-exchange"></i> <i class="icon-file-alt"></i>
+                </div>
+                <h2 class="lead">自由軟體中文化的翻譯平台<br>快加入志工們的行列吧！</h2>
             </div>
-            <div class="span6">
-                <a href="/registration" class="btn btn-extra-large btn-primary">註冊 <i class="icon-chevron-right"></i></a>
+            <div id="home-registration" class="span6">
+                <h3 class="blue">馬上註冊</h3>
+                <form id="registration" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="inputUsername">帳號</label>
+                        <div class="controls">
+                            <input type="text" id="inputUsername" placeholder="帳號">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail">信箱</label>
+                        <div class="controls">
+                            <input type="email" id="inputEmail" placeholder="信箱">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputPassword">密碼</label>
+                        <div class="controls">
+                            <input type="password" id="inputPassword" placeholder="密碼" pattern=".{6,}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputPasswordConfirmation">密碼確認</label>
+                        <div class="controls">
+                            <input type="password" id="inputPasswordConfirmation" placeholder="密碼確認" pattern=".{6,}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary">註冊 <i class="icon-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
