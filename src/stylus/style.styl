@@ -1,10 +1,17 @@
 @import "bootstrap.css"
 
+$white = white
 $gray           =       #555;
 $grayLight      =       #999;
 $grayLighter    =       #eee;
+$air            =       #f8f8f8;
 $blue           = #334455
 $blueLight      = lighten($blue, 10%)
+$gold = gold
+$goldDark = darken(gold, 20%)
+
+$noise = url('/images/light_noise_diagonal.png')
+
 
 .blue
     color: $blue !important
@@ -26,34 +33,55 @@ $blueLight      = lighten($blue, 10%)
     
     #home-iconset
         font-size: 600%
-        color: $grayLighter
+        color: $grayLight
         padding: 20px
 
-    #home-registration h3
-        text-align: center
+    #home-registration
+        background: $noise
+        h3
+            text-align: center
+article > section 
+    padding: 40px 0
 
-    section 
-        padding: 40px 0
 
-        &.gold
-            background: gold
+    &.white
+        background: $noise
+        color: inherit
+        h1
+        h2
+            color: $blue
 
-            h2
-                color: $blue
 
-        &.blueLight
-            background: $blueLight
-            h2
-                color: $grayLighter
+    &.gold
+        background: $white
+        h1
+        h2
+            color: $blue
 
-        &.blue
-            background: $blue
-            h2
-                color: $grayLighter
+    &.blueLight
+        background: $blueLight  
+        h1
+        h2
+            color: $grayLighter
 
+    &.blue
+        background: $blue
+        h1
+        h2
+            color: $grayLighter
+    color: white
+
+#project-list
+
+    li
+        height: 100px
+        background: $blue
+        margin: 20px
+        border-radius: 4px
 
 body
     // for the fixed navbar
-    padding-top: 60px
+    padding-top: 40px
 
+    background: $blueLight
     // background: url('/images/light_noise_diagonal.png')

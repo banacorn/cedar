@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['jquery', 'backbone', 'template'], function($, Backbone, $$) {
+  define(['collections/project', 'jquery', 'backbone', 'template'], function(CollectionProject, $, Backbone, $$) {
     var ProjectList;
     return ProjectList = (function(_super) {
 
@@ -13,18 +13,23 @@
         return ProjectList.__super__.constructor.apply(this, arguments);
       }
 
-      ProjectList.prototype.tagName = 'section';
+      ProjectList.prototype.tagName = 'article';
 
       ProjectList.prototype.id = 'project-list';
 
       ProjectList.prototype.template = $$.projectList;
 
       ProjectList.prototype.initialize = function() {
+        this.collection = new CollectionProject;
         return this.render();
       };
 
       ProjectList.prototype.render = function() {
         return this.$el.html(this.template.render());
+      };
+
+      ProjectList.prototype.renderList = function() {
+        return console.log('got list');
       };
 
       return ProjectList;

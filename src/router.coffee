@@ -54,11 +54,11 @@ define [
         initialize: ->
 
             # remove the class 'container' if the page is "wide"
-            @on 'all', (path) ->
-                if /^route:home$/.test path
-                    $('#main').removeClass 'container'
-                else
-                    $('#main').addClass 'container'
+            # @on 'all', (path) ->
+            #     if /^route:home$/.test path
+            #         $('#main').removeClass 'container'
+            #     else
+            #         $('#main').addClass 'container'
         home: ->
             homeView = new ViewHome
             $('#main').html homeView.el

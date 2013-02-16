@@ -54,15 +54,7 @@
         'project': 'projectList'
       };
 
-      Router.prototype.initialize = function() {
-        return this.on('all', function(path) {
-          if (/^route:home$/.test(path)) {
-            return $('#main').removeClass('container');
-          } else {
-            return $('#main').addClass('container');
-          }
-        });
-      };
+      Router.prototype.initialize = function() {};
 
       Router.prototype.home = function() {
         var homeView;

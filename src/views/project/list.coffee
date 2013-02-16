@@ -1,14 +1,23 @@
 define [
+    'collections/project',
     'jquery',
     'backbone',
     'template'
-], ($, Backbone, $$) ->
+], (CollectionProject, $, Backbone, $$) ->
 
     class ProjectList extends Backbone.View
 
-        tagName: 'section'
+        tagName: 'article'
         id: 'project-list'
         template: $$.projectList
 
-        initialize: -> @render()
+        initialize: -> 
+            @collection = new CollectionProject
+            # @listenTo @collection 'reset', @renderList
+            # @collection.fetch()
+
+            @render()
         render: -> @$el.html @template.render()
+
+        renderList: ->
+            console.log 'got list'

@@ -15,33 +15,55 @@
 }
 #home #home-iconset {
   font-size: 600%;
-  color: #eee;
+  color: #999;
   padding: 20px;
+}
+#home #home-registration {
+  background: url("/images/light_noise_diagonal.png");
 }
 #home #home-registration h3 {
   text-align: center;
 }
-#home section {
+article > section {
   padding: 40px 0;
+  color: #fff;
 }
-#home section.gold {
-  background: #ffd700;
+article > section.white {
+  background: url("/images/light_noise_diagonal.png");
+  color: inherit;
 }
-#home section.gold h2 {
+article > section.white h1,
+article > section.white h2 {
   color: #345;
 }
-#home section.blueLight {
+article > section.gold {
+  background: #fff;
+}
+article > section.gold h1,
+article > section.gold h2 {
+  color: #345;
+}
+article > section.blueLight {
   background: #41576c;
 }
-#home section.blueLight h2 {
+article > section.blueLight h1,
+article > section.blueLight h2 {
   color: #eee;
 }
-#home section.blue {
+article > section.blue {
   background: #345;
 }
-#home section.blue h2 {
+article > section.blue h1,
+article > section.blue h2 {
   color: #eee;
 }
+#project-list li {
+  height: 100px;
+  background: #345;
+  margin: 20px;
+  border-radius: 4px;
+}
 body {
-  padding-top: 60px;
+  padding-top: 40px;
+  background: #41576c;
 }
