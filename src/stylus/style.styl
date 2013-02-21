@@ -1,14 +1,17 @@
 @import "bootstrap.css"
 
-$white = white
-$gray           =       #555;
-$grayLight      =       #999;
-$grayLighter    =       #eee;
-$air            =       #f8f8f8;
-$blue           = #334455
+$white          = white
+$gray           = #555
+$grayLight      = #999
+$grayLighter    = #eee
+$air            = #f8f8f8
+$purple         = #848
+$red            = #a44
+$blue           = #47a
+$green          = #4a2
+$gold = darken(gold, 10%)
+$goldLight = gold
 $blueLight      = lighten($blue, 10%)
-$gold = gold
-$goldDark = darken(gold, 20%)
 
 $noise = url('/images/light_noise_diagonal.png')
 
@@ -43,23 +46,14 @@ $noise = url('/images/light_noise_diagonal.png')
 article > section 
     padding: 40px 0
 
-
-    &.white
-        background: $noise
-        color: inherit
-        h1
-        h2
-            color: $blue
-
-
     &.gold
-        background: $white
+        background: $gold
         h1
         h2
-            color: $blue
+            color: $white
 
     &.blueLight
-        background: $blueLight  
+        background: $blueLight
         h1
         h2
             color: $grayLighter
@@ -69,19 +63,18 @@ article > section
         h1
         h2
             color: $grayLighter
-    color: white
 
 #project-list
 
     li
         height: 100px
-        background: $blue
-        margin: 20px
+        // background: $blue
+        margin: 20px 0
         border-radius: 4px
 
 body
     // for the fixed navbar
     padding-top: 40px
 
-    background: $blueLight
+    background: $noise
     // background: url('/images/light_noise_diagonal.png')

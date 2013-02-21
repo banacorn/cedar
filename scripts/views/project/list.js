@@ -21,6 +21,8 @@
 
       ProjectList.prototype.initialize = function() {
         this.collection = new CollectionProject;
+        this.listenTo(this.collection, 'get', this.renderList);
+        this.collection.fetch();
         return this.render();
       };
 
@@ -29,7 +31,8 @@
       };
 
       ProjectList.prototype.renderList = function() {
-        return console.log('got list');
+        console.log('got list');
+        return console.log(this.collection.toJSON());
       };
 
       return ProjectList;

@@ -13,11 +13,13 @@ define [
 
         initialize: -> 
             @collection = new CollectionProject
-            # @listenTo @collection 'reset', @renderList
-            # @collection.fetch()
+
+            @listenTo @collection, 'get', @renderList
+            @collection.fetch()
 
             @render()
         render: -> @$el.html @template.render()
 
         renderList: ->
             console.log 'got list'
+            console.log @collection.toJSON()
