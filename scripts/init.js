@@ -13,7 +13,9 @@
       switch (method) {
         case 'read':
           model.once('sync', function() {
-            if ((typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] : void 0) === !JSON.stringify(model.toJSON())) {
+            var inLocalStorage;
+            inLocalStorage = (typeof localStorage !== "undefined" && localStorage !== null ? localStorage[url] : void 0) != null;
+            if (!inLocalStorage || localStorage[url] !== JSON.stringify(model.toJSON())) {
               model.trigger('get', JSON.stringify(model.toJSON()));
               return localStorage[url] = JSON.stringify(model.toJSON());
             }

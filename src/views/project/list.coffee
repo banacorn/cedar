@@ -12,14 +12,24 @@ define [
         template: $$.projectList
 
         initialize: -> 
+            @render()
+
+
             @collection = new CollectionProject
 
             @listenTo @collection, 'get', @renderList
             @collection.fetch()
+            
 
-            @render()
         render: -> @$el.html @template.render()
 
+
         renderList: ->
-            console.log 'got list'
+
+            itemTemplate = $$.projectListitem
+
+            itemView = @collection.map (model) -> itemTemplate.render model.toJSON()
+
             console.log @collection.toJSON()
+
+            $('#project-list-container', @$el).html itemView.join('')

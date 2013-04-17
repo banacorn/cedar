@@ -20,10 +20,10 @@
       ProjectList.prototype.template = $$.projectList;
 
       ProjectList.prototype.initialize = function() {
+        this.render();
         this.collection = new CollectionProject;
         this.listenTo(this.collection, 'get', this.renderList);
-        this.collection.fetch();
-        return this.render();
+        return this.collection.fetch();
       };
 
       ProjectList.prototype.render = function() {
@@ -31,8 +31,13 @@
       };
 
       ProjectList.prototype.renderList = function() {
-        console.log('got list');
-        return console.log(this.collection.toJSON());
+        var itemTemplate, itemView;
+        itemTemplate = $$.projectListitem;
+        itemView = this.collection.map(function(model) {
+          return itemTemplate.render(model.toJSON());
+        });
+        console.log(this.collection.toJSON());
+        return $('#project-list-container', this.$el).html(itemView.join(''));
       };
 
       return ProjectList;

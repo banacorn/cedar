@@ -39,3 +39,19 @@ require [
         # inits
         app.enablePushState();
         app.disableAnchor();
+
+        # the bar
+        $(window).scroll ->
+
+            fixed = $('#bar').hasClass 'fixed'
+            barTop = $('#bar-container').position().top
+            scrollPos = $(window).scrollTop()
+
+            if scrollPos > barTop and not fixed
+                console.log 'fix'
+                $('#bar').addClass 'fixed'
+            
+            if scrollPos <= barTop and fixed
+                console.log 'norm'
+                $('#bar').removeClass 'fixed'
+

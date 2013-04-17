@@ -1,12 +1,16 @@
 @import "bootstrap.css"
+@import "nib"
 
 $white          = white
+$grayDarker     = #222
+$grayDark       = #333
 $gray           = #555
 $grayLight      = #999
-$grayLighter    = #eee
+$grayLighter      = #ccc
+$grayExtraLighter    = #eee
 $air            = #f8f8f8
 $purple         = #848
-$red            = #a44
+$red            = #844
 $blue           = #47a
 $green          = #4a2
 $gold = darken(gold, 10%)
@@ -16,8 +20,16 @@ $blueLight      = lighten($blue, 10%)
 $noise = url('/images/light_noise_diagonal.png')
 
 
+.block
+    display: block
+    &:hover
+        text-decoration: none
+
 .blue
     color: $blue !important
+
+.gold
+    color: $gold !important
 
 .container
     section
@@ -26,7 +38,7 @@ $noise = url('/images/light_noise_diagonal.png')
 // home
 .thumbnail
     height: 200px
-    background: $blue
+    // background: $blue
     border: none
 
 #home
@@ -36,21 +48,33 @@ $noise = url('/images/light_noise_diagonal.png')
     
     #home-iconset
         font-size: 600%
-        color: $grayLight
+        color: $gray
         padding: 20px
 
     #home-registration
-        background: $noise
+        background: $gray
         h3
             text-align: center
 article > section 
     padding: 40px 0
 
+    &.red
+        background: $red
+        h1
+        h2
+            color: $white
+
+    &.gray
+        background: $gray
+        h1
+        h2
+            color: $white
+
     &.gold
         background: $gold
         h1
         h2
-            color: $white
+            color: $gray
 
     &.blueLight
         background: $blueLight
@@ -64,17 +88,53 @@ article > section
         h2
             color: $grayLighter
 
-#project-list
+#bar-container
+    padding: 0
+    height: 40px
+    margin: 0
 
-    li
+#bar
+    width: 100%
+    height: 40px
+    background: $noise
+
+    &.fixed
+        position: fixed
+        top: 0
+
+
+ul.sticker li
+    border-radius: 6px
+    box-shadow(1px, 1px, 6px, $grayLighter)
+
+.project-list-item
+    margin: 20px 0
+    padding: 0 0 !important
+      
+    a
+        padding: 10px 20px
+        // width: 410px
         height: 100px
-        // background: $blue
-        margin: 20px 0
+        background: $air
         border-radius: 4px
+        cursor: pointer
+
+        &:hover
+            background: $white
+
+    .header
+        display: inline-block
+        width: 240px
+        // border-right: 1px solid $grayLighter
+    .body
+        display: inline-block
+        width: 660px
+        // border-left: 1px solid $grayLight
+
 
 body
     // for the fixed navbar
-    padding-top: 40px
+    // padding-top: 40px
 
     background: $noise
     // background: url('/images/light_noise_diagonal.png')

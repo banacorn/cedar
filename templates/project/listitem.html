@@ -1,1 +1,15 @@
-<a href="/project/{{id}}">{{name}}: {{info}}    id: {{id}}   entry 數量 {{num_of_entries}} </a>
+<li class="project-list-item">
+    <a href="/project/{{name}}" class="block">
+        <div class="header">
+                <h3>{{name}}<br><small>{{info}}</small></h3>
+        </div><div class="body">
+            <div class="numbers">
+            {{numberOfEntries}}
+            {{numberOfUnpickedEntries}}
+            {{numberOfUntranslatedEntries}}
+            </div>
+            <div class="bars">
+            </div>
+        </div>
+    </a>
+</li>

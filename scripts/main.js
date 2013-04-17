@@ -45,7 +45,21 @@
     app = new App;
     return $(function() {
       app.enablePushState();
-      return app.disableAnchor();
+      app.disableAnchor();
+      return $(window).scroll(function() {
+        var barTop, fixed, scrollPos;
+        fixed = $('#bar').hasClass('fixed');
+        barTop = $('#bar-container').position().top;
+        scrollPos = $(window).scrollTop();
+        if (scrollPos > barTop && !fixed) {
+          console.log('fix');
+          $('#bar').addClass('fixed');
+        }
+        if (scrollPos <= barTop && fixed) {
+          console.log('norm');
+          return $('#bar').removeClass('fixed');
+        }
+      });
     });
   });
 
